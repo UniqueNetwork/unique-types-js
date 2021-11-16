@@ -1,0 +1,17 @@
+{
+  "name": "@uniquenetwork/types",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "tsc -d"
+  },
+  "peerDependencies": {
+    "@polkadot/api": "^6.8.1",
+    "@polkadot/types": "^6.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}
