@@ -1,4 +1,6 @@
-# @unique/types
+# @unique-nft/types
+
+Unique network api types
 
 Do not edit by hand, those types are generated automatically, and definitions are located in chain repo
 
@@ -7,7 +9,7 @@ Do not edit by hand, those types are generated automatically, and definitions ar
 Install library:
 
 ```bash
-yarn add --dev @unique/types
+yarn add --dev @unique-nft/types
 ```
 
 Replace polkadot.js types with our chain types:
@@ -18,10 +20,10 @@ Replace polkadot.js types with our chain types:
   "compilerOptions": {
     "paths": {
       "@polkadot/api/augment": [
-        "@unique/types/src/interfaces/augment-api.ts"
+        "@unique-nft/types/src/interfaces/augment-api.ts"
       ],
       "@polkadot/types/augment": [
-        "@unique/types/src/interfaces/augment-types.ts"
+        "@unique-nft/types/src/interfaces/augment-types.ts"
       ]
     }
   }
