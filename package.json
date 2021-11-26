@@ -9,10 +9,14 @@
     "prepublish": "tsc -d"
   },
   "peerDependencies": {
-    "@polkadot/api": "^6.8.1",
-    "@polkadot/types": "^6.8.1"
+    "@polkadot/api": "^6.9.2",
+    "@polkadot/types": "^6.9.2"
   },
   "devDependencies": {
+    "@polkadot/api": "^6.9.2",
+    "@polkadot/typegen": "^6.9.2",
+    "@polkadot/types": "^6.9.2",
+    "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   }
 }
