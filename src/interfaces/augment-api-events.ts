@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { EthereumLog, EvmCoreErrorExitReason } from './ethereum';
+import type { OrmlVestingVestingSchedule } from './orml';
 import type { PalletCommonAccountBasicCrossAccountIdRepr } from './unique';
 import type { ApiTypes } from '@polkadot/api/types';
 import type { Null, Option, Result, U256, U8aFixed, u128, u32, u64, u8 } from '@polkadot/types';

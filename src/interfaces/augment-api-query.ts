@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { EthereumBlock, EthereumReceipt, EthereumTransactionLegacyTransaction, FpRpcTransactionStatus } from './ethereum';
+import type { OrmlVestingVestingSchedule } from './orml';
 import type { CumulusPalletDmpQueueConfigData, CumulusPalletDmpQueuePageIndexData, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, CumulusPalletXcmpQueueInboundStatus, CumulusPalletXcmpQueueOutboundStatus, CumulusPalletXcmpQueueQueueConfigData, PolkadotParachainPrimitivesXcmpMessageFormat, PolkadotPrimitivesV1AbridgedHostConfiguration, PolkadotPrimitivesV1PersistedValidationData } from './polkadot';
 import type { PalletCommonAccountBasicCrossAccountIdRepr, PalletNonfungibleItemData, PalletRefungibleItemData, UpDataStructsCollection, UpDataStructsCollectionStats } from './unique';
 import type { ApiTypes } from '@polkadot/api/types';

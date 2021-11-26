@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { EthereumTransactionLegacyTransaction } from './ethereum';
+import type { OrmlVestingVestingSchedule } from './orml';
 import type { CumulusPrimitivesParachainInherentParachainInherentData } from './polkadot';
 import type { PalletCommonAccountBasicCrossAccountIdRepr, UpDataStructsAccessMode, UpDataStructsCollectionLimits, UpDataStructsCollectionMode, UpDataStructsCreateItemData, UpDataStructsMetaUpdatePermission, UpDataStructsSchemaVersion } from './unique';
 import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
