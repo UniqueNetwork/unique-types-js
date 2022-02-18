@@ -13,14 +13,14 @@
 		"module": "commonjs",
 		"sourceMap": true,
 		"outDir": ".",
-		"rootDir": "src/interfaces/",
+		"rootDir": ".",
 		"strict": true,
 		"paths": {
 		},
 		"skipLibCheck": true,
 	},
 	"include": [
-		"src/interfaces/**/*",
+		"**/*",
 	],
 	"lib": [
 		"es2017"

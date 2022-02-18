@@ -1,6 +1,6 @@
 {
   "name": "@unique-nft/types",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
@@ -9,14 +9,14 @@
     "prepublish": "tsc -d"
   },
   "peerDependencies": {
-    "@polkadot/api": "^6.9.2",
-    "@polkadot/types": "^6.9.2"
+    "@polkadot/api": "^7.8.1",
+    "@polkadot/types": "^7.8.1"
   },
   "devDependencies": {
-    "@polkadot/api": "^6.9.2",
-    "@polkadot/typegen": "^6.9.2",
-    "@polkadot/types": "^6.9.2",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.4.4"
+    "@polkadot/api": "7.8.1",
+    "@polkadot/typegen": "^7.8.1",
+    "@polkadot/types": "^7.8.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   }
 }

@@ -18,14 +18,19 @@ Replace polkadot.js types with our chain types:
 // in tsconfig.json
 {
   "compilerOptions": {
-    "paths": {
-      "@polkadot/api/augment": [
-        "@unique-nft/types/src/interfaces/augment-api.ts"
-      ],
-      "@polkadot/types/augment": [
-        "@unique-nft/types/src/interfaces/augment-types.ts"
-      ]
-    }
+    "@polkadot/types/lookup": [
+      "@unique-nft/types/types-lookup.ts"
+    ],
   }
 }
+```
+
+Since polkadot v7 api augmentations not loaded by default, in every file, where you need to access `api.tx`, `api.query`, `api.rpc`, etc; you should explicitly import corresponding augmentation before any other `polkadot.js` related import:
+```
+import '@unique-nft/types/augment-api-consts.ts';
+import '@unique-nft/types/augment-api-errors.ts';
+import '@unique-nft/types/augment-api-events.ts';
+import '@unique-nft/types/augment-api-query.ts';
+import '@unique-nft/types/augment-api-rpc.ts';
+import '@unique-nft/types/augment-api-tx.ts';
 ```

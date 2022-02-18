@@ -2,3 +2,4 @@
 *.map
 *.d.ts
 /node_modules
+metadata.json
