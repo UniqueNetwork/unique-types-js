@@ -12,25 +12,20 @@ Install library:
 yarn add --dev @unique-nft/types
 ```
 
-Replace polkadot.js types with our chain types:
+Replace polkadot.js types with our chain types adding corresponding path override to the tsconfig `compilerOptions.paths` section:
 
 ```json
 // in tsconfig.json
 {
   "compilerOptions": {
-    "@polkadot/types/lookup": [
-      "@unique-nft/types/types-lookup.ts"
-    ],
+    "paths": {
+      "@polkadot/types/lookup": ["node_modules/@unique-nft/types/types-lookup"]
+    }
   }
 }
 ```
 
 Since polkadot v7 api augmentations not loaded by default, in every file, where you need to access `api.tx`, `api.query`, `api.rpc`, etc; you should explicitly import corresponding augmentation before any other `polkadot.js` related import:
 ```
-import '@unique-nft/types/augment-api-consts.ts';
-import '@unique-nft/types/augment-api-errors.ts';
-import '@unique-nft/types/augment-api-events.ts';
-import '@unique-nft/types/augment-api-query.ts';
-import '@unique-nft/types/augment-api-rpc.ts';
-import '@unique-nft/types/augment-api-tx.ts';
+import '@unique-nft/types/augment-api';
 ```
