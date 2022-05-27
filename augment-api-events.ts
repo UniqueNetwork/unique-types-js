@@ -3,9 +3,9 @@
 /* eslint-disable */
 
 import type { ApiTypes } from '@polkadot/api-base/types';
-import type { Null, Option, Result, U256, U8aFixed, u128, u32, u64, u8 } from '@polkadot/types-codec';
+import type { Bytes, Null, Option, Result, U256, U8aFixed, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { AccountId32, H160, H256 } from '@polkadot/types/interfaces/runtime';
-import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, SpRuntimeDispatchError, UpDataStructsAccessMode, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
+import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, SpRuntimeDispatchError, XcmV1MultiLocation, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
@@ -90,6 +90,8 @@ declare module '@polkadot/api-base/types/events' {
        * * collection_id: Globally unique identifier of collection.
        **/
       CollectionDestroyed: AugmentedEvent<ApiType, [u32]>;
+      CollectionPropertyDeleted: AugmentedEvent<ApiType, [u32, Bytes]>;
+      CollectionPropertySet: AugmentedEvent<ApiType, [u32, Bytes]>;
       /**
        * New item was created.
        * 
@@ -118,6 +120,9 @@ declare module '@polkadot/api-base/types/events' {
        * * amount: Always 1 for NFT
        **/
       ItemDestroyed: AugmentedEvent<ApiType, [u32, u32, PalletEvmAccountBasicCrossAccountIdRepr, u128]>;
+      PropertyPermissionSet: AugmentedEvent<ApiType, [u32, Bytes]>;
+      TokenPropertyDeleted: AugmentedEvent<ApiType, [u32, u32, Bytes]>;
+      TokenPropertySet: AugmentedEvent<ApiType, [u32, u32, Bytes]>;
       /**
        * Item was transferred
        * 
@@ -392,6 +397,36 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    rmrkCore: {
+      CollectionCreated: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      CollectionDestroyed: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      CollectionLocked: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      IssuerChanged: AugmentedEvent<ApiType, [AccountId32, AccountId32, u32]>;
+      NFTBurned: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      NftMinted: AugmentedEvent<ApiType, [AccountId32, u32, u32]>;
+      PropertySet: AugmentedEvent<ApiType, [u32, Option<u32>, Bytes, Bytes]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    rmrkEquip: {
+      BaseCreated: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    structure: {
+      /**
+       * Executed call on behalf of token
+       **/
+      Executed: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     sudo: {
       /**
        * The \[sudoer\] just switched identity; the old key is supplied if one existed.
@@ -533,6 +568,7 @@ declare module '@polkadot/api-base/types/events' {
        * * owner:  New owner address.
        **/
       CollectionOwnedChanged: AugmentedEvent<ApiType, [u32, AccountId32]>;
+      CollectionPermissionSet: AugmentedEvent<ApiType, [u32]>;
       /**
        * Collection sponsor was removed
        * 
@@ -552,48 +588,6 @@ declare module '@polkadot/api-base/types/events' {
        **/
       CollectionSponsorSet: AugmentedEvent<ApiType, [u32, AccountId32]>;
       /**
-       * const on chain schema was set
-       * 
-       * # Arguments
-       * 
-       * * collection_id: Globally unique collection identifier.
-       **/
-      ConstOnChainSchemaSet: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Mint permission	was set
-       * 
-       * # Arguments
-       * 
-       * * collection_id: Globally unique collection identifier.
-       **/
-      MintPermissionSet: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Offchain schema was set
-       * 
-       * # Arguments
-       * 
-       * * collection_id: Globally unique collection identifier.
-       **/
-      OffchainSchemaSet: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Public access mode was set
-       * 
-       * # Arguments
-       * 
-       * * collection_id: Globally unique collection identifier.
-       * 
-       * * mode: New access state.
-       **/
-      PublicAccessModeSet: AugmentedEvent<ApiType, [u32, UpDataStructsAccessMode]>;
-      /**
-       * Schema version was set
-       * 
-       * # Arguments
-       * 
-       * * collection_id: Globally unique collection identifier.
-       **/
-      SchemaVersionSet: AugmentedEvent<ApiType, [u32]>;
-      /**
        * New sponsor was confirm
        * 
        * # Arguments
@@ -603,14 +597,6 @@ declare module '@polkadot/api-base/types/events' {
        * * sponsor:  New sponsor address.
        **/
       SponsorshipConfirmed: AugmentedEvent<ApiType, [u32, AccountId32]>;
-      /**
-       * Variable on chain schema was set
-       * 
-       * # Arguments
-       * 
-       * * collection_id: Globally unique collection identifier.
-       **/
-      VariableOnChainSchemaSet: AugmentedEvent<ApiType, [u32]>;
       /**
        * Generic event
        **/
