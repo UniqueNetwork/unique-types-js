@@ -9,13 +9,13 @@
     "prepublish": "tsc -d"
   },
   "peerDependencies": {
-    "@polkadot/api": "^8.5.1",
-    "@polkadot/types": "^8.5.1"
+    "@polkadot/api": "8.5.2-10",
+    "@polkadot/types": "8.5.2-10"
   },
   "devDependencies": {
-    "@polkadot/api": "8.5.1",
-    "@polkadot/typegen": "^8.5.1",
-    "@polkadot/types": "^8.5.1",
+    "@polkadot/api": "8.5.2-10",
+    "@polkadot/typegen": "8.5.2-10",
+    "@polkadot/types": "8.5.2-10",
     "ts-node": "^10.8.0",
     "typescript": "^4.7.2"
   }
