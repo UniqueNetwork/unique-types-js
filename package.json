@@ -1,9 +1,11 @@
 {
-  "name": "@unique-nft/types",
+  "name": "@unique-nft/quartz-mainnet-types",
+  "description": "Unique network api types for quartz mainnet",
   "version": "0.5.1",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
+  "author": "Unique Network",
   "license": "MIT",
   "scripts": {
     "prepublish": "tsc -d"
