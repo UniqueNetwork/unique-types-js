@@ -2,11 +2,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { BTreeSet, CumulusPalletDmpQueueCall, CumulusPalletDmpQueueConfigData, CumulusPalletDmpQueueError, CumulusPalletDmpQueueEvent, CumulusPalletDmpQueuePageIndexData, CumulusPalletParachainSystemCall, CumulusPalletParachainSystemError, CumulusPalletParachainSystemEvent, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, CumulusPalletXcmCall, CumulusPalletXcmError, CumulusPalletXcmEvent, CumulusPalletXcmpQueueCall, CumulusPalletXcmpQueueError, CumulusPalletXcmpQueueEvent, CumulusPalletXcmpQueueInboundChannelDetails, CumulusPalletXcmpQueueInboundState, CumulusPalletXcmpQueueOutboundChannelDetails, CumulusPalletXcmpQueueOutboundState, CumulusPalletXcmpQueueQueueConfigData, CumulusPrimitivesParachainInherentParachainInherentData, EthbloomBloom, EthereumBlock, EthereumHeader, EthereumLog, EthereumReceiptEip658ReceiptData, EthereumReceiptReceiptV3, EthereumTransactionAccessListItem, EthereumTransactionEip1559Transaction, EthereumTransactionEip2930Transaction, EthereumTransactionLegacyTransaction, EthereumTransactionTransactionAction, EthereumTransactionTransactionSignature, EthereumTransactionTransactionV2, EthereumTypesHashH64, EvmCoreErrorExitError, EvmCoreErrorExitFatal, EvmCoreErrorExitReason, EvmCoreErrorExitRevert, EvmCoreErrorExitSucceed, FpRpcTransactionStatus, FrameSupportPalletId, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchClass, FrameSupportWeightsDispatchInfo, FrameSupportWeightsPays, FrameSupportWeightsPerDispatchClassU32, FrameSupportWeightsPerDispatchClassU64, FrameSupportWeightsPerDispatchClassWeightsPerClass, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemAccountInfo, FrameSystemCall, FrameSystemError, FrameSystemEvent, FrameSystemEventRecord, FrameSystemExtensionsCheckGenesis, FrameSystemExtensionsCheckNonce, FrameSystemExtensionsCheckSpecVersion, FrameSystemExtensionsCheckWeight, FrameSystemLastRuntimeUpgradeInfo, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, FrameSystemLimitsWeightsPerClass, FrameSystemPhase, OpalRuntimeRuntime, OrmlVestingModuleCall, OrmlVestingModuleError, OrmlVestingModuleEvent, OrmlVestingVestingSchedule, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesCall, PalletBalancesError, PalletBalancesEvent, PalletBalancesReasons, PalletBalancesReleases, PalletBalancesReserveData, PalletCommonError, PalletCommonEvent, PalletEthereumCall, PalletEthereumError, PalletEthereumEvent, PalletEvmAccountBasicCrossAccountIdRepr, PalletEvmCall, PalletEvmCoderSubstrateError, PalletEvmContractHelpersError, PalletEvmContractHelpersSponsoringModeT, PalletEvmError, PalletEvmEvent, PalletEvmMigrationCall, PalletEvmMigrationError, PalletFungibleError, PalletInflationCall, PalletNonfungibleError, PalletNonfungibleItemData, PalletRefungibleError, PalletRefungibleItemData, PalletSudoCall, PalletSudoError, PalletSudoEvent, PalletTemplateTransactionPaymentCall, PalletTemplateTransactionPaymentChargeTransactionPayment, PalletTimestampCall, PalletTransactionPaymentReleases, PalletTreasuryCall, PalletTreasuryError, PalletTreasuryEvent, PalletTreasuryProposal, PalletUniqueCall, PalletUniqueError, PalletUniqueRawEvent, PalletXcmCall, PalletXcmError, PalletXcmEvent, PolkadotCorePrimitivesInboundDownwardMessage, PolkadotCorePrimitivesInboundHrmpMessage, PolkadotCorePrimitivesOutboundHrmpMessage, PolkadotParachainPrimitivesXcmpMessageFormat, PolkadotPrimitivesV2AbridgedHostConfiguration, PolkadotPrimitivesV2AbridgedHrmpChannel, PolkadotPrimitivesV2PersistedValidationData, PolkadotPrimitivesV2UpgradeRestriction, SpCoreEcdsaSignature, SpCoreEd25519Signature, SpCoreSr25519Signature, SpRuntimeArithmeticError, SpRuntimeDigest, SpRuntimeDigestDigestItem, SpRuntimeDispatchError, SpRuntimeModuleError, SpRuntimeMultiSignature, SpRuntimeTokenError, SpRuntimeTransactionalError, SpTrieStorageProof, SpVersionRuntimeVersion, UpDataStructsAccessMode, UpDataStructsCollection, UpDataStructsCollectionLimits, UpDataStructsCollectionMode, UpDataStructsCollectionStats, UpDataStructsCreateCollectionData, UpDataStructsCreateFungibleData, UpDataStructsCreateItemData, UpDataStructsCreateItemExData, UpDataStructsCreateNftData, UpDataStructsCreateNftExData, UpDataStructsCreateReFungibleData, UpDataStructsCreateRefungibleExData, UpDataStructsMetaUpdatePermission, UpDataStructsSchemaVersion, UpDataStructsSponsoringRateLimit, UpDataStructsSponsorshipState, XcmDoubleEncoded, XcmV0Junction, XcmV0JunctionBodyId, XcmV0JunctionBodyPart, XcmV0JunctionNetworkId, XcmV0MultiAsset, XcmV0MultiLocation, XcmV0Order, XcmV0OriginKind, XcmV0Response, XcmV0Xcm, XcmV1Junction, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetAssetId, XcmV1MultiassetAssetInstance, XcmV1MultiassetFungibility, XcmV1MultiassetMultiAssetFilter, XcmV1MultiassetMultiAssets, XcmV1MultiassetWildFungibility, XcmV1MultiassetWildMultiAsset, XcmV1MultilocationJunctions, XcmV1Order, XcmV1Response, XcmV1Xcm, XcmV2Instruction, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2WeightLimit, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from '@polkadot/types/lookup';
+import type { CumulusPalletDmpQueueCall, CumulusPalletDmpQueueConfigData, CumulusPalletDmpQueueError, CumulusPalletDmpQueueEvent, CumulusPalletDmpQueuePageIndexData, CumulusPalletParachainSystemCall, CumulusPalletParachainSystemError, CumulusPalletParachainSystemEvent, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, CumulusPalletXcmCall, CumulusPalletXcmError, CumulusPalletXcmEvent, CumulusPalletXcmOrigin, CumulusPalletXcmpQueueCall, CumulusPalletXcmpQueueError, CumulusPalletXcmpQueueEvent, CumulusPalletXcmpQueueInboundChannelDetails, CumulusPalletXcmpQueueInboundState, CumulusPalletXcmpQueueOutboundChannelDetails, CumulusPalletXcmpQueueOutboundState, CumulusPalletXcmpQueueQueueConfigData, CumulusPrimitivesParachainInherentParachainInherentData, EthbloomBloom, EthereumBlock, EthereumHeader, EthereumLog, EthereumReceiptEip658ReceiptData, EthereumReceiptReceiptV3, EthereumTransactionAccessListItem, EthereumTransactionEip1559Transaction, EthereumTransactionEip2930Transaction, EthereumTransactionLegacyTransaction, EthereumTransactionTransactionAction, EthereumTransactionTransactionSignature, EthereumTransactionTransactionV2, EthereumTypesHashH64, EvmCoreErrorExitError, EvmCoreErrorExitFatal, EvmCoreErrorExitReason, EvmCoreErrorExitRevert, EvmCoreErrorExitSucceed, FpRpcTransactionStatus, FrameSupportDispatchRawOrigin, FrameSupportPalletId, FrameSupportScheduleLookupError, FrameSupportScheduleMaybeHashed, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchClass, FrameSupportWeightsDispatchInfo, FrameSupportWeightsPays, FrameSupportWeightsPerDispatchClassU32, FrameSupportWeightsPerDispatchClassU64, FrameSupportWeightsPerDispatchClassWeightsPerClass, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemAccountInfo, FrameSystemCall, FrameSystemError, FrameSystemEvent, FrameSystemEventRecord, FrameSystemExtensionsCheckGenesis, FrameSystemExtensionsCheckNonce, FrameSystemExtensionsCheckSpecVersion, FrameSystemExtensionsCheckWeight, FrameSystemLastRuntimeUpgradeInfo, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, FrameSystemLimitsWeightsPerClass, FrameSystemPhase, OpalRuntimeOriginCaller, OpalRuntimeRuntime, OrmlVestingModuleCall, OrmlVestingModuleError, OrmlVestingModuleEvent, OrmlVestingVestingSchedule, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesCall, PalletBalancesError, PalletBalancesEvent, PalletBalancesReasons, PalletBalancesReleases, PalletBalancesReserveData, PalletCommonError, PalletCommonEvent, PalletEthereumCall, PalletEthereumError, PalletEthereumEvent, PalletEthereumFakeTransactionFinalizer, PalletEthereumRawOrigin, PalletEvmAccountBasicCrossAccountIdRepr, PalletEvmCall, PalletEvmCoderSubstrateError, PalletEvmContractHelpersError, PalletEvmContractHelpersSponsoringModeT, PalletEvmError, PalletEvmEvent, PalletEvmMigrationCall, PalletEvmMigrationError, PalletFungibleError, PalletInflationCall, PalletNonfungibleError, PalletNonfungibleItemData, PalletRefungibleError, PalletRefungibleItemData, PalletRmrkCoreCall, PalletRmrkCoreError, PalletRmrkCoreEvent, PalletRmrkEquipCall, PalletRmrkEquipError, PalletRmrkEquipEvent, PalletStructureCall, PalletStructureError, PalletStructureEvent, PalletSudoCall, PalletSudoError, PalletSudoEvent, PalletTemplateTransactionPaymentCall, PalletTemplateTransactionPaymentChargeTransactionPayment, PalletTimestampCall, PalletTransactionPaymentReleases, PalletTreasuryCall, PalletTreasuryError, PalletTreasuryEvent, PalletTreasuryProposal, PalletUniqueCall, PalletUniqueError, PalletUniqueRawEvent, PalletUniqueSchedulerCall, PalletUniqueSchedulerError, PalletUniqueSchedulerEvent, PalletUniqueSchedulerScheduledV3, PalletXcmCall, PalletXcmError, PalletXcmEvent, PalletXcmOrigin, PhantomTypeUpDataStructs, PolkadotCorePrimitivesInboundDownwardMessage, PolkadotCorePrimitivesInboundHrmpMessage, PolkadotCorePrimitivesOutboundHrmpMessage, PolkadotParachainPrimitivesXcmpMessageFormat, PolkadotPrimitivesV2AbridgedHostConfiguration, PolkadotPrimitivesV2AbridgedHrmpChannel, PolkadotPrimitivesV2PersistedValidationData, PolkadotPrimitivesV2UpgradeRestriction, RmrkTraitsBaseBaseInfo, RmrkTraitsCollectionCollectionInfo, RmrkTraitsNftAccountIdOrCollectionNftTuple, RmrkTraitsNftNftChild, RmrkTraitsNftNftInfo, RmrkTraitsNftRoyaltyInfo, RmrkTraitsPartEquippableList, RmrkTraitsPartFixedPart, RmrkTraitsPartPartType, RmrkTraitsPartSlotPart, RmrkTraitsPropertyPropertyInfo, RmrkTraitsResourceBasicResource, RmrkTraitsResourceComposableResource, RmrkTraitsResourceResourceInfo, RmrkTraitsResourceResourceTypes, RmrkTraitsResourceSlotResource, RmrkTraitsTheme, RmrkTraitsThemeThemeProperty, SpCoreEcdsaSignature, SpCoreEd25519Signature, SpCoreSr25519Signature, SpCoreVoid, SpRuntimeArithmeticError, SpRuntimeDigest, SpRuntimeDigestDigestItem, SpRuntimeDispatchError, SpRuntimeModuleError, SpRuntimeMultiSignature, SpRuntimeTokenError, SpRuntimeTransactionalError, SpTrieStorageProof, SpVersionRuntimeVersion, UpDataStructsAccessMode, UpDataStructsCollection, UpDataStructsCollectionLimits, UpDataStructsCollectionMode, UpDataStructsCollectionPermissions, UpDataStructsCollectionStats, UpDataStructsCreateCollectionData, UpDataStructsCreateFungibleData, UpDataStructsCreateItemData, UpDataStructsCreateItemExData, UpDataStructsCreateNftData, UpDataStructsCreateNftExData, UpDataStructsCreateReFungibleData, UpDataStructsCreateRefungibleExData, UpDataStructsNestingPermissions, UpDataStructsOwnerRestrictedSet, UpDataStructsProperties, UpDataStructsPropertiesMapBoundedVec, UpDataStructsPropertiesMapPropertyPermission, UpDataStructsProperty, UpDataStructsPropertyKeyPermission, UpDataStructsPropertyPermission, UpDataStructsRpcCollection, UpDataStructsSponsoringRateLimit, UpDataStructsSponsorshipState, UpDataStructsTokenChild, UpDataStructsTokenData, XcmDoubleEncoded, XcmV0Junction, XcmV0JunctionBodyId, XcmV0JunctionBodyPart, XcmV0JunctionNetworkId, XcmV0MultiAsset, XcmV0MultiLocation, XcmV0Order, XcmV0OriginKind, XcmV0Response, XcmV0Xcm, XcmV1Junction, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetAssetId, XcmV1MultiassetAssetInstance, XcmV1MultiassetFungibility, XcmV1MultiassetMultiAssetFilter, XcmV1MultiassetMultiAssets, XcmV1MultiassetWildFungibility, XcmV1MultiassetWildMultiAsset, XcmV1MultilocationJunctions, XcmV1Order, XcmV1Response, XcmV1Xcm, XcmV2Instruction, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2WeightLimit, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from '@polkadot/types/lookup';
 
 declare module '@polkadot/types/types/registry' {
   export interface InterfaceTypes {
-    BTreeSet: BTreeSet;
     CumulusPalletDmpQueueCall: CumulusPalletDmpQueueCall;
     CumulusPalletDmpQueueConfigData: CumulusPalletDmpQueueConfigData;
     CumulusPalletDmpQueueError: CumulusPalletDmpQueueError;
@@ -19,6 +18,7 @@ declare module '@polkadot/types/types/registry' {
     CumulusPalletXcmCall: CumulusPalletXcmCall;
     CumulusPalletXcmError: CumulusPalletXcmError;
     CumulusPalletXcmEvent: CumulusPalletXcmEvent;
+    CumulusPalletXcmOrigin: CumulusPalletXcmOrigin;
     CumulusPalletXcmpQueueCall: CumulusPalletXcmpQueueCall;
     CumulusPalletXcmpQueueError: CumulusPalletXcmpQueueError;
     CumulusPalletXcmpQueueEvent: CumulusPalletXcmpQueueEvent;
@@ -48,7 +48,10 @@ declare module '@polkadot/types/types/registry' {
     EvmCoreErrorExitRevert: EvmCoreErrorExitRevert;
     EvmCoreErrorExitSucceed: EvmCoreErrorExitSucceed;
     FpRpcTransactionStatus: FpRpcTransactionStatus;
+    FrameSupportDispatchRawOrigin: FrameSupportDispatchRawOrigin;
     FrameSupportPalletId: FrameSupportPalletId;
+    FrameSupportScheduleLookupError: FrameSupportScheduleLookupError;
+    FrameSupportScheduleMaybeHashed: FrameSupportScheduleMaybeHashed;
     FrameSupportTokensMiscBalanceStatus: FrameSupportTokensMiscBalanceStatus;
     FrameSupportWeightsDispatchClass: FrameSupportWeightsDispatchClass;
     FrameSupportWeightsDispatchInfo: FrameSupportWeightsDispatchInfo;
@@ -72,6 +75,7 @@ declare module '@polkadot/types/types/registry' {
     FrameSystemLimitsBlockWeights: FrameSystemLimitsBlockWeights;
     FrameSystemLimitsWeightsPerClass: FrameSystemLimitsWeightsPerClass;
     FrameSystemPhase: FrameSystemPhase;
+    OpalRuntimeOriginCaller: OpalRuntimeOriginCaller;
     OpalRuntimeRuntime: OpalRuntimeRuntime;
     OrmlVestingModuleCall: OrmlVestingModuleCall;
     OrmlVestingModuleError: OrmlVestingModuleError;
@@ -90,6 +94,8 @@ declare module '@polkadot/types/types/registry' {
     PalletEthereumCall: PalletEthereumCall;
     PalletEthereumError: PalletEthereumError;
     PalletEthereumEvent: PalletEthereumEvent;
+    PalletEthereumFakeTransactionFinalizer: PalletEthereumFakeTransactionFinalizer;
+    PalletEthereumRawOrigin: PalletEthereumRawOrigin;
     PalletEvmAccountBasicCrossAccountIdRepr: PalletEvmAccountBasicCrossAccountIdRepr;
     PalletEvmCall: PalletEvmCall;
     PalletEvmCoderSubstrateError: PalletEvmCoderSubstrateError;
@@ -105,6 +111,15 @@ declare module '@polkadot/types/types/registry' {
     PalletNonfungibleItemData: PalletNonfungibleItemData;
     PalletRefungibleError: PalletRefungibleError;
     PalletRefungibleItemData: PalletRefungibleItemData;
+    PalletRmrkCoreCall: PalletRmrkCoreCall;
+    PalletRmrkCoreError: PalletRmrkCoreError;
+    PalletRmrkCoreEvent: PalletRmrkCoreEvent;
+    PalletRmrkEquipCall: PalletRmrkEquipCall;
+    PalletRmrkEquipError: PalletRmrkEquipError;
+    PalletRmrkEquipEvent: PalletRmrkEquipEvent;
+    PalletStructureCall: PalletStructureCall;
+    PalletStructureError: PalletStructureError;
+    PalletStructureEvent: PalletStructureEvent;
     PalletSudoCall: PalletSudoCall;
     PalletSudoError: PalletSudoError;
     PalletSudoEvent: PalletSudoEvent;
@@ -119,9 +134,15 @@ declare module '@polkadot/types/types/registry' {
     PalletUniqueCall: PalletUniqueCall;
     PalletUniqueError: PalletUniqueError;
     PalletUniqueRawEvent: PalletUniqueRawEvent;
+    PalletUniqueSchedulerCall: PalletUniqueSchedulerCall;
+    PalletUniqueSchedulerError: PalletUniqueSchedulerError;
+    PalletUniqueSchedulerEvent: PalletUniqueSchedulerEvent;
+    PalletUniqueSchedulerScheduledV3: PalletUniqueSchedulerScheduledV3;
     PalletXcmCall: PalletXcmCall;
     PalletXcmError: PalletXcmError;
     PalletXcmEvent: PalletXcmEvent;
+    PalletXcmOrigin: PalletXcmOrigin;
+    PhantomTypeUpDataStructs: PhantomTypeUpDataStructs;
     PolkadotCorePrimitivesInboundDownwardMessage: PolkadotCorePrimitivesInboundDownwardMessage;
     PolkadotCorePrimitivesInboundHrmpMessage: PolkadotCorePrimitivesInboundHrmpMessage;
     PolkadotCorePrimitivesOutboundHrmpMessage: PolkadotCorePrimitivesOutboundHrmpMessage;
@@ -130,9 +151,28 @@ declare module '@polkadot/types/types/registry' {
     PolkadotPrimitivesV2AbridgedHrmpChannel: PolkadotPrimitivesV2AbridgedHrmpChannel;
     PolkadotPrimitivesV2PersistedValidationData: PolkadotPrimitivesV2PersistedValidationData;
     PolkadotPrimitivesV2UpgradeRestriction: PolkadotPrimitivesV2UpgradeRestriction;
+    RmrkTraitsBaseBaseInfo: RmrkTraitsBaseBaseInfo;
+    RmrkTraitsCollectionCollectionInfo: RmrkTraitsCollectionCollectionInfo;
+    RmrkTraitsNftAccountIdOrCollectionNftTuple: RmrkTraitsNftAccountIdOrCollectionNftTuple;
+    RmrkTraitsNftNftChild: RmrkTraitsNftNftChild;
+    RmrkTraitsNftNftInfo: RmrkTraitsNftNftInfo;
+    RmrkTraitsNftRoyaltyInfo: RmrkTraitsNftRoyaltyInfo;
+    RmrkTraitsPartEquippableList: RmrkTraitsPartEquippableList;
+    RmrkTraitsPartFixedPart: RmrkTraitsPartFixedPart;
+    RmrkTraitsPartPartType: RmrkTraitsPartPartType;
+    RmrkTraitsPartSlotPart: RmrkTraitsPartSlotPart;
+    RmrkTraitsPropertyPropertyInfo: RmrkTraitsPropertyPropertyInfo;
+    RmrkTraitsResourceBasicResource: RmrkTraitsResourceBasicResource;
+    RmrkTraitsResourceComposableResource: RmrkTraitsResourceComposableResource;
+    RmrkTraitsResourceResourceInfo: RmrkTraitsResourceResourceInfo;
+    RmrkTraitsResourceResourceTypes: RmrkTraitsResourceResourceTypes;
+    RmrkTraitsResourceSlotResource: RmrkTraitsResourceSlotResource;
+    RmrkTraitsTheme: RmrkTraitsTheme;
+    RmrkTraitsThemeThemeProperty: RmrkTraitsThemeThemeProperty;
     SpCoreEcdsaSignature: SpCoreEcdsaSignature;
     SpCoreEd25519Signature: SpCoreEd25519Signature;
     SpCoreSr25519Signature: SpCoreSr25519Signature;
+    SpCoreVoid: SpCoreVoid;
     SpRuntimeArithmeticError: SpRuntimeArithmeticError;
     SpRuntimeDigest: SpRuntimeDigest;
     SpRuntimeDigestDigestItem: SpRuntimeDigestDigestItem;
@@ -147,6 +187,7 @@ declare module '@polkadot/types/types/registry' {
     UpDataStructsCollection: UpDataStructsCollection;
     UpDataStructsCollectionLimits: UpDataStructsCollectionLimits;
     UpDataStructsCollectionMode: UpDataStructsCollectionMode;
+    UpDataStructsCollectionPermissions: UpDataStructsCollectionPermissions;
     UpDataStructsCollectionStats: UpDataStructsCollectionStats;
     UpDataStructsCreateCollectionData: UpDataStructsCreateCollectionData;
     UpDataStructsCreateFungibleData: UpDataStructsCreateFungibleData;
@@ -156,10 +197,19 @@ declare module '@polkadot/types/types/registry' {
     UpDataStructsCreateNftExData: UpDataStructsCreateNftExData;
     UpDataStructsCreateReFungibleData: UpDataStructsCreateReFungibleData;
     UpDataStructsCreateRefungibleExData: UpDataStructsCreateRefungibleExData;
-    UpDataStructsMetaUpdatePermission: UpDataStructsMetaUpdatePermission;
-    UpDataStructsSchemaVersion: UpDataStructsSchemaVersion;
+    UpDataStructsNestingPermissions: UpDataStructsNestingPermissions;
+    UpDataStructsOwnerRestrictedSet: UpDataStructsOwnerRestrictedSet;
+    UpDataStructsProperties: UpDataStructsProperties;
+    UpDataStructsPropertiesMapBoundedVec: UpDataStructsPropertiesMapBoundedVec;
+    UpDataStructsPropertiesMapPropertyPermission: UpDataStructsPropertiesMapPropertyPermission;
+    UpDataStructsProperty: UpDataStructsProperty;
+    UpDataStructsPropertyKeyPermission: UpDataStructsPropertyKeyPermission;
+    UpDataStructsPropertyPermission: UpDataStructsPropertyPermission;
+    UpDataStructsRpcCollection: UpDataStructsRpcCollection;
     UpDataStructsSponsoringRateLimit: UpDataStructsSponsoringRateLimit;
     UpDataStructsSponsorshipState: UpDataStructsSponsorshipState;
+    UpDataStructsTokenChild: UpDataStructsTokenChild;
+    UpDataStructsTokenData: UpDataStructsTokenData;
     XcmDoubleEncoded: XcmDoubleEncoded;
     XcmV0Junction: XcmV0Junction;
     XcmV0JunctionBodyId: XcmV0JunctionBodyId;
