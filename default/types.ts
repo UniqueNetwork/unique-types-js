@@ -32,17 +32,35 @@ export interface CumulusPalletDmpQueueError extends Enum {
 /** @name CumulusPalletDmpQueueEvent */
 export interface CumulusPalletDmpQueueEvent extends Enum {
   readonly isInvalidFormat: boolean;
-  readonly asInvalidFormat: U8aFixed;
+  readonly asInvalidFormat: {
+    readonly messageId: U8aFixed;
+  } & Struct;
   readonly isUnsupportedVersion: boolean;
-  readonly asUnsupportedVersion: U8aFixed;
+  readonly asUnsupportedVersion: {
+    readonly messageId: U8aFixed;
+  } & Struct;
   readonly isExecutedDownward: boolean;
-  readonly asExecutedDownward: ITuple<[U8aFixed, XcmV2TraitsOutcome]>;
+  readonly asExecutedDownward: {
+    readonly messageId: U8aFixed;
+    readonly outcome: XcmV2TraitsOutcome;
+  } & Struct;
   readonly isWeightExhausted: boolean;
-  readonly asWeightExhausted: ITuple<[U8aFixed, u64, u64]>;
+  readonly asWeightExhausted: {
+    readonly messageId: U8aFixed;
+    readonly remainingWeight: u64;
+    readonly requiredWeight: u64;
+  } & Struct;
   readonly isOverweightEnqueued: boolean;
-  readonly asOverweightEnqueued: ITuple<[U8aFixed, u64, u64]>;
+  readonly asOverweightEnqueued: {
+    readonly messageId: U8aFixed;
+    readonly overweightIndex: u64;
+    readonly requiredWeight: u64;
+  } & Struct;
   readonly isOverweightServiced: boolean;
-  readonly asOverweightServiced: ITuple<[u64, u64]>;
+  readonly asOverweightServiced: {
+    readonly overweightIndex: u64;
+    readonly weightUsed: u64;
+  } & Struct;
   readonly type: 'InvalidFormat' | 'UnsupportedVersion' | 'ExecutedDownward' | 'WeightExhausted' | 'OverweightEnqueued' | 'OverweightServiced';
 }
 
@@ -91,14 +109,23 @@ export interface CumulusPalletParachainSystemError extends Enum {
 export interface CumulusPalletParachainSystemEvent extends Enum {
   readonly isValidationFunctionStored: boolean;
   readonly isValidationFunctionApplied: boolean;
-  readonly asValidationFunctionApplied: u32;
+  readonly asValidationFunctionApplied: {
+    readonly relayChainBlockNum: u32;
+  } & Struct;
   readonly isValidationFunctionDiscarded: boolean;
   readonly isUpgradeAuthorized: boolean;
-  readonly asUpgradeAuthorized: H256;
+  readonly asUpgradeAuthorized: {
+    readonly codeHash: H256;
+  } & Struct;
   readonly isDownwardMessagesReceived: boolean;
-  readonly asDownwardMessagesReceived: u32;
+  readonly asDownwardMessagesReceived: {
+    readonly count: u32;
+  } & Struct;
   readonly isDownwardMessagesProcessed: boolean;
-  readonly asDownwardMessagesProcessed: ITuple<[u64, H256]>;
+  readonly asDownwardMessagesProcessed: {
+    readonly weightUsed: u64;
+    readonly dmqHead: H256;
+  } & Struct;
   readonly type: 'ValidationFunctionStored' | 'ValidationFunctionApplied' | 'ValidationFunctionDiscarded' | 'UpgradeAuthorized' | 'DownwardMessagesReceived' | 'DownwardMessagesProcessed';
 }
 
@@ -534,14 +561,6 @@ export interface FrameSupportWeightsPerDispatchClassWeightsPerClass extends Stru
 export interface FrameSupportWeightsRuntimeDbWeight extends Struct {
   readonly read: u64;
   readonly write: u64;
-}
-
-/** @name FrameSupportWeightsWeightToFeeCoefficient */
-export interface FrameSupportWeightsWeightToFeeCoefficient extends Struct {
-  readonly coeffInteger: u128;
-  readonly coeffFrac: Perbill;
-  readonly negative: bool;
-  readonly degree: u8;
 }
 
 /** @name FrameSystemAccountInfo */
@@ -2178,7 +2197,6 @@ export interface UpDataStructsNestingPermissions extends Struct {
   readonly tokenOwner: bool;
   readonly collectionAdmin: bool;
   readonly restricted: Option<UpDataStructsOwnerRestrictedSet>;
-  readonly permissive: bool;
 }
 
 /** @name UpDataStructsOwnerRestrictedSet */
@@ -2214,6 +2232,13 @@ export interface UpDataStructsPropertyPermission extends Struct {
   readonly mutable: bool;
   readonly collectionAdmin: bool;
   readonly tokenOwner: bool;
+}
+
+/** @name UpDataStructsPropertyScope */
+export interface UpDataStructsPropertyScope extends Enum {
+  readonly isNone: boolean;
+  readonly isRmrk: boolean;
+  readonly type: 'None' | 'Rmrk';
 }
 
 /** @name UpDataStructsRpcCollection */
