@@ -1361,7 +1361,12 @@ export default {
       },
       set_collection_permissions: {
         collectionId: 'u32',
-        newLimit: 'UpDataStructsCollectionPermissions'
+        newLimit: 'UpDataStructsCollectionPermissions',
+      },
+      repartition: {
+        collectionId: 'u32',
+        token: 'u32',
+        amount: 'u128'
       }
     }
   },
@@ -2318,7 +2323,7 @@ export default {
    * Lookup312: pallet_unique::Error<T>
    **/
   PalletUniqueError: {
-    _enum: ['CollectionDecimalPointLimitExceeded', 'ConfirmUnsetSponsorFail', 'EmptyArgument']
+    _enum: ['CollectionDecimalPointLimitExceeded', 'ConfirmUnsetSponsorFail', 'EmptyArgument', 'RepartitionCalledOnNonRefungibleCollection']
   },
   /**
    * Lookup315: pallet_unique_scheduler::ScheduledV3<frame_support::traits::schedule::MaybeHashed<unique_runtime::Call, primitive_types::H256>, BlockNumber, unique_runtime::OriginCaller, sp_core::crypto::AccountId32>
@@ -2748,7 +2753,7 @@ export default {
    * Lookup381: pallet_refungible::pallet::Error<T>
    **/
   PalletRefungibleError: {
-    _enum: ['NotRefungibleDataUsedToMintFungibleCollectionToken', 'WrongRefungiblePieces', 'RefungibleDisallowsNesting', 'SettingPropertiesNotAllowed']
+    _enum: ['NotRefungibleDataUsedToMintFungibleCollectionToken', 'WrongRefungiblePieces', 'RepartitionWhileNotOwningAllPieces', 'RefungibleDisallowsNesting', 'SettingPropertiesNotAllowed']
   },
   /**
    * Lookup382: pallet_nonfungible::ItemData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>

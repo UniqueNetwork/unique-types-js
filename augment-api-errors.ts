@@ -430,6 +430,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       RefungibleDisallowsNesting: AugmentedError<ApiType>;
       /**
+       * Refungible token can't be repartitioned by user who isn't owns all pieces
+       **/
+      RepartitionWhileNotOwningAllPieces: AugmentedError<ApiType>;
+      /**
        * Setting item properties is not allowed
        **/
       SettingPropertiesNotAllowed: AugmentedError<ApiType>;
@@ -565,6 +569,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Length of items properties must be greater than 0.
        **/
       EmptyArgument: AugmentedError<ApiType>;
+      /**
+       * Repertition is only supported by refungible collection
+       **/
+      RepartitionCalledOnNonRefungibleCollection: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
