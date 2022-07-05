@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/opal-testnet-types",
   "description": "Unique network api types for opal testnet",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
