@@ -3,3 +3,5 @@
 *.d.ts
 /node_modules
 metadata.json
+/yarn.lock
+
