@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/unique-mainnet-types",
   "description": "Unique network api types for unique mainnet",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
