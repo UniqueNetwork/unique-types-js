@@ -1,6 +1,6 @@
 # @unique-nft/quartz-mainnet-types
 
-Unique network api types for quartz mainnet
+Unique network api types
 
 Do not edit by hand, those types are generated automatically, and definitions are located in chain repo
 
