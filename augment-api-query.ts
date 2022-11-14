@@ -313,6 +313,13 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    maintenance: {
+      enabled: AugmentedQuery<ApiType, () => Observable<bool>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     nonfungible: {
       /**
        * Amount of tokens owned by an account in a collection.

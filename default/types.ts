@@ -1422,6 +1422,23 @@ export interface PalletInflationCall extends Enum {
   readonly type: 'StartInflation';
 }
 
+/** @name PalletMaintenanceCall */
+export interface PalletMaintenanceCall extends Enum {
+  readonly isEnable: boolean;
+  readonly isDisable: boolean;
+  readonly type: 'Enable' | 'Disable';
+}
+
+/** @name PalletMaintenanceError */
+export interface PalletMaintenanceError extends Null {}
+
+/** @name PalletMaintenanceEvent */
+export interface PalletMaintenanceEvent extends Enum {
+  readonly isMaintenanceEnabled: boolean;
+  readonly isMaintenanceDisabled: boolean;
+  readonly type: 'MaintenanceEnabled' | 'MaintenanceDisabled';
+}
+
 /** @name PalletNonfungibleError */
 export interface PalletNonfungibleError extends Enum {
   readonly isNotNonfungibleDataUsedToMintFungibleCollectionToken: boolean;
@@ -2012,6 +2029,9 @@ export interface PolkadotPrimitivesV2UpgradeRestriction extends Enum {
 
 /** @name QuartzRuntimeRuntime */
 export interface QuartzRuntimeRuntime extends Null {}
+
+/** @name QuartzRuntimeRuntimeCommonMaintenanceCheckMaintenance */
+export interface QuartzRuntimeRuntimeCommonMaintenanceCheckMaintenance extends Null {}
 
 /** @name RmrkTraitsBaseBaseInfo */
 export interface RmrkTraitsBaseBaseInfo extends Struct {
