@@ -697,6 +697,9 @@ export interface FrameSystemPhase extends Enum {
 /** @name OpalRuntimeRuntime */
 export interface OpalRuntimeRuntime extends Null {}
 
+/** @name OpalRuntimeRuntimeCommonMaintenanceCheckMaintenance */
+export interface OpalRuntimeRuntimeCommonMaintenanceCheckMaintenance extends Null {}
+
 /** @name OrmlTokensAccountData */
 export interface OrmlTokensAccountData extends Struct {
   readonly free: u128;
@@ -1542,6 +1545,23 @@ export interface PalletInflationCall extends Enum {
     readonly inflationStartRelayBlock: u32;
   } & Struct;
   readonly type: 'StartInflation';
+}
+
+/** @name PalletMaintenanceCall */
+export interface PalletMaintenanceCall extends Enum {
+  readonly isEnable: boolean;
+  readonly isDisable: boolean;
+  readonly type: 'Enable' | 'Disable';
+}
+
+/** @name PalletMaintenanceError */
+export interface PalletMaintenanceError extends Null {}
+
+/** @name PalletMaintenanceEvent */
+export interface PalletMaintenanceEvent extends Enum {
+  readonly isMaintenanceEnabled: boolean;
+  readonly isMaintenanceDisabled: boolean;
+  readonly type: 'MaintenanceEnabled' | 'MaintenanceDisabled';
 }
 
 /** @name PalletNonfungibleError */
