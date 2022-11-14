@@ -1,4 +1,4 @@
-# @unique-nft/unique-mainnet-types
+# @unique-nft/sapphire-mainnet-types
 
 Unique network api types
 
@@ -9,7 +9,7 @@ Do not edit by hand, those types are generated automatically, and definitions ar
 Install library:
 
 ```bash
-yarn add --dev @unique-nft/unique-mainnet-types
+yarn add --dev @unique-nft/sapphire-mainnet-types
 ```
 
 Replace polkadot.js types with our chain types adding corresponding path override to the tsconfig `compilerOptions.paths` section:
@@ -19,7 +19,7 @@ Replace polkadot.js types with our chain types adding corresponding path overrid
 {
   "compilerOptions": {
     "paths": {
-      "@polkadot/types/lookup": ["node_modules/@unique-nft/unique-mainnet-types/types-lookup"]
+      "@polkadot/types/lookup": ["node_modules/@unique-nft/sapphire-mainnet-types/types-lookup"]
     }
   }
 }
@@ -27,5 +27,5 @@ Replace polkadot.js types with our chain types adding corresponding path overrid
 
 Since polkadot v7 api augmentations not loaded by default, in every file, where you need to access `api.tx`, `api.query`, `api.rpc`, etc; you should explicitly import corresponding augmentation before any other `polkadot.js` related import:
 ```
-import '@unique-nft/unique-mainnet-types/augment-api';
+import '@unique-nft/sapphire-mainnet-types/augment-api';
 ```

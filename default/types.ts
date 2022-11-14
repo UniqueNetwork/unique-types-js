@@ -1422,6 +1422,23 @@ export interface PalletInflationCall extends Enum {
   readonly type: 'StartInflation';
 }
 
+/** @name PalletMaintenanceCall */
+export interface PalletMaintenanceCall extends Enum {
+  readonly isEnable: boolean;
+  readonly isDisable: boolean;
+  readonly type: 'Enable' | 'Disable';
+}
+
+/** @name PalletMaintenanceError */
+export interface PalletMaintenanceError extends Null {}
+
+/** @name PalletMaintenanceEvent */
+export interface PalletMaintenanceEvent extends Enum {
+  readonly isMaintenanceEnabled: boolean;
+  readonly isMaintenanceDisabled: boolean;
+  readonly type: 'MaintenanceEnabled' | 'MaintenanceDisabled';
+}
+
 /** @name PalletNonfungibleError */
 export interface PalletNonfungibleError extends Enum {
   readonly isNotNonfungibleDataUsedToMintFungibleCollectionToken: boolean;
@@ -1433,6 +1450,21 @@ export interface PalletNonfungibleError extends Enum {
 /** @name PalletNonfungibleItemData */
 export interface PalletNonfungibleItemData extends Struct {
   readonly owner: PalletEvmAccountBasicCrossAccountIdRepr;
+}
+
+/** @name PalletRefungibleError */
+export interface PalletRefungibleError extends Enum {
+  readonly isNotRefungibleDataUsedToMintFungibleCollectionToken: boolean;
+  readonly isWrongRefungiblePieces: boolean;
+  readonly isRepartitionWhileNotOwningAllPieces: boolean;
+  readonly isRefungibleDisallowsNesting: boolean;
+  readonly isSettingPropertiesNotAllowed: boolean;
+  readonly type: 'NotRefungibleDataUsedToMintFungibleCollectionToken' | 'WrongRefungiblePieces' | 'RepartitionWhileNotOwningAllPieces' | 'RefungibleDisallowsNesting' | 'SettingPropertiesNotAllowed';
+}
+
+/** @name PalletRefungibleItemData */
+export interface PalletRefungibleItemData extends Struct {
+  readonly constData: Bytes;
 }
 
 /** @name PalletStructureCall */
@@ -1995,6 +2027,12 @@ export interface PolkadotPrimitivesV2UpgradeRestriction extends Enum {
   readonly type: 'Present';
 }
 
+/** @name QuartzRuntimeRuntime */
+export interface QuartzRuntimeRuntime extends Null {}
+
+/** @name QuartzRuntimeRuntimeCommonMaintenanceCheckMaintenance */
+export interface QuartzRuntimeRuntimeCommonMaintenanceCheckMaintenance extends Null {}
+
 /** @name RmrkTraitsBaseBaseInfo */
 export interface RmrkTraitsBaseBaseInfo extends Struct {
   readonly issuer: AccountId32;
@@ -2258,9 +2296,6 @@ export interface SpWeightsRuntimeDbWeight extends Struct {
 export interface SpWeightsWeightV2Weight extends Struct {
   readonly refTime: u64;
 }
-
-/** @name UniqueRuntimeRuntime */
-export interface UniqueRuntimeRuntime extends Null {}
 
 /** @name UpDataStructsAccessMode */
 export interface UpDataStructsAccessMode extends Enum {
