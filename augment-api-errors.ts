@@ -292,6 +292,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       AccountNotEmpty: AugmentedError<ApiType>;
       /**
+       * Failed to decode event bytes
+       **/
+      BadEvent: AugmentedError<ApiType>;
+      /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
@@ -317,6 +321,12 @@ declare module '@polkadot/api-base/types/errors' {
        * Setting item properties is not allowed.
        **/
       SettingPropertiesNotAllowed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    maintenance: {
       /**
        * Generic error
        **/

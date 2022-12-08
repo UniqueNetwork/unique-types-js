@@ -4,7 +4,7 @@
 
 import type { BTreeMap, BTreeSet, Bytes, Compact, Enum, Null, Option, Result, Struct, Text, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
+import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Permill, Weight } from '@polkadot/types/interfaces/runtime';
 import type { Event } from '@polkadot/types/interfaces/system';
 
 /** @name CumulusPalletDmpQueueCall */
@@ -12,14 +12,14 @@ export interface CumulusPalletDmpQueueCall extends Enum {
   readonly isServiceOverweight: boolean;
   readonly asServiceOverweight: {
     readonly index: u64;
-    readonly weightLimit: SpWeightsWeightV2Weight;
+    readonly weightLimit: Weight;
   } & Struct;
   readonly type: 'ServiceOverweight';
 }
 
 /** @name CumulusPalletDmpQueueConfigData */
 export interface CumulusPalletDmpQueueConfigData extends Struct {
-  readonly maxIndividual: SpWeightsWeightV2Weight;
+  readonly maxIndividual: Weight;
 }
 
 /** @name CumulusPalletDmpQueueError */
@@ -47,19 +47,19 @@ export interface CumulusPalletDmpQueueEvent extends Enum {
   readonly isWeightExhausted: boolean;
   readonly asWeightExhausted: {
     readonly messageId: U8aFixed;
-    readonly remainingWeight: SpWeightsWeightV2Weight;
-    readonly requiredWeight: SpWeightsWeightV2Weight;
+    readonly remainingWeight: Weight;
+    readonly requiredWeight: Weight;
   } & Struct;
   readonly isOverweightEnqueued: boolean;
   readonly asOverweightEnqueued: {
     readonly messageId: U8aFixed;
     readonly overweightIndex: u64;
-    readonly requiredWeight: SpWeightsWeightV2Weight;
+    readonly requiredWeight: Weight;
   } & Struct;
   readonly isOverweightServiced: boolean;
   readonly asOverweightServiced: {
     readonly overweightIndex: u64;
-    readonly weightUsed: SpWeightsWeightV2Weight;
+    readonly weightUsed: Weight;
   } & Struct;
   readonly type: 'InvalidFormat' | 'UnsupportedVersion' | 'ExecutedDownward' | 'WeightExhausted' | 'OverweightEnqueued' | 'OverweightServiced';
 }
@@ -123,7 +123,7 @@ export interface CumulusPalletParachainSystemEvent extends Enum {
   } & Struct;
   readonly isDownwardMessagesProcessed: boolean;
   readonly asDownwardMessagesProcessed: {
-    readonly weightUsed: SpWeightsWeightV2Weight;
+    readonly weightUsed: Weight;
     readonly dmqHead: H256;
   } & Struct;
   readonly type: 'ValidationFunctionStored' | 'ValidationFunctionApplied' | 'ValidationFunctionDiscarded' | 'UpgradeAuthorized' | 'DownwardMessagesReceived' | 'DownwardMessagesProcessed';
@@ -159,7 +159,7 @@ export interface CumulusPalletXcmpQueueCall extends Enum {
   readonly isServiceOverweight: boolean;
   readonly asServiceOverweight: {
     readonly index: u64;
-    readonly weightLimit: SpWeightsWeightV2Weight;
+    readonly weightLimit: Weight;
   } & Struct;
   readonly isSuspendXcmExecution: boolean;
   readonly isResumeXcmExecution: boolean;
@@ -177,15 +177,15 @@ export interface CumulusPalletXcmpQueueCall extends Enum {
   } & Struct;
   readonly isUpdateThresholdWeight: boolean;
   readonly asUpdateThresholdWeight: {
-    readonly new_: SpWeightsWeightV2Weight;
+    readonly new_: Weight;
   } & Struct;
   readonly isUpdateWeightRestrictDecay: boolean;
   readonly asUpdateWeightRestrictDecay: {
-    readonly new_: SpWeightsWeightV2Weight;
+    readonly new_: Weight;
   } & Struct;
   readonly isUpdateXcmpMaxIndividualWeight: boolean;
   readonly asUpdateXcmpMaxIndividualWeight: {
-    readonly new_: SpWeightsWeightV2Weight;
+    readonly new_: Weight;
   } & Struct;
   readonly type: 'ServiceOverweight' | 'SuspendXcmExecution' | 'ResumeXcmExecution' | 'UpdateSuspendThreshold' | 'UpdateDropThreshold' | 'UpdateResumeThreshold' | 'UpdateThresholdWeight' | 'UpdateWeightRestrictDecay' | 'UpdateXcmpMaxIndividualWeight';
 }
@@ -205,13 +205,13 @@ export interface CumulusPalletXcmpQueueEvent extends Enum {
   readonly isSuccess: boolean;
   readonly asSuccess: {
     readonly messageHash: Option<H256>;
-    readonly weight: SpWeightsWeightV2Weight;
+    readonly weight: Weight;
   } & Struct;
   readonly isFail: boolean;
   readonly asFail: {
     readonly messageHash: Option<H256>;
     readonly error: XcmV2TraitsError;
-    readonly weight: SpWeightsWeightV2Weight;
+    readonly weight: Weight;
   } & Struct;
   readonly isBadVersion: boolean;
   readonly asBadVersion: {
@@ -234,12 +234,12 @@ export interface CumulusPalletXcmpQueueEvent extends Enum {
     readonly sender: u32;
     readonly sentAt: u32;
     readonly index: u64;
-    readonly required: SpWeightsWeightV2Weight;
+    readonly required: Weight;
   } & Struct;
   readonly isOverweightServiced: boolean;
   readonly asOverweightServiced: {
     readonly index: u64;
-    readonly used: SpWeightsWeightV2Weight;
+    readonly used: Weight;
   } & Struct;
   readonly type: 'Success' | 'Fail' | 'BadVersion' | 'BadFormat' | 'UpwardMessageSent' | 'XcmpMessageSent' | 'OverweightEnqueued' | 'OverweightServiced';
 }
@@ -279,9 +279,9 @@ export interface CumulusPalletXcmpQueueQueueConfigData extends Struct {
   readonly suspendThreshold: u32;
   readonly dropThreshold: u32;
   readonly resumeThreshold: u32;
-  readonly thresholdWeight: SpWeightsWeightV2Weight;
-  readonly weightRestrictDecay: SpWeightsWeightV2Weight;
-  readonly xcmpMaxIndividualWeight: SpWeightsWeightV2Weight;
+  readonly thresholdWeight: Weight;
+  readonly weightRestrictDecay: Weight;
+  readonly xcmpMaxIndividualWeight: Weight;
 }
 
 /** @name CumulusPrimitivesParachainInherentParachainInherentData */
@@ -504,7 +504,7 @@ export interface FrameSupportDispatchDispatchClass extends Enum {
 
 /** @name FrameSupportDispatchDispatchInfo */
 export interface FrameSupportDispatchDispatchInfo extends Struct {
-  readonly weight: SpWeightsWeightV2Weight;
+  readonly weight: Weight;
   readonly class: FrameSupportDispatchDispatchClass;
   readonly paysFee: FrameSupportDispatchPays;
 }
@@ -525,9 +525,9 @@ export interface FrameSupportDispatchPerDispatchClassU32 extends Struct {
 
 /** @name FrameSupportDispatchPerDispatchClassWeight */
 export interface FrameSupportDispatchPerDispatchClassWeight extends Struct {
-  readonly normal: SpWeightsWeightV2Weight;
-  readonly operational: SpWeightsWeightV2Weight;
-  readonly mandatory: SpWeightsWeightV2Weight;
+  readonly normal: Weight;
+  readonly operational: Weight;
+  readonly mandatory: Weight;
 }
 
 /** @name FrameSupportDispatchPerDispatchClassWeightsPerClass */
@@ -672,17 +672,17 @@ export interface FrameSystemLimitsBlockLength extends Struct {
 
 /** @name FrameSystemLimitsBlockWeights */
 export interface FrameSystemLimitsBlockWeights extends Struct {
-  readonly baseBlock: SpWeightsWeightV2Weight;
-  readonly maxBlock: SpWeightsWeightV2Weight;
+  readonly baseBlock: Weight;
+  readonly maxBlock: Weight;
   readonly perClass: FrameSupportDispatchPerDispatchClassWeightsPerClass;
 }
 
 /** @name FrameSystemLimitsWeightsPerClass */
 export interface FrameSystemLimitsWeightsPerClass extends Struct {
-  readonly baseExtrinsic: SpWeightsWeightV2Weight;
-  readonly maxExtrinsic: Option<SpWeightsWeightV2Weight>;
-  readonly maxTotal: Option<SpWeightsWeightV2Weight>;
-  readonly reserved: Option<SpWeightsWeightV2Weight>;
+  readonly baseExtrinsic: Weight;
+  readonly maxExtrinsic: Option<Weight>;
+  readonly maxTotal: Option<Weight>;
+  readonly reserved: Option<Weight>;
 }
 
 /** @name FrameSystemPhase */
@@ -1377,14 +1377,29 @@ export interface PalletEvmMigrationCall extends Enum {
     readonly address: H160;
     readonly code: Bytes;
   } & Struct;
-  readonly type: 'Begin' | 'SetData' | 'Finish';
+  readonly isInsertEthLogs: boolean;
+  readonly asInsertEthLogs: {
+    readonly logs: Vec<EthereumLog>;
+  } & Struct;
+  readonly isInsertEvents: boolean;
+  readonly asInsertEvents: {
+    readonly events: Vec<Bytes>;
+  } & Struct;
+  readonly type: 'Begin' | 'SetData' | 'Finish' | 'InsertEthLogs' | 'InsertEvents';
 }
 
 /** @name PalletEvmMigrationError */
 export interface PalletEvmMigrationError extends Enum {
   readonly isAccountNotEmpty: boolean;
   readonly isAccountIsNotMigrating: boolean;
-  readonly type: 'AccountNotEmpty' | 'AccountIsNotMigrating';
+  readonly isBadEvent: boolean;
+  readonly type: 'AccountNotEmpty' | 'AccountIsNotMigrating' | 'BadEvent';
+}
+
+/** @name PalletEvmMigrationEvent */
+export interface PalletEvmMigrationEvent extends Enum {
+  readonly isTestEvent: boolean;
+  readonly type: 'TestEvent';
 }
 
 /** @name PalletForeignAssetsAssetIds */
@@ -1420,6 +1435,23 @@ export interface PalletInflationCall extends Enum {
     readonly inflationStartRelayBlock: u32;
   } & Struct;
   readonly type: 'StartInflation';
+}
+
+/** @name PalletMaintenanceCall */
+export interface PalletMaintenanceCall extends Enum {
+  readonly isEnable: boolean;
+  readonly isDisable: boolean;
+  readonly type: 'Enable' | 'Disable';
+}
+
+/** @name PalletMaintenanceError */
+export interface PalletMaintenanceError extends Null {}
+
+/** @name PalletMaintenanceEvent */
+export interface PalletMaintenanceEvent extends Enum {
+  readonly isMaintenanceEnabled: boolean;
+  readonly isMaintenanceDisabled: boolean;
+  readonly type: 'MaintenanceEnabled' | 'MaintenanceDisabled';
 }
 
 /** @name PalletNonfungibleError */
@@ -1463,7 +1495,7 @@ export interface PalletSudoCall extends Enum {
   readonly isSudoUncheckedWeight: boolean;
   readonly asSudoUncheckedWeight: {
     readonly call: Call;
-    readonly weight: SpWeightsWeightV2Weight;
+    readonly weight: Weight;
   } & Struct;
   readonly isSetKey: boolean;
   readonly asSetKey: {
@@ -1836,7 +1868,7 @@ export interface PalletXcmCall extends Enum {
   readonly isExecute: boolean;
   readonly asExecute: {
     readonly message: XcmVersionedXcm;
-    readonly maxWeight: SpWeightsWeightV2Weight;
+    readonly maxWeight: Weight;
   } & Struct;
   readonly isForceXcmVersion: boolean;
   readonly asForceXcmVersion: {
@@ -1905,7 +1937,7 @@ export interface PalletXcmEvent extends Enum {
   readonly isNotified: boolean;
   readonly asNotified: ITuple<[u64, u8, u8]>;
   readonly isNotifyOverweight: boolean;
-  readonly asNotifyOverweight: ITuple<[u64, u8, u8, SpWeightsWeightV2Weight, SpWeightsWeightV2Weight]>;
+  readonly asNotifyOverweight: ITuple<[u64, u8, u8, Weight, Weight]>;
   readonly isNotifyDispatchError: boolean;
   readonly asNotifyDispatchError: ITuple<[u64, u8, u8]>;
   readonly isNotifyDecodeFailed: boolean;
@@ -2254,13 +2286,11 @@ export interface SpWeightsRuntimeDbWeight extends Struct {
   readonly write: u64;
 }
 
-/** @name SpWeightsWeightV2Weight */
-export interface SpWeightsWeightV2Weight extends Struct {
-  readonly refTime: u64;
-}
-
 /** @name UniqueRuntimeRuntime */
 export interface UniqueRuntimeRuntime extends Null {}
+
+/** @name UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance */
+export interface UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance extends Null {}
 
 /** @name UpDataStructsAccessMode */
 export interface UpDataStructsAccessMode extends Enum {
