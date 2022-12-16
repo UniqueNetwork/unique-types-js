@@ -7,10 +7,10 @@
 import '@polkadot/api-base/types/submittable';
 
 import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api-base/types';
-import type { Bytes, Compact, Option, U256, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
+import type { Bytes, Compact, Option, U256, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { AnyNumber, IMethod, ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, Call, H160, H256, MultiAddress, Perbill } from '@polkadot/types/interfaces/runtime';
-import type { CumulusPrimitivesParachainInherentParachainInherentData, EthereumTransactionTransactionV2, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, SpWeightsWeightV2Weight, UpDataStructsCollectionLimits, UpDataStructsCollectionMode, UpDataStructsCollectionPermissions, UpDataStructsCreateCollectionData, UpDataStructsCreateItemData, UpDataStructsCreateItemExData, UpDataStructsProperty, UpDataStructsPropertyKeyPermission, XcmV1MultiLocation, XcmV2WeightLimit, XcmVersionedMultiAsset, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from '@polkadot/types/lookup';
+import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Weight } from '@polkadot/types/interfaces/runtime';
+import type { CumulusPrimitivesParachainInherentParachainInherentData, EthereumLog, EthereumTransactionTransactionV2, OrmlVestingVestingSchedule, PalletConfigurationAppPromotionConfiguration, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, PalletForeignAssetsModuleAssetMetadata, UpDataStructsCollectionLimits, UpDataStructsCollectionMode, UpDataStructsCollectionPermissions, UpDataStructsCreateCollectionData, UpDataStructsCreateItemData, UpDataStructsCreateItemExData, UpDataStructsProperty, UpDataStructsPropertyKeyPermission, XcmV1MultiLocation, XcmV2WeightLimit, XcmVersionedMultiAsset, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from '@polkadot/types/lookup';
 
 export type __AugmentedSubmittable = AugmentedSubmittable<() => unknown>;
 export type __SubmittableExtrinsic<ApiType extends ApiTypes> = SubmittableExtrinsic<ApiType>;
@@ -18,6 +18,108 @@ export type __SubmittableExtrinsicFunction<ApiType extends ApiTypes> = Submittab
 
 declare module '@polkadot/api-base/types/submittable' {
   interface AugmentedSubmittables<ApiType extends ApiTypes> {
+    appPromotion: {
+      /**
+       * Recalculates interest for the specified number of stakers.
+       * If all stakers are not recalculated, the next call of the extrinsic
+       * will continue the recalculation, from those stakers for whom this
+       * was not perform in last call.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `stakers_number`: the number of stakers for which recalculation will be performed
+       **/
+      payoutStakers: AugmentedSubmittable<(stakersNumber: Option<u8> | null | Uint8Array | u8 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u8>]>;
+      /**
+       * Sets an address as the the admin.
+       * 
+       * # Permissions
+       * 
+       * * Sudo
+       * 
+       * # Arguments
+       * 
+       * * `admin`: account of the new admin.
+       **/
+      setAdminAddress: AugmentedSubmittable<(admin: PalletEvmAccountBasicCrossAccountIdRepr | { Substrate: any } | { Ethereum: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletEvmAccountBasicCrossAccountIdRepr]>;
+      /**
+       * Sets the pallet to be the sponsor for the collection.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `collection_id`: ID of the collection that will be sponsored by `pallet_id`
+       **/
+      sponsorCollection: AugmentedSubmittable<(collectionId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Sets the pallet to be the sponsor for the contract.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `contract_id`: the contract address that will be sponsored by `pallet_id`
+       **/
+      sponsorContract: AugmentedSubmittable<(contractId: H160 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160]>;
+      /**
+       * Stakes the amount of native tokens.
+       * Sets `amount` to the locked state.
+       * The maximum number of stakes for a staker is 10.
+       * 
+       * # Arguments
+       * 
+       * * `amount`: in native tokens.
+       **/
+      stake: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128]>;
+      /**
+       * Removes the pallet as the sponsor for the collection.
+       * Returns [`NoPermission`][`Error::NoPermission`]
+       * if the pallet wasn't the sponsor.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `collection_id`: ID of the collection that is sponsored by `pallet_id`
+       **/
+      stopSponsoringCollection: AugmentedSubmittable<(collectionId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Removes the pallet as the sponsor for the contract.
+       * Returns [`NoPermission`][`Error::NoPermission`]
+       * if the pallet wasn't the sponsor.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `contract_id`: the contract address that is sponsored by `pallet_id`
+       **/
+      stopSponsoringContract: AugmentedSubmittable<(contractId: H160 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160]>;
+      /**
+       * Unstakes all stakes.
+       * Moves the sum of all stakes to the `reserved` state.
+       * After the end of `PendingInterval` this sum becomes completely
+       * free for further use.
+       **/
+      unstake: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
     balances: {
       /**
        * Exactly as `transfer`, except the origin must be root and the source account may be
@@ -114,8 +216,10 @@ declare module '@polkadot/api-base/types/submittable' {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     configuration: {
+      setAppPromotionConfigurationOverride: AugmentedSubmittable<(configuration: PalletConfigurationAppPromotionConfiguration | { recalculationInterval?: any; pendingInterval?: any; intervalIncome?: any; maxStakersPerCalculation?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletConfigurationAppPromotionConfiguration]>;
       setMinGasPriceOverride: AugmentedSubmittable<(coeff: Option<u64> | null | Uint8Array | u64 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u64>]>;
       setWeightToFeeCoefficientOverride: AugmentedSubmittable<(coeff: Option<u32> | null | Uint8Array | u32 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u32>]>;
+      setXcmAllowedLocations: AugmentedSubmittable<(locations: Option<Vec<XcmV1MultiLocation>> | null | Uint8Array | Vec<XcmV1MultiLocation> | (XcmV1MultiLocation | { parents?: any; interior?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Option<Vec<XcmV1MultiLocation>>]>;
       /**
        * Generic tx
        **/
@@ -142,7 +246,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * Events:
        * - `OverweightServiced`: On success.
        **/
-      serviceOverweight: AugmentedSubmittable<(index: u64 | AnyNumber | Uint8Array, weightLimit: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, SpWeightsWeightV2Weight]>;
+      serviceOverweight: AugmentedSubmittable<(index: u64 | AnyNumber | Uint8Array, weightLimit: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, Weight]>;
       /**
        * Generic tx
        **/
@@ -194,10 +298,26 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       finish: AugmentedSubmittable<(address: H160 | string | Uint8Array, code: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160, Bytes]>;
       /**
+       * Create ethereum events attached to the fake transaction
+       **/
+      insertEthLogs: AugmentedSubmittable<(logs: Vec<EthereumLog> | (EthereumLog | { address?: any; topics?: any; data?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<EthereumLog>]>;
+      /**
+       * Create substrate events
+       **/
+      insertEvents: AugmentedSubmittable<(events: Vec<Bytes> | (Bytes | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<Bytes>]>;
+      /**
        * Insert items into contract storage, this method can be called
        * multiple times
        **/
       setData: AugmentedSubmittable<(address: H160 | string | Uint8Array, data: Vec<ITuple<[H256, H256]>> | ([H256 | string | Uint8Array, H256 | string | Uint8Array])[]) => SubmittableExtrinsic<ApiType>, [H160, Vec<ITuple<[H256, H256]>>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    foreignAssets: {
+      registerForeignAsset: AugmentedSubmittable<(owner: AccountId32 | string | Uint8Array, location: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, metadata: PalletForeignAssetsModuleAssetMetadata | { name?: any; symbol?: any; decimals?: any; minimalBalance?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId32, XcmVersionedMultiLocation, PalletForeignAssetsModuleAssetMetadata]>;
+      updateForeignAsset: AugmentedSubmittable<(foreignAssetId: u32 | AnyNumber | Uint8Array, location: XcmVersionedMultiLocation | { V0: any } | { V1: any } | string | Uint8Array, metadata: PalletForeignAssetsModuleAssetMetadata | { name?: any; symbol?: any; decimals?: any; minimalBalance?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, XcmVersionedMultiLocation, PalletForeignAssetsModuleAssetMetadata]>;
       /**
        * Generic tx
        **/
@@ -266,7 +386,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * NOTE: A successful return to this does *not* imply that the `msg` was executed successfully
        * to completion; only that *some* of it was executed.
        **/
-      execute: AugmentedSubmittable<(message: XcmVersionedXcm | { V0: any } | { V1: any } | { V2: any } | string | Uint8Array, maxWeight: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedXcm, SpWeightsWeightV2Weight]>;
+      execute: AugmentedSubmittable<(message: XcmVersionedXcm | { V0: any } | { V1: any } | { V2: any } | string | Uint8Array, maxWeight: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [XcmVersionedXcm, Weight]>;
       /**
        * Set a safe XCM version (the version that XCM should be encoded with if the most recent
        * version a destination can accept is unknown).
@@ -443,7 +563,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * - The weight of this call is defined by the caller.
        * # </weight>
        **/
-      sudoUncheckedWeight: AugmentedSubmittable<(call: Call | IMethod | string | Uint8Array, weight: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Call, SpWeightsWeightV2Weight]>;
+      sudoUncheckedWeight: AugmentedSubmittable<(call: Call | IMethod | string | Uint8Array, weight: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Call, Weight]>;
       /**
        * Generic tx
        **/
@@ -1008,6 +1128,15 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       removeFromAllowList: AugmentedSubmittable<(collectionId: u32 | AnyNumber | Uint8Array, address: PalletEvmAccountBasicCrossAccountIdRepr | { Substrate: any } | { Ethereum: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
       /**
+       * Repairs a broken item
+       * 
+       * # Arguments
+       * 
+       * * `collection_id`: ID of the collection the item belongs to.
+       * * `item_id`: ID of the item.
+       **/
+      repairItem: AugmentedSubmittable<(collectionId: u32 | AnyNumber | Uint8Array, itemId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, u32]>;
+      /**
        * Re-partition a refungible token, while owning all of its parts/pieces.
        * 
        * # Permissions
@@ -1224,7 +1353,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * Events:
        * - `OverweightServiced`: On success.
        **/
-      serviceOverweight: AugmentedSubmittable<(index: u64 | AnyNumber | Uint8Array, weightLimit: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, SpWeightsWeightV2Weight]>;
+      serviceOverweight: AugmentedSubmittable<(index: u64 | AnyNumber | Uint8Array, weightLimit: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u64, Weight]>;
       /**
        * Suspends all XCM executions for the XCMP queue, regardless of the sender's origin.
        * 
@@ -1261,7 +1390,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * - `origin`: Must pass `Root`.
        * - `new`: Desired value for `QueueConfigData.threshold_weight`
        **/
-      updateThresholdWeight: AugmentedSubmittable<(updated: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpWeightsWeightV2Weight]>;
+      updateThresholdWeight: AugmentedSubmittable<(updated: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Weight]>;
       /**
        * Overwrites the speed to which the available weight approaches the maximum weight.
        * A lower number results in a faster progression. A value of 1 makes the entire weight available initially.
@@ -1269,7 +1398,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * - `origin`: Must pass `Root`.
        * - `new`: Desired value for `QueueConfigData.weight_restrict_decay`.
        **/
-      updateWeightRestrictDecay: AugmentedSubmittable<(updated: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpWeightsWeightV2Weight]>;
+      updateWeightRestrictDecay: AugmentedSubmittable<(updated: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Weight]>;
       /**
        * Overwrite the maximum amount of weight any individual message may consume.
        * Messages above this weight go into the overweight queue and may only be serviced explicitly.
@@ -1277,7 +1406,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * - `origin`: Must pass `Root`.
        * - `new`: Desired value for `QueueConfigData.xcmp_max_individual_weight`.
        **/
-      updateXcmpMaxIndividualWeight: AugmentedSubmittable<(updated: SpWeightsWeightV2Weight | { refTime?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpWeightsWeightV2Weight]>;
+      updateXcmpMaxIndividualWeight: AugmentedSubmittable<(updated: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Weight]>;
       /**
        * Generic tx
        **/
