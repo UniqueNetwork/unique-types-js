@@ -12,6 +12,36 @@ export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>
 
 declare module '@polkadot/api-base/types/errors' {
   interface AugmentedErrors<ApiType extends ApiTypes> {
+    appPromotion: {
+      /**
+       * Error due to action requiring admin to be set.
+       **/
+      AdminNotSet: AugmentedError<ApiType>;
+      /**
+       * Errors caused by incorrect actions with a locked balance.
+       **/
+      IncorrectLockedBalanceOperation: AugmentedError<ApiType>;
+      /**
+       * No permission to perform an action.
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * Insufficient funds to perform an action.
+       **/
+      NotSufficientFunds: AugmentedError<ApiType>;
+      /**
+       * Occurs when a pending unstake cannot be added in this block. PENDING_LIMIT_PER_BLOCK` limits exceeded.
+       **/
+      PendingForBlockOverflow: AugmentedError<ApiType>;
+      /**
+       * The error is due to the fact that the collection/contract must already be sponsored in order to perform the action.
+       **/
+      SponsorNotSet: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     balances: {
       /**
        * Beneficiary account must pre-exist
@@ -192,6 +222,13 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    configuration: {
+      InconsistentConfiguration: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     cumulusXcm: {
       /**
        * Generic error
@@ -292,6 +329,33 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       AccountNotEmpty: AugmentedError<ApiType>;
       /**
+       * Failed to decode event bytes
+       **/
+      BadEvent: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    foreignAssets: {
+      /**
+       * AssetId exists
+       **/
+      AssetIdExisted: AugmentedError<ApiType>;
+      /**
+       * AssetId not exists
+       **/
+      AssetIdNotExists: AugmentedError<ApiType>;
+      /**
+       * The given location could not be used (e.g. because it cannot be expressed in the
+       * desired version of XCM).
+       **/
+      BadLocation: AugmentedError<ApiType>;
+      /**
+       * MultiLocation existed
+       **/
+      MultiLocationExisted: AugmentedError<ApiType>;
+      /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
@@ -309,6 +373,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Fungible tokens hold no ID, and the default value of TokenId for Fungible collection is 0.
        **/
       FungibleItemsHaveNoId: AugmentedError<ApiType>;
+      /**
+       * Only a fungible collection could be possibly broken; any fungible token is valid.
+       **/
+      FungibleTokensAreAlwaysValid: AugmentedError<ApiType>;
       /**
        * Not Fungible item data used to mint in Fungible collection.
        **/
