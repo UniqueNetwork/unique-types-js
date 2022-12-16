@@ -9,7 +9,7 @@ import '@polkadot/api-base/types/events';
 import type { ApiTypes, AugmentedEvent } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { AccountId32, H160, H256, Weight } from '@polkadot/types/interfaces/runtime';
-import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportDispatchDispatchInfo, FrameSupportTokensMiscBalanceStatus, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, SpRuntimeDispatchError, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetMultiAssets, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
+import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportDispatchDispatchInfo, FrameSupportTokensMiscBalanceStatus, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, PalletForeignAssetsModuleAssetMetadata, SpRuntimeDispatchError, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetMultiAssets, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -231,6 +231,28 @@ declare module '@polkadot/api-base/types/events' {
        * This event is used in benchmarking and can be used for tests
        **/
       TestEvent: AugmentedEvent<ApiType, []>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    foreignAssets: {
+      /**
+       * The asset registered.
+       **/
+      AssetRegistered: AugmentedEvent<ApiType, [assetId: PalletForeignAssetsAssetIds, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: PalletForeignAssetsAssetIds, metadata: PalletForeignAssetsModuleAssetMetadata }>;
+      /**
+       * The asset updated.
+       **/
+      AssetUpdated: AugmentedEvent<ApiType, [assetId: PalletForeignAssetsAssetIds, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: PalletForeignAssetsAssetIds, metadata: PalletForeignAssetsModuleAssetMetadata }>;
+      /**
+       * The foreign asset registered.
+       **/
+      ForeignAssetRegistered: AugmentedEvent<ApiType, [assetId: u32, assetAddress: XcmV1MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: u32, assetAddress: XcmV1MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata }>;
+      /**
+       * The foreign asset updated.
+       **/
+      ForeignAssetUpdated: AugmentedEvent<ApiType, [assetId: u32, assetAddress: XcmV1MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: u32, assetAddress: XcmV1MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata }>;
       /**
        * Generic event
        **/

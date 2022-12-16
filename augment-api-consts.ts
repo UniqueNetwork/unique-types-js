@@ -9,7 +9,7 @@ import '@polkadot/api-base/types/consts';
 import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
 import type { Option, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { Codec } from '@polkadot/types-codec/types';
-import type { Permill } from '@polkadot/types/interfaces/runtime';
+import type { Perbill, Permill } from '@polkadot/types/interfaces/runtime';
 import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, XcmV1MultiLocation } from '@polkadot/types/lookup';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
@@ -50,8 +50,11 @@ declare module '@polkadot/api-base/types/consts' {
       [key: string]: Codec;
     };
     configuration: {
+      appPromotionDailyRate: Perbill & AugmentedConst<ApiType>;
+      dayRelayBlocks: u32 & AugmentedConst<ApiType>;
       defaultMinGasPrice: u64 & AugmentedConst<ApiType>;
       defaultWeightToFeeCoefficient: u32 & AugmentedConst<ApiType>;
+      maxXcmAllowedLocations: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

@@ -1204,6 +1204,14 @@ export interface PalletCommonEvent extends Enum {
   readonly type: 'CollectionCreated' | 'CollectionDestroyed' | 'ItemCreated' | 'ItemDestroyed' | 'Transfer' | 'Approved' | 'CollectionPropertySet' | 'CollectionPropertyDeleted' | 'TokenPropertySet' | 'TokenPropertyDeleted' | 'PropertyPermissionSet';
 }
 
+/** @name PalletConfigurationAppPromotionConfiguration */
+export interface PalletConfigurationAppPromotionConfiguration extends Struct {
+  readonly recalculationInterval: Option<u32>;
+  readonly pendingInterval: Option<u32>;
+  readonly intervalIncome: Option<Perbill>;
+  readonly maxStakersPerCalculation: Option<u8>;
+}
+
 /** @name PalletConfigurationCall */
 export interface PalletConfigurationCall extends Enum {
   readonly isSetWeightToFeeCoefficientOverride: boolean;
@@ -1214,7 +1222,21 @@ export interface PalletConfigurationCall extends Enum {
   readonly asSetMinGasPriceOverride: {
     readonly coeff: Option<u64>;
   } & Struct;
-  readonly type: 'SetWeightToFeeCoefficientOverride' | 'SetMinGasPriceOverride';
+  readonly isSetXcmAllowedLocations: boolean;
+  readonly asSetXcmAllowedLocations: {
+    readonly locations: Option<Vec<XcmV1MultiLocation>>;
+  } & Struct;
+  readonly isSetAppPromotionConfigurationOverride: boolean;
+  readonly asSetAppPromotionConfigurationOverride: {
+    readonly configuration: PalletConfigurationAppPromotionConfiguration;
+  } & Struct;
+  readonly type: 'SetWeightToFeeCoefficientOverride' | 'SetMinGasPriceOverride' | 'SetXcmAllowedLocations' | 'SetAppPromotionConfigurationOverride';
+}
+
+/** @name PalletConfigurationError */
+export interface PalletConfigurationError extends Enum {
+  readonly isInconsistentConfiguration: boolean;
+  readonly type: 'InconsistentConfiguration';
 }
 
 /** @name PalletEthereumCall */
@@ -1411,6 +1433,67 @@ export interface PalletForeignAssetsAssetIds extends Enum {
   readonly type: 'ForeignAssetId' | 'NativeAssetId';
 }
 
+/** @name PalletForeignAssetsModuleAssetMetadata */
+export interface PalletForeignAssetsModuleAssetMetadata extends Struct {
+  readonly name: Bytes;
+  readonly symbol: Bytes;
+  readonly decimals: u8;
+  readonly minimalBalance: u128;
+}
+
+/** @name PalletForeignAssetsModuleCall */
+export interface PalletForeignAssetsModuleCall extends Enum {
+  readonly isRegisterForeignAsset: boolean;
+  readonly asRegisterForeignAsset: {
+    readonly owner: AccountId32;
+    readonly location: XcmVersionedMultiLocation;
+    readonly metadata: PalletForeignAssetsModuleAssetMetadata;
+  } & Struct;
+  readonly isUpdateForeignAsset: boolean;
+  readonly asUpdateForeignAsset: {
+    readonly foreignAssetId: u32;
+    readonly location: XcmVersionedMultiLocation;
+    readonly metadata: PalletForeignAssetsModuleAssetMetadata;
+  } & Struct;
+  readonly type: 'RegisterForeignAsset' | 'UpdateForeignAsset';
+}
+
+/** @name PalletForeignAssetsModuleError */
+export interface PalletForeignAssetsModuleError extends Enum {
+  readonly isBadLocation: boolean;
+  readonly isMultiLocationExisted: boolean;
+  readonly isAssetIdNotExists: boolean;
+  readonly isAssetIdExisted: boolean;
+  readonly type: 'BadLocation' | 'MultiLocationExisted' | 'AssetIdNotExists' | 'AssetIdExisted';
+}
+
+/** @name PalletForeignAssetsModuleEvent */
+export interface PalletForeignAssetsModuleEvent extends Enum {
+  readonly isForeignAssetRegistered: boolean;
+  readonly asForeignAssetRegistered: {
+    readonly assetId: u32;
+    readonly assetAddress: XcmV1MultiLocation;
+    readonly metadata: PalletForeignAssetsModuleAssetMetadata;
+  } & Struct;
+  readonly isForeignAssetUpdated: boolean;
+  readonly asForeignAssetUpdated: {
+    readonly assetId: u32;
+    readonly assetAddress: XcmV1MultiLocation;
+    readonly metadata: PalletForeignAssetsModuleAssetMetadata;
+  } & Struct;
+  readonly isAssetRegistered: boolean;
+  readonly asAssetRegistered: {
+    readonly assetId: PalletForeignAssetsAssetIds;
+    readonly metadata: PalletForeignAssetsModuleAssetMetadata;
+  } & Struct;
+  readonly isAssetUpdated: boolean;
+  readonly asAssetUpdated: {
+    readonly assetId: PalletForeignAssetsAssetIds;
+    readonly metadata: PalletForeignAssetsModuleAssetMetadata;
+  } & Struct;
+  readonly type: 'ForeignAssetRegistered' | 'ForeignAssetUpdated' | 'AssetRegistered' | 'AssetUpdated';
+}
+
 /** @name PalletForeignAssetsNativeCurrency */
 export interface PalletForeignAssetsNativeCurrency extends Enum {
   readonly isHere: boolean;
@@ -1425,7 +1508,8 @@ export interface PalletFungibleError extends Enum {
   readonly isFungibleItemsDontHaveData: boolean;
   readonly isFungibleDisallowsNesting: boolean;
   readonly isSettingPropertiesNotAllowed: boolean;
-  readonly type: 'NotFungibleDataUsedToMintFungibleCollectionToken' | 'FungibleItemsHaveNoId' | 'FungibleItemsDontHaveData' | 'FungibleDisallowsNesting' | 'SettingPropertiesNotAllowed';
+  readonly isFungibleTokensAreAlwaysValid: boolean;
+  readonly type: 'NotFungibleDataUsedToMintFungibleCollectionToken' | 'FungibleItemsHaveNoId' | 'FungibleItemsDontHaveData' | 'FungibleDisallowsNesting' | 'SettingPropertiesNotAllowed' | 'FungibleTokensAreAlwaysValid';
 }
 
 /** @name PalletInflationCall */
@@ -1807,7 +1891,12 @@ export interface PalletUniqueCall extends Enum {
     readonly tokenId: u32;
     readonly amount: u128;
   } & Struct;
-  readonly type: 'CreateCollection' | 'CreateCollectionEx' | 'DestroyCollection' | 'AddToAllowList' | 'RemoveFromAllowList' | 'ChangeCollectionOwner' | 'AddCollectionAdmin' | 'RemoveCollectionAdmin' | 'SetCollectionSponsor' | 'ConfirmSponsorship' | 'RemoveCollectionSponsor' | 'CreateItem' | 'CreateMultipleItems' | 'SetCollectionProperties' | 'DeleteCollectionProperties' | 'SetTokenProperties' | 'DeleteTokenProperties' | 'SetTokenPropertyPermissions' | 'CreateMultipleItemsEx' | 'SetTransfersEnabledFlag' | 'BurnItem' | 'BurnFrom' | 'Transfer' | 'Approve' | 'TransferFrom' | 'SetCollectionLimits' | 'SetCollectionPermissions' | 'Repartition';
+  readonly isRepairItem: boolean;
+  readonly asRepairItem: {
+    readonly collectionId: u32;
+    readonly itemId: u32;
+  } & Struct;
+  readonly type: 'CreateCollection' | 'CreateCollectionEx' | 'DestroyCollection' | 'AddToAllowList' | 'RemoveFromAllowList' | 'ChangeCollectionOwner' | 'AddCollectionAdmin' | 'RemoveCollectionAdmin' | 'SetCollectionSponsor' | 'ConfirmSponsorship' | 'RemoveCollectionSponsor' | 'CreateItem' | 'CreateMultipleItems' | 'SetCollectionProperties' | 'DeleteCollectionProperties' | 'SetTokenProperties' | 'DeleteTokenProperties' | 'SetTokenPropertyPermissions' | 'CreateMultipleItemsEx' | 'SetTransfersEnabledFlag' | 'BurnItem' | 'BurnFrom' | 'Transfer' | 'Approve' | 'TransferFrom' | 'SetCollectionLimits' | 'SetCollectionPermissions' | 'Repartition' | 'RepairItem';
 }
 
 /** @name PalletUniqueError */
