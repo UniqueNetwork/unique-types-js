@@ -7,9 +7,9 @@
 import '@polkadot/api-base/types/events';
 
 import type { ApiTypes, AugmentedEvent } from '@polkadot/api-base/types';
-import type { Bytes, Null, Option, Result, U256, U8aFixed, u128, u32, u64, u8 } from '@polkadot/types-codec';
-import type { AccountId32, H160, H256, Weight } from '@polkadot/types/interfaces/runtime';
-import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportDispatchDispatchInfo, FrameSupportTokensMiscBalanceStatus, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, PalletForeignAssetsModuleAssetMetadata, SpRuntimeDispatchError, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetMultiAssets, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
+import type { Bytes, Null, Option, Result, U8aFixed, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
+import type { AccountId32, H160, H256 } from '@polkadot/types/interfaces/runtime';
+import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportDispatchDispatchInfo, FrameSupportTokensMiscBalanceStatus, OrmlVestingVestingSchedule, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, PalletForeignAssetsModuleAssetMetadata, SpRuntimeDispatchError, SpWeightsWeightV2Weight, XcmV1MultiAsset, XcmV1MultiLocation, XcmV1MultiassetMultiAssets, XcmV2Response, XcmV2TraitsError, XcmV2TraitsOutcome, XcmV2Xcm, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -65,9 +65,29 @@ declare module '@polkadot/api-base/types/events' {
     };
     common: {
       /**
+       * Address was added to the allow list.
+       **/
+      AllowListAddressAdded: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
+      /**
+       * Address was removed from the allow list.
+       **/
+      AllowListAddressRemoved: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
+      /**
        * Amount pieces of token owned by `sender` was approved for `spender`.
        **/
       Approved: AugmentedEvent<ApiType, [u32, u32, PalletEvmAccountBasicCrossAccountIdRepr, PalletEvmAccountBasicCrossAccountIdRepr, u128]>;
+      /**
+       * A `sender` approves operations on all owned tokens for `spender`.
+       **/
+      ApprovedForAll: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr, PalletEvmAccountBasicCrossAccountIdRepr, bool]>;
+      /**
+       * Collection admin was added.
+       **/
+      CollectionAdminAdded: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
+      /**
+       * Collection admin was removed.
+       **/
+      CollectionAdminRemoved: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
       /**
        * New collection was created
        **/
@@ -77,6 +97,18 @@ declare module '@polkadot/api-base/types/events' {
        **/
       CollectionDestroyed: AugmentedEvent<ApiType, [u32]>;
       /**
+       * Collection limits were set.
+       **/
+      CollectionLimitSet: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * Collection owned was changed.
+       **/
+      CollectionOwnerChanged: AugmentedEvent<ApiType, [u32, AccountId32]>;
+      /**
+       * Collection permissions were set.
+       **/
+      CollectionPermissionSet: AugmentedEvent<ApiType, [u32]>;
+      /**
        * The property has been deleted.
        **/
       CollectionPropertyDeleted: AugmentedEvent<ApiType, [u32, Bytes]>;
@@ -84,6 +116,14 @@ declare module '@polkadot/api-base/types/events' {
        * The colletion property has been added or edited.
        **/
       CollectionPropertySet: AugmentedEvent<ApiType, [u32, Bytes]>;
+      /**
+       * Collection sponsor was removed.
+       **/
+      CollectionSponsorRemoved: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * Collection sponsor was set.
+       **/
+      CollectionSponsorSet: AugmentedEvent<ApiType, [u32, AccountId32]>;
       /**
        * New item was created.
        **/
@@ -96,6 +136,10 @@ declare module '@polkadot/api-base/types/events' {
        * The token property permission of a collection has been set.
        **/
       PropertyPermissionSet: AugmentedEvent<ApiType, [u32, Bytes]>;
+      /**
+       * New sponsor was confirm.
+       **/
+      SponsorshipConfirmed: AugmentedEvent<ApiType, [u32, AccountId32]>;
       /**
        * The token property has been deleted.
        **/
@@ -146,11 +190,11 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Downward message is overweight and was placed in the overweight queue.
        **/
-      OverweightEnqueued: AugmentedEvent<ApiType, [messageId: U8aFixed, overweightIndex: u64, requiredWeight: Weight], { messageId: U8aFixed, overweightIndex: u64, requiredWeight: Weight }>;
+      OverweightEnqueued: AugmentedEvent<ApiType, [messageId: U8aFixed, overweightIndex: u64, requiredWeight: SpWeightsWeightV2Weight], { messageId: U8aFixed, overweightIndex: u64, requiredWeight: SpWeightsWeightV2Weight }>;
       /**
        * Downward message from the overweight queue was executed.
        **/
-      OverweightServiced: AugmentedEvent<ApiType, [overweightIndex: u64, weightUsed: Weight], { overweightIndex: u64, weightUsed: Weight }>;
+      OverweightServiced: AugmentedEvent<ApiType, [overweightIndex: u64, weightUsed: SpWeightsWeightV2Weight], { overweightIndex: u64, weightUsed: SpWeightsWeightV2Weight }>;
       /**
        * Downward message is unsupported version of XCM.
        **/
@@ -158,7 +202,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * The weight limit for handling downward messages was reached.
        **/
-      WeightExhausted: AugmentedEvent<ApiType, [messageId: U8aFixed, remainingWeight: Weight, requiredWeight: Weight], { messageId: U8aFixed, remainingWeight: Weight, requiredWeight: Weight }>;
+      WeightExhausted: AugmentedEvent<ApiType, [messageId: U8aFixed, remainingWeight: SpWeightsWeightV2Weight, requiredWeight: SpWeightsWeightV2Weight], { messageId: U8aFixed, remainingWeight: SpWeightsWeightV2Weight, requiredWeight: SpWeightsWeightV2Weight }>;
       /**
        * Generic event
        **/
@@ -166,9 +210,9 @@ declare module '@polkadot/api-base/types/events' {
     };
     ethereum: {
       /**
-       * An ethereum transaction was successfully executed. [from, to/contract_address, transaction_hash, exit_reason]
+       * An ethereum transaction was successfully executed.
        **/
-      Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
+      Executed: AugmentedEvent<ApiType, [from: H160, to: H160, transactionHash: H256, exitReason: EvmCoreErrorExitReason], { from: H160, to: H160, transactionHash: H256, exitReason: EvmCoreErrorExitReason }>;
       /**
        * Generic event
        **/
@@ -176,33 +220,25 @@ declare module '@polkadot/api-base/types/events' {
     };
     evm: {
       /**
-       * A deposit has been made at a given address. \[sender, address, value\]
+       * A contract has been created at given address.
        **/
-      BalanceDeposit: AugmentedEvent<ApiType, [AccountId32, H160, U256]>;
+      Created: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A withdrawal has been made from a given address. \[sender, address, value\]
+       * A contract was attempted to be created, but the execution failed.
        **/
-      BalanceWithdraw: AugmentedEvent<ApiType, [AccountId32, H160, U256]>;
+      CreatedFailed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A contract has been created at given \[address\].
+       * A contract has been executed successfully with states applied.
        **/
-      Created: AugmentedEvent<ApiType, [H160]>;
+      Executed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A \[contract\] was attempted to be created, but the execution failed.
+       * A contract has been executed with errors. States are reverted with only gas fees applied.
        **/
-      CreatedFailed: AugmentedEvent<ApiType, [H160]>;
-      /**
-       * A \[contract\] has been executed successfully with states applied.
-       **/
-      Executed: AugmentedEvent<ApiType, [H160]>;
-      /**
-       * A \[contract\] has been executed with errors. States are reverted with only gas fees applied.
-       **/
-      ExecutedFailed: AugmentedEvent<ApiType, [H160]>;
+      ExecutedFailed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
        * Ethereum events from contracts.
        **/
-      Log: AugmentedEvent<ApiType, [EthereumLog]>;
+      Log: AugmentedEvent<ApiType, [log: EthereumLog], { log: EthereumLog }>;
       /**
        * Generic event
        **/
@@ -270,7 +306,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Downward messages were processed using the given weight.
        **/
-      DownwardMessagesProcessed: AugmentedEvent<ApiType, [weightUsed: Weight, dmqHead: H256], { weightUsed: Weight, dmqHead: H256 }>;
+      DownwardMessagesProcessed: AugmentedEvent<ApiType, [weightUsed: SpWeightsWeightV2Weight, dmqHead: H256], { weightUsed: SpWeightsWeightV2Weight, dmqHead: H256 }>;
       /**
        * Some downward messages have been received and will be processed.
        **/
@@ -297,6 +333,12 @@ declare module '@polkadot/api-base/types/events' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     polkadotXcm: {
+      /**
+       * Some assets have been claimed from an asset trap
+       * 
+       * \[ hash, origin, assets \]
+       **/
+      AssetsClaimed: AugmentedEvent<ApiType, [H256, XcmV1MultiLocation, XcmVersionedMultiAssets]>;
       /**
        * Some assets have been placed in an asset trap.
        * 
@@ -358,7 +400,7 @@ declare module '@polkadot/api-base/types/events' {
        * 
        * \[ id, pallet index, call index, actual weight, max budgeted weight \]
        **/
-      NotifyOverweight: AugmentedEvent<ApiType, [u64, u8, u8, Weight, Weight]>;
+      NotifyOverweight: AugmentedEvent<ApiType, [u64, u8, u8, SpWeightsWeightV2Weight, SpWeightsWeightV2Weight]>;
       /**
        * A given location which had a version change subscription was dropped owing to an error
        * migrating the location to our new XCM format.
@@ -585,89 +627,6 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    unique: {
-      /**
-       * Address was added to the allow list
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * user: Address of the added account.
-       **/
-      AllowListAddressAdded: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
-      /**
-       * Address was removed from the allow list
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * user: Address of the removed account.
-       **/
-      AllowListAddressRemoved: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
-      /**
-       * Collection admin was added
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * admin: Admin address.
-       **/
-      CollectionAdminAdded: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
-      /**
-       * Collection admin was removed
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * admin: Removed admin address.
-       **/
-      CollectionAdminRemoved: AugmentedEvent<ApiType, [u32, PalletEvmAccountBasicCrossAccountIdRepr]>;
-      /**
-       * Collection limits were set
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       **/
-      CollectionLimitSet: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Collection owned was changed
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * owner: New owner address.
-       **/
-      CollectionOwnedChanged: AugmentedEvent<ApiType, [u32, AccountId32]>;
-      /**
-       * Collection permissions were set
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       **/
-      CollectionPermissionSet: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Collection sponsor was removed
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       **/
-      CollectionSponsorRemoved: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Collection sponsor was set
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * owner: New sponsor address.
-       **/
-      CollectionSponsorSet: AugmentedEvent<ApiType, [u32, AccountId32]>;
-      /**
-       * New sponsor was confirm
-       * 
-       * # Arguments
-       * * collection_id: ID of the affected collection.
-       * * sponsor: New sponsor address.
-       **/
-      SponsorshipConfirmed: AugmentedEvent<ApiType, [u32, AccountId32]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
     vesting: {
       /**
        * Claimed vesting.
@@ -698,19 +657,19 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Some XCM failed.
        **/
-      Fail: AugmentedEvent<ApiType, [messageHash: Option<H256>, error: XcmV2TraitsError, weight: Weight], { messageHash: Option<H256>, error: XcmV2TraitsError, weight: Weight }>;
+      Fail: AugmentedEvent<ApiType, [messageHash: Option<H256>, error: XcmV2TraitsError, weight: SpWeightsWeightV2Weight], { messageHash: Option<H256>, error: XcmV2TraitsError, weight: SpWeightsWeightV2Weight }>;
       /**
        * An XCM exceeded the individual message weight budget.
        **/
-      OverweightEnqueued: AugmentedEvent<ApiType, [sender: u32, sentAt: u32, index: u64, required: Weight], { sender: u32, sentAt: u32, index: u64, required: Weight }>;
+      OverweightEnqueued: AugmentedEvent<ApiType, [sender: u32, sentAt: u32, index: u64, required: SpWeightsWeightV2Weight], { sender: u32, sentAt: u32, index: u64, required: SpWeightsWeightV2Weight }>;
       /**
        * An XCM from the overweight queue was executed with the given actual weight used.
        **/
-      OverweightServiced: AugmentedEvent<ApiType, [index: u64, used: Weight], { index: u64, used: Weight }>;
+      OverweightServiced: AugmentedEvent<ApiType, [index: u64, used: SpWeightsWeightV2Weight], { index: u64, used: SpWeightsWeightV2Weight }>;
       /**
        * Some XCM was executed ok.
        **/
-      Success: AugmentedEvent<ApiType, [messageHash: Option<H256>, weight: Weight], { messageHash: Option<H256>, weight: Weight }>;
+      Success: AugmentedEvent<ApiType, [messageHash: Option<H256>, weight: SpWeightsWeightV2Weight], { messageHash: Option<H256>, weight: SpWeightsWeightV2Weight }>;
       /**
        * An upward message was sent to the relay chain.
        **/
