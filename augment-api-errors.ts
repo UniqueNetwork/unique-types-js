@@ -56,7 +56,7 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       ExistingVestingSchedule: AugmentedError<ApiType>;
       /**
-       * Balance too low to send value
+       * Balance too low to send value.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
       /**
@@ -146,6 +146,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       CollectionTokenPrefixLimitExceeded: AugmentedError<ApiType>;
       /**
+       * This address is not set as sponsor, use setCollectionSponsor first.
+       **/
+      ConfirmSponsorshipFail: AugmentedError<ApiType>;
+      /**
        * Empty property keys are forbidden
        **/
       EmptyPropertyKey: AugmentedError<ApiType>;
@@ -218,6 +222,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       UserIsNotAllowedToNest: AugmentedError<ApiType>;
       /**
+       * The user is not an administrator.
+       **/
+      UserIsNotCollectionAdmin: AugmentedError<ApiType>;
+      /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
@@ -273,6 +281,14 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       FeeOverflow: AugmentedError<ApiType>;
       /**
+       * Gas limit is too high.
+       **/
+      GasLimitTooHigh: AugmentedError<ApiType>;
+      /**
+       * Gas limit is too low.
+       **/
+      GasLimitTooLow: AugmentedError<ApiType>;
+      /**
        * Gas price is too low.
        **/
       GasPriceTooLow: AugmentedError<ApiType>;
@@ -284,6 +300,18 @@ declare module '@polkadot/api-base/types/errors' {
        * Calculating total payment overflowed
        **/
       PaymentOverflow: AugmentedError<ApiType>;
+      /**
+       * EVM reentrancy
+       **/
+      Reentrancy: AugmentedError<ApiType>;
+      /**
+       * EIP-3607,
+       **/
+      TransactionMustComeFromEOA: AugmentedError<ApiType>;
+      /**
+       * Undefined error.
+       **/
+      Undefined: AugmentedError<ApiType>;
       /**
        * Withdraw fee failed
        **/
@@ -381,6 +409,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Not Fungible item data used to mint in Fungible collection.
        **/
       NotFungibleDataUsedToMintFungibleCollectionToken: AugmentedError<ApiType>;
+      /**
+       * Setting allowance for all is not allowed.
+       **/
+      SettingAllowanceForAllNotAllowed: AugmentedError<ApiType>;
       /**
        * Setting item properties is not allowed.
        **/
@@ -673,10 +705,6 @@ declare module '@polkadot/api-base/types/errors' {
        * Decimal_points parameter must be lower than [`up_data_structs::MAX_DECIMAL_POINTS`].
        **/
       CollectionDecimalPointLimitExceeded: AugmentedError<ApiType>;
-      /**
-       * This address is not set as sponsor, use setCollectionSponsor first.
-       **/
-      ConfirmUnsetSponsorFail: AugmentedError<ApiType>;
       /**
        * Length of items properties must be greater than 0.
        **/
