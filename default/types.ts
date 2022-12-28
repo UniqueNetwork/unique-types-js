@@ -2467,8 +2467,8 @@ export interface SpWeightsWeightV2Weight extends Struct {
 /** @name UniqueRuntimeRuntime */
 export interface UniqueRuntimeRuntime extends Null {}
 
-/** @name UniqueRuntimeRuntimeCommonDataManagementFilterIdentity */
-export interface UniqueRuntimeRuntimeCommonDataManagementFilterIdentity extends Null {}
+/** @name UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls */
+export interface UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls extends Null {}
 
 /** @name UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance */
 export interface UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance extends Null {}

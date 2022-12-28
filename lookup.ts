@@ -3213,9 +3213,9 @@ export default {
    **/
   UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance: 'Null',
   /**
-   * Lookup463: unique_runtime::runtime_common::data_management::FilterIdentity
+   * Lookup463: unique_runtime::runtime_common::identity::DisableIdentityCalls
    **/
-  UniqueRuntimeRuntimeCommonDataManagementFilterIdentity: 'Null',
+  UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls: 'Null',
   /**
    * Lookup464: pallet_template_transaction_payment::ChargeTransactionPayment<unique_runtime::Runtime>
    **/

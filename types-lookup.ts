@@ -3491,8 +3491,8 @@ declare module '@polkadot/types/lookup' {
   /** @name UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance (462) */
   type UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance = Null;
 
-  /** @name UniqueRuntimeRuntimeCommonDataManagementFilterIdentity (463) */
-  type UniqueRuntimeRuntimeCommonDataManagementFilterIdentity = Null;
+  /** @name UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls (463) */
+  type UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls = Null;
 
   /** @name PalletTemplateTransactionPaymentChargeTransactionPayment (464) */
   interface PalletTemplateTransactionPaymentChargeTransactionPayment extends Compact<u128> {}
