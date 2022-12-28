@@ -184,7 +184,92 @@ export default {
     }
   },
   /**
-   * Lookup30: pallet_balances::pallet::Event<T, I>
+   * Lookup30: pallet_collator_selection::pallet::Event<T>
+   **/
+  PalletCollatorSelectionEvent: {
+    _enum: {
+      InvulnerableAdded: {
+        invulnerable: 'AccountId32',
+      },
+      InvulnerableRemoved: {
+        invulnerable: 'AccountId32',
+      },
+      LicenseObtained: {
+        accountId: 'AccountId32',
+        deposit: 'u128',
+      },
+      LicenseReleased: {
+        accountId: 'AccountId32',
+        depositReturned: 'u128',
+      },
+      CandidateAdded: {
+        accountId: 'AccountId32',
+      },
+      CandidateRemoved: {
+        accountId: 'AccountId32'
+      }
+    }
+  },
+  /**
+   * Lookup31: pallet_session::pallet::Event
+   **/
+  PalletSessionEvent: {
+    _enum: {
+      NewSession: {
+        sessionIndex: 'u32'
+      }
+    }
+  },
+  /**
+   * Lookup32: pallet_identity::pallet::Event<T>
+   **/
+  PalletIdentityEvent: {
+    _enum: {
+      IdentitySet: {
+        who: 'AccountId32',
+      },
+      IdentityCleared: {
+        who: 'AccountId32',
+        deposit: 'u128',
+      },
+      IdentityKilled: {
+        who: 'AccountId32',
+        deposit: 'u128',
+      },
+      JudgementRequested: {
+        who: 'AccountId32',
+        registrarIndex: 'u32',
+      },
+      JudgementUnrequested: {
+        who: 'AccountId32',
+        registrarIndex: 'u32',
+      },
+      JudgementGiven: {
+        target: 'AccountId32',
+        registrarIndex: 'u32',
+      },
+      RegistrarAdded: {
+        registrarIndex: 'u32',
+      },
+      SubIdentityAdded: {
+        sub: 'AccountId32',
+        main: 'AccountId32',
+        deposit: 'u128',
+      },
+      SubIdentityRemoved: {
+        sub: 'AccountId32',
+        main: 'AccountId32',
+        deposit: 'u128',
+      },
+      SubIdentityRevoked: {
+        sub: 'AccountId32',
+        main: 'AccountId32',
+        deposit: 'u128'
+      }
+    }
+  },
+  /**
+   * Lookup33: pallet_balances::pallet::Event<T, I>
    **/
   PalletBalancesEvent: {
     _enum: {
@@ -235,13 +320,13 @@ export default {
     }
   },
   /**
-   * Lookup31: frame_support::traits::tokens::misc::BalanceStatus
+   * Lookup34: frame_support::traits::tokens::misc::BalanceStatus
    **/
   FrameSupportTokensMiscBalanceStatus: {
     _enum: ['Free', 'Reserved']
   },
   /**
-   * Lookup32: pallet_transaction_payment::pallet::Event<T>
+   * Lookup35: pallet_transaction_payment::pallet::Event<T>
    **/
   PalletTransactionPaymentEvent: {
     _enum: {
@@ -253,7 +338,7 @@ export default {
     }
   },
   /**
-   * Lookup33: pallet_treasury::pallet::Event<T, I>
+   * Lookup36: pallet_treasury::pallet::Event<T, I>
    **/
   PalletTreasuryEvent: {
     _enum: {
@@ -289,7 +374,7 @@ export default {
     }
   },
   /**
-   * Lookup34: pallet_sudo::pallet::Event<T>
+   * Lookup37: pallet_sudo::pallet::Event<T>
    **/
   PalletSudoEvent: {
     _enum: {
@@ -305,7 +390,7 @@ export default {
     }
   },
   /**
-   * Lookup38: orml_vesting::module::Event<T>
+   * Lookup41: orml_vesting::module::Event<T>
    **/
   OrmlVestingModuleEvent: {
     _enum: {
@@ -324,7 +409,7 @@ export default {
     }
   },
   /**
-   * Lookup39: orml_vesting::VestingSchedule<BlockNumber, Balance>
+   * Lookup42: orml_vesting::VestingSchedule<BlockNumber, Balance>
    **/
   OrmlVestingVestingSchedule: {
     start: 'u32',
@@ -333,7 +418,7 @@ export default {
     perPeriod: 'Compact<u128>'
   },
   /**
-   * Lookup41: orml_xtokens::module::Event<T>
+   * Lookup44: orml_xtokens::module::Event<T>
    **/
   OrmlXtokensModuleEvent: {
     _enum: {
@@ -346,18 +431,18 @@ export default {
     }
   },
   /**
-   * Lookup42: xcm::v1::multiasset::MultiAssets
+   * Lookup45: xcm::v1::multiasset::MultiAssets
    **/
   XcmV1MultiassetMultiAssets: 'Vec<XcmV1MultiAsset>',
   /**
-   * Lookup44: xcm::v1::multiasset::MultiAsset
+   * Lookup47: xcm::v1::multiasset::MultiAsset
    **/
   XcmV1MultiAsset: {
     id: 'XcmV1MultiassetAssetId',
     fun: 'XcmV1MultiassetFungibility'
   },
   /**
-   * Lookup45: xcm::v1::multiasset::AssetId
+   * Lookup48: xcm::v1::multiasset::AssetId
    **/
   XcmV1MultiassetAssetId: {
     _enum: {
@@ -366,14 +451,14 @@ export default {
     }
   },
   /**
-   * Lookup46: xcm::v1::multilocation::MultiLocation
+   * Lookup49: xcm::v1::multilocation::MultiLocation
    **/
   XcmV1MultiLocation: {
     parents: 'u8',
     interior: 'XcmV1MultilocationJunctions'
   },
   /**
-   * Lookup47: xcm::v1::multilocation::Junctions
+   * Lookup50: xcm::v1::multilocation::Junctions
    **/
   XcmV1MultilocationJunctions: {
     _enum: {
@@ -389,7 +474,7 @@ export default {
     }
   },
   /**
-   * Lookup48: xcm::v1::junction::Junction
+   * Lookup51: xcm::v1::junction::Junction
    **/
   XcmV1Junction: {
     _enum: {
@@ -417,7 +502,7 @@ export default {
     }
   },
   /**
-   * Lookup50: xcm::v0::junction::NetworkId
+   * Lookup53: xcm::v0::junction::NetworkId
    **/
   XcmV0JunctionNetworkId: {
     _enum: {
@@ -428,7 +513,7 @@ export default {
     }
   },
   /**
-   * Lookup53: xcm::v0::junction::BodyId
+   * Lookup56: xcm::v0::junction::BodyId
    **/
   XcmV0JunctionBodyId: {
     _enum: {
@@ -442,7 +527,7 @@ export default {
     }
   },
   /**
-   * Lookup54: xcm::v0::junction::BodyPart
+   * Lookup57: xcm::v0::junction::BodyPart
    **/
   XcmV0JunctionBodyPart: {
     _enum: {
@@ -465,7 +550,7 @@ export default {
     }
   },
   /**
-   * Lookup55: xcm::v1::multiasset::Fungibility
+   * Lookup58: xcm::v1::multiasset::Fungibility
    **/
   XcmV1MultiassetFungibility: {
     _enum: {
@@ -474,7 +559,7 @@ export default {
     }
   },
   /**
-   * Lookup56: xcm::v1::multiasset::AssetInstance
+   * Lookup59: xcm::v1::multiasset::AssetInstance
    **/
   XcmV1MultiassetAssetInstance: {
     _enum: {
@@ -488,7 +573,7 @@ export default {
     }
   },
   /**
-   * Lookup59: orml_tokens::module::Event<T>
+   * Lookup62: orml_tokens::module::Event<T>
    **/
   OrmlTokensModuleEvent: {
     _enum: {
@@ -565,7 +650,7 @@ export default {
     }
   },
   /**
-   * Lookup60: pallet_foreign_assets::AssetIds
+   * Lookup63: pallet_foreign_assets::AssetIds
    **/
   PalletForeignAssetsAssetIds: {
     _enum: {
@@ -574,13 +659,13 @@ export default {
     }
   },
   /**
-   * Lookup61: pallet_foreign_assets::NativeCurrency
+   * Lookup64: pallet_foreign_assets::NativeCurrency
    **/
   PalletForeignAssetsNativeCurrency: {
     _enum: ['Here', 'Parent']
   },
   /**
-   * Lookup62: cumulus_pallet_xcmp_queue::pallet::Event<T>
+   * Lookup65: cumulus_pallet_xcmp_queue::pallet::Event<T>
    **/
   CumulusPalletXcmpQueueEvent: {
     _enum: {
@@ -618,7 +703,7 @@ export default {
     }
   },
   /**
-   * Lookup64: xcm::v2::traits::Error
+   * Lookup67: xcm::v2::traits::Error
    **/
   XcmV2TraitsError: {
     _enum: {
@@ -651,7 +736,7 @@ export default {
     }
   },
   /**
-   * Lookup66: pallet_xcm::pallet::Event<T>
+   * Lookup69: pallet_xcm::pallet::Event<T>
    **/
   PalletXcmEvent: {
     _enum: {
@@ -675,7 +760,7 @@ export default {
     }
   },
   /**
-   * Lookup67: xcm::v2::traits::Outcome
+   * Lookup70: xcm::v2::traits::Outcome
    **/
   XcmV2TraitsOutcome: {
     _enum: {
@@ -685,11 +770,11 @@ export default {
     }
   },
   /**
-   * Lookup68: xcm::v2::Xcm<RuntimeCall>
+   * Lookup71: xcm::v2::Xcm<RuntimeCall>
    **/
   XcmV2Xcm: 'Vec<XcmV2Instruction>',
   /**
-   * Lookup70: xcm::v2::Instruction<RuntimeCall>
+   * Lookup73: xcm::v2::Instruction<RuntimeCall>
    **/
   XcmV2Instruction: {
     _enum: {
@@ -787,7 +872,7 @@ export default {
     }
   },
   /**
-   * Lookup71: xcm::v2::Response
+   * Lookup74: xcm::v2::Response
    **/
   XcmV2Response: {
     _enum: {
@@ -798,19 +883,19 @@ export default {
     }
   },
   /**
-   * Lookup74: xcm::v0::OriginKind
+   * Lookup77: xcm::v0::OriginKind
    **/
   XcmV0OriginKind: {
     _enum: ['Native', 'SovereignAccount', 'Superuser', 'Xcm']
   },
   /**
-   * Lookup75: xcm::double_encoded::DoubleEncoded<T>
+   * Lookup78: xcm::double_encoded::DoubleEncoded<T>
    **/
   XcmDoubleEncoded: {
     encoded: 'Bytes'
   },
   /**
-   * Lookup76: xcm::v1::multiasset::MultiAssetFilter
+   * Lookup79: xcm::v1::multiasset::MultiAssetFilter
    **/
   XcmV1MultiassetMultiAssetFilter: {
     _enum: {
@@ -819,7 +904,7 @@ export default {
     }
   },
   /**
-   * Lookup77: xcm::v1::multiasset::WildMultiAsset
+   * Lookup80: xcm::v1::multiasset::WildMultiAsset
    **/
   XcmV1MultiassetWildMultiAsset: {
     _enum: {
@@ -831,13 +916,13 @@ export default {
     }
   },
   /**
-   * Lookup78: xcm::v1::multiasset::WildFungibility
+   * Lookup81: xcm::v1::multiasset::WildFungibility
    **/
   XcmV1MultiassetWildFungibility: {
     _enum: ['Fungible', 'NonFungible']
   },
   /**
-   * Lookup79: xcm::v2::WeightLimit
+   * Lookup82: xcm::v2::WeightLimit
    **/
   XcmV2WeightLimit: {
     _enum: {
@@ -846,7 +931,7 @@ export default {
     }
   },
   /**
-   * Lookup81: xcm::VersionedMultiAssets
+   * Lookup84: xcm::VersionedMultiAssets
    **/
   XcmVersionedMultiAssets: {
     _enum: {
@@ -855,7 +940,7 @@ export default {
     }
   },
   /**
-   * Lookup83: xcm::v0::multi_asset::MultiAsset
+   * Lookup86: xcm::v0::multi_asset::MultiAsset
    **/
   XcmV0MultiAsset: {
     _enum: {
@@ -894,7 +979,7 @@ export default {
     }
   },
   /**
-   * Lookup84: xcm::v0::multi_location::MultiLocation
+   * Lookup87: xcm::v0::multi_location::MultiLocation
    **/
   XcmV0MultiLocation: {
     _enum: {
@@ -910,7 +995,7 @@ export default {
     }
   },
   /**
-   * Lookup85: xcm::v0::junction::Junction
+   * Lookup88: xcm::v0::junction::Junction
    **/
   XcmV0Junction: {
     _enum: {
@@ -939,7 +1024,7 @@ export default {
     }
   },
   /**
-   * Lookup86: xcm::VersionedMultiLocation
+   * Lookup89: xcm::VersionedMultiLocation
    **/
   XcmVersionedMultiLocation: {
     _enum: {
@@ -948,7 +1033,7 @@ export default {
     }
   },
   /**
-   * Lookup87: cumulus_pallet_xcm::pallet::Event<T>
+   * Lookup90: cumulus_pallet_xcm::pallet::Event<T>
    **/
   CumulusPalletXcmEvent: {
     _enum: {
@@ -958,7 +1043,7 @@ export default {
     }
   },
   /**
-   * Lookup88: cumulus_pallet_dmp_queue::pallet::Event<T>
+   * Lookup91: cumulus_pallet_dmp_queue::pallet::Event<T>
    **/
   CumulusPalletDmpQueueEvent: {
     _enum: {
@@ -989,7 +1074,23 @@ export default {
     }
   },
   /**
-   * Lookup89: pallet_common::pallet::Event<T>
+   * Lookup92: pallet_configuration::pallet::Event<T>
+   **/
+  PalletConfigurationEvent: {
+    _enum: {
+      NewDesiredCollators: {
+        desiredCollators: 'Option<u32>',
+      },
+      NewCollatorLicenseBond: {
+        bondCost: 'Option<u128>',
+      },
+      NewCollatorKickThreshold: {
+        lengthInBlocks: 'Option<u32>'
+      }
+    }
+  },
+  /**
+   * Lookup95: pallet_common::pallet::Event<T>
    **/
   PalletCommonEvent: {
     _enum: {
@@ -1018,7 +1119,7 @@ export default {
     }
   },
   /**
-   * Lookup92: pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>
+   * Lookup98: pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>
    **/
   PalletEvmAccountBasicCrossAccountIdRepr: {
     _enum: {
@@ -1027,7 +1128,7 @@ export default {
     }
   },
   /**
-   * Lookup96: pallet_structure::pallet::Event<T>
+   * Lookup102: pallet_structure::pallet::Event<T>
    **/
   PalletStructureEvent: {
     _enum: {
@@ -1035,7 +1136,7 @@ export default {
     }
   },
   /**
-   * Lookup97: pallet_rmrk_core::pallet::Event<T>
+   * Lookup103: pallet_rmrk_core::pallet::Event<T>
    **/
   PalletRmrkCoreEvent: {
     _enum: {
@@ -1112,7 +1213,7 @@ export default {
     }
   },
   /**
-   * Lookup98: rmrk_traits::nft::AccountIdOrCollectionNftTuple<sp_core::crypto::AccountId32>
+   * Lookup104: rmrk_traits::nft::AccountIdOrCollectionNftTuple<sp_core::crypto::AccountId32>
    **/
   RmrkTraitsNftAccountIdOrCollectionNftTuple: {
     _enum: {
@@ -1121,7 +1222,7 @@ export default {
     }
   },
   /**
-   * Lookup102: pallet_rmrk_equip::pallet::Event<T>
+   * Lookup107: pallet_rmrk_equip::pallet::Event<T>
    **/
   PalletRmrkEquipEvent: {
     _enum: {
@@ -1136,7 +1237,7 @@ export default {
     }
   },
   /**
-   * Lookup103: pallet_app_promotion::pallet::Event<T>
+   * Lookup108: pallet_app_promotion::pallet::Event<T>
    **/
   PalletAppPromotionEvent: {
     _enum: {
@@ -1147,7 +1248,7 @@ export default {
     }
   },
   /**
-   * Lookup104: pallet_foreign_assets::module::Event<T>
+   * Lookup109: pallet_foreign_assets::module::Event<T>
    **/
   PalletForeignAssetsModuleEvent: {
     _enum: {
@@ -1172,7 +1273,7 @@ export default {
     }
   },
   /**
-   * Lookup105: pallet_foreign_assets::module::AssetMetadata<Balance>
+   * Lookup110: pallet_foreign_assets::module::AssetMetadata<Balance>
    **/
   PalletForeignAssetsModuleAssetMetadata: {
     name: 'Bytes',
@@ -1181,7 +1282,7 @@ export default {
     minimalBalance: 'u128'
   },
   /**
-   * Lookup106: pallet_evm::pallet::Event<T>
+   * Lookup111: pallet_evm::pallet::Event<T>
    **/
   PalletEvmEvent: {
     _enum: {
@@ -1203,7 +1304,7 @@ export default {
     }
   },
   /**
-   * Lookup107: ethereum::log::Log
+   * Lookup112: ethereum::log::Log
    **/
   EthereumLog: {
     address: 'H160',
@@ -1211,7 +1312,7 @@ export default {
     data: 'Bytes'
   },
   /**
-   * Lookup109: pallet_ethereum::pallet::Event
+   * Lookup114: pallet_ethereum::pallet::Event
    **/
   PalletEthereumEvent: {
     _enum: {
@@ -1224,7 +1325,7 @@ export default {
     }
   },
   /**
-   * Lookup110: evm_core::error::ExitReason
+   * Lookup115: evm_core::error::ExitReason
    **/
   EvmCoreErrorExitReason: {
     _enum: {
@@ -1235,13 +1336,13 @@ export default {
     }
   },
   /**
-   * Lookup111: evm_core::error::ExitSucceed
+   * Lookup116: evm_core::error::ExitSucceed
    **/
   EvmCoreErrorExitSucceed: {
     _enum: ['Stopped', 'Returned', 'Suicided']
   },
   /**
-   * Lookup112: evm_core::error::ExitError
+   * Lookup117: evm_core::error::ExitError
    **/
   EvmCoreErrorExitError: {
     _enum: {
@@ -1263,13 +1364,13 @@ export default {
     }
   },
   /**
-   * Lookup115: evm_core::error::ExitRevert
+   * Lookup120: evm_core::error::ExitRevert
    **/
   EvmCoreErrorExitRevert: {
     _enum: ['Reverted']
   },
   /**
-   * Lookup116: evm_core::error::ExitFatal
+   * Lookup121: evm_core::error::ExitFatal
    **/
   EvmCoreErrorExitFatal: {
     _enum: {
@@ -1280,7 +1381,7 @@ export default {
     }
   },
   /**
-   * Lookup117: pallet_evm_contract_helpers::pallet::Event<T>
+   * Lookup122: pallet_evm_contract_helpers::pallet::Event<T>
    **/
   PalletEvmContractHelpersEvent: {
     _enum: {
@@ -1290,25 +1391,25 @@ export default {
     }
   },
   /**
-   * Lookup118: pallet_evm_migration::pallet::Event<T>
+   * Lookup123: pallet_evm_migration::pallet::Event<T>
    **/
   PalletEvmMigrationEvent: {
     _enum: ['TestEvent']
   },
   /**
-   * Lookup119: pallet_maintenance::pallet::Event<T>
+   * Lookup124: pallet_maintenance::pallet::Event<T>
    **/
   PalletMaintenanceEvent: {
     _enum: ['MaintenanceEnabled', 'MaintenanceDisabled']
   },
   /**
-   * Lookup120: pallet_test_utils::pallet::Event<T>
+   * Lookup125: pallet_test_utils::pallet::Event<T>
    **/
   PalletTestUtilsEvent: {
     _enum: ['ValueIsSet', 'ShouldRollback', 'BatchCompleted']
   },
   /**
-   * Lookup121: frame_system::Phase
+   * Lookup126: frame_system::Phase
    **/
   FrameSystemPhase: {
     _enum: {
@@ -1318,14 +1419,14 @@ export default {
     }
   },
   /**
-   * Lookup124: frame_system::LastRuntimeUpgradeInfo
+   * Lookup129: frame_system::LastRuntimeUpgradeInfo
    **/
   FrameSystemLastRuntimeUpgradeInfo: {
     specVersion: 'Compact<u32>',
     specName: 'Text'
   },
   /**
-   * Lookup125: frame_system::pallet::Call<T>
+   * Lookup130: frame_system::pallet::Call<T>
    **/
   FrameSystemCall: {
     _enum: {
@@ -1360,7 +1461,7 @@ export default {
     }
   },
   /**
-   * Lookup129: frame_system::limits::BlockWeights
+   * Lookup134: frame_system::limits::BlockWeights
    **/
   FrameSystemLimitsBlockWeights: {
     baseBlock: 'SpWeightsWeightV2Weight',
@@ -1368,7 +1469,7 @@ export default {
     perClass: 'FrameSupportDispatchPerDispatchClassWeightsPerClass'
   },
   /**
-   * Lookup130: frame_support::dispatch::PerDispatchClass<frame_system::limits::WeightsPerClass>
+   * Lookup135: frame_support::dispatch::PerDispatchClass<frame_system::limits::WeightsPerClass>
    **/
   FrameSupportDispatchPerDispatchClassWeightsPerClass: {
     normal: 'FrameSystemLimitsWeightsPerClass',
@@ -1376,7 +1477,7 @@ export default {
     mandatory: 'FrameSystemLimitsWeightsPerClass'
   },
   /**
-   * Lookup131: frame_system::limits::WeightsPerClass
+   * Lookup136: frame_system::limits::WeightsPerClass
    **/
   FrameSystemLimitsWeightsPerClass: {
     baseExtrinsic: 'SpWeightsWeightV2Weight',
@@ -1385,13 +1486,13 @@ export default {
     reserved: 'Option<SpWeightsWeightV2Weight>'
   },
   /**
-   * Lookup133: frame_system::limits::BlockLength
+   * Lookup138: frame_system::limits::BlockLength
    **/
   FrameSystemLimitsBlockLength: {
     max: 'FrameSupportDispatchPerDispatchClassU32'
   },
   /**
-   * Lookup134: frame_support::dispatch::PerDispatchClass<T>
+   * Lookup139: frame_support::dispatch::PerDispatchClass<T>
    **/
   FrameSupportDispatchPerDispatchClassU32: {
     normal: 'u32',
@@ -1399,14 +1500,14 @@ export default {
     mandatory: 'u32'
   },
   /**
-   * Lookup135: sp_weights::RuntimeDbWeight
+   * Lookup140: sp_weights::RuntimeDbWeight
    **/
   SpWeightsRuntimeDbWeight: {
     read: 'u64',
     write: 'u64'
   },
   /**
-   * Lookup136: sp_version::RuntimeVersion
+   * Lookup141: sp_version::RuntimeVersion
    **/
   SpVersionRuntimeVersion: {
     specName: 'Text',
@@ -1419,13 +1520,13 @@ export default {
     stateVersion: 'u8'
   },
   /**
-   * Lookup141: frame_system::pallet::Error<T>
+   * Lookup146: frame_system::pallet::Error<T>
    **/
   FrameSystemError: {
     _enum: ['InvalidSpecName', 'SpecVersionNeedsToIncrease', 'FailedToExtractRuntimeVersion', 'NonDefaultComposite', 'NonZeroRefCount', 'CallFiltered']
   },
   /**
-   * Lookup142: polkadot_primitives::v2::PersistedValidationData<primitive_types::H256, N>
+   * Lookup147: polkadot_primitives::v2::PersistedValidationData<primitive_types::H256, N>
    **/
   PolkadotPrimitivesV2PersistedValidationData: {
     parentHead: 'Bytes',
@@ -1434,19 +1535,19 @@ export default {
     maxPovSize: 'u32'
   },
   /**
-   * Lookup145: polkadot_primitives::v2::UpgradeRestriction
+   * Lookup150: polkadot_primitives::v2::UpgradeRestriction
    **/
   PolkadotPrimitivesV2UpgradeRestriction: {
     _enum: ['Present']
   },
   /**
-   * Lookup146: sp_trie::storage_proof::StorageProof
+   * Lookup151: sp_trie::storage_proof::StorageProof
    **/
   SpTrieStorageProof: {
     trieNodes: 'BTreeSet<Bytes>'
   },
   /**
-   * Lookup148: cumulus_pallet_parachain_system::relay_state_snapshot::MessagingStateSnapshot
+   * Lookup153: cumulus_pallet_parachain_system::relay_state_snapshot::MessagingStateSnapshot
    **/
   CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot: {
     dmqMqcHead: 'H256',
@@ -1455,7 +1556,7 @@ export default {
     egressChannels: 'Vec<(u32,PolkadotPrimitivesV2AbridgedHrmpChannel)>'
   },
   /**
-   * Lookup151: polkadot_primitives::v2::AbridgedHrmpChannel
+   * Lookup156: polkadot_primitives::v2::AbridgedHrmpChannel
    **/
   PolkadotPrimitivesV2AbridgedHrmpChannel: {
     maxCapacity: 'u32',
@@ -1466,7 +1567,7 @@ export default {
     mqcHead: 'Option<H256>'
   },
   /**
-   * Lookup152: polkadot_primitives::v2::AbridgedHostConfiguration
+   * Lookup157: polkadot_primitives::v2::AbridgedHostConfiguration
    **/
   PolkadotPrimitivesV2AbridgedHostConfiguration: {
     maxCodeSize: 'u32',
@@ -1480,14 +1581,14 @@ export default {
     validationUpgradeDelay: 'u32'
   },
   /**
-   * Lookup158: polkadot_core_primitives::OutboundHrmpMessage<polkadot_parachain::primitives::Id>
+   * Lookup163: polkadot_core_primitives::OutboundHrmpMessage<polkadot_parachain::primitives::Id>
    **/
   PolkadotCorePrimitivesOutboundHrmpMessage: {
     recipient: 'u32',
     data: 'Bytes'
   },
   /**
-   * Lookup159: cumulus_pallet_parachain_system::pallet::Call<T>
+   * Lookup164: cumulus_pallet_parachain_system::pallet::Call<T>
    **/
   CumulusPalletParachainSystemCall: {
     _enum: {
@@ -1506,7 +1607,7 @@ export default {
     }
   },
   /**
-   * Lookup160: cumulus_primitives_parachain_inherent::ParachainInherentData
+   * Lookup165: cumulus_primitives_parachain_inherent::ParachainInherentData
    **/
   CumulusPrimitivesParachainInherentParachainInherentData: {
     validationData: 'PolkadotPrimitivesV2PersistedValidationData',
@@ -1515,27 +1616,267 @@ export default {
     horizontalMessages: 'BTreeMap<u32, Vec<PolkadotCorePrimitivesInboundHrmpMessage>>'
   },
   /**
-   * Lookup162: polkadot_core_primitives::InboundDownwardMessage<BlockNumber>
+   * Lookup167: polkadot_core_primitives::InboundDownwardMessage<BlockNumber>
    **/
   PolkadotCorePrimitivesInboundDownwardMessage: {
     sentAt: 'u32',
     msg: 'Bytes'
   },
   /**
-   * Lookup165: polkadot_core_primitives::InboundHrmpMessage<BlockNumber>
+   * Lookup170: polkadot_core_primitives::InboundHrmpMessage<BlockNumber>
    **/
   PolkadotCorePrimitivesInboundHrmpMessage: {
     sentAt: 'u32',
     data: 'Bytes'
   },
   /**
-   * Lookup168: cumulus_pallet_parachain_system::pallet::Error<T>
+   * Lookup173: cumulus_pallet_parachain_system::pallet::Error<T>
    **/
   CumulusPalletParachainSystemError: {
     _enum: ['OverlappingUpgrades', 'ProhibitedByPolkadot', 'TooBig', 'ValidationDataNotAvailable', 'HostConfigurationNotAvailable', 'NotScheduled', 'NothingAuthorized', 'Unauthorized']
   },
   /**
-   * Lookup170: pallet_balances::BalanceLock<Balance>
+   * Lookup175: pallet_authorship::UncleEntryItem<BlockNumber, primitive_types::H256, sp_core::crypto::AccountId32>
+   **/
+  PalletAuthorshipUncleEntryItem: {
+    _enum: {
+      InclusionHeight: 'u32',
+      Uncle: '(H256,Option<AccountId32>)'
+    }
+  },
+  /**
+   * Lookup177: pallet_authorship::pallet::Call<T>
+   **/
+  PalletAuthorshipCall: {
+    _enum: {
+      set_uncles: {
+        newUncles: 'Vec<SpRuntimeHeader>'
+      }
+    }
+  },
+  /**
+   * Lookup179: sp_runtime::generic::header::Header<Number, sp_runtime::traits::BlakeTwo256>
+   **/
+  SpRuntimeHeader: {
+    parentHash: 'H256',
+    number: 'Compact<u32>',
+    stateRoot: 'H256',
+    extrinsicsRoot: 'H256',
+    digest: 'SpRuntimeDigest'
+  },
+  /**
+   * Lookup180: sp_runtime::traits::BlakeTwo256
+   **/
+  SpRuntimeBlakeTwo256: 'Null',
+  /**
+   * Lookup181: pallet_authorship::pallet::Error<T>
+   **/
+  PalletAuthorshipError: {
+    _enum: ['InvalidUncleParent', 'UnclesAlreadySet', 'TooManyUncles', 'GenesisUncle', 'TooHighUncle', 'UncleAlreadyIncluded', 'OldUncle']
+  },
+  /**
+   * Lookup184: pallet_collator_selection::pallet::Call<T>
+   **/
+  PalletCollatorSelectionCall: {
+    _enum: {
+      add_invulnerable: {
+        _alias: {
+          new_: 'new',
+        },
+        new_: 'AccountId32',
+      },
+      remove_invulnerable: {
+        who: 'AccountId32',
+      },
+      get_license: 'Null',
+      onboard: 'Null',
+      offboard: 'Null',
+      release_license: 'Null',
+      force_release_license: {
+        who: 'AccountId32'
+      }
+    }
+  },
+  /**
+   * Lookup185: pallet_collator_selection::pallet::Error<T>
+   **/
+  PalletCollatorSelectionError: {
+    _enum: ['TooManyCandidates', 'Unknown', 'Permission', 'AlreadyHoldingLicense', 'NoLicense', 'AlreadyCandidate', 'NotCandidate', 'TooManyInvulnerables', 'TooFewInvulnerables', 'AlreadyInvulnerable', 'NotInvulnerable', 'NoAssociatedValidatorId', 'ValidatorNotRegistered']
+  },
+  /**
+   * Lookup188: opal_runtime::runtime_common::SessionKeys
+   **/
+  OpalRuntimeRuntimeCommonSessionKeys: {
+    aura: 'SpConsensusAuraSr25519AppSr25519Public'
+  },
+  /**
+   * Lookup189: sp_consensus_aura::sr25519::app_sr25519::Public
+   **/
+  SpConsensusAuraSr25519AppSr25519Public: 'SpCoreSr25519Public',
+  /**
+   * Lookup190: sp_core::sr25519::Public
+   **/
+  SpCoreSr25519Public: '[u8;32]',
+  /**
+   * Lookup193: sp_core::crypto::KeyTypeId
+   **/
+  SpCoreCryptoKeyTypeId: '[u8;4]',
+  /**
+   * Lookup194: pallet_session::pallet::Call<T>
+   **/
+  PalletSessionCall: {
+    _enum: {
+      set_keys: {
+        _alias: {
+          keys_: 'keys',
+        },
+        keys_: 'OpalRuntimeRuntimeCommonSessionKeys',
+        proof: 'Bytes',
+      },
+      purge_keys: 'Null'
+    }
+  },
+  /**
+   * Lookup195: pallet_session::pallet::Error<T>
+   **/
+  PalletSessionError: {
+    _enum: ['InvalidProof', 'NoAssociatedValidatorId', 'DuplicatedKey', 'NoKeys', 'NoAccount']
+  },
+  /**
+   * Lookup196: pallet_identity::types::Registration<Balance, MaxJudgements, MaxAdditionalFields>
+   **/
+  PalletIdentityRegistration: {
+    judgements: 'Vec<(u32,PalletIdentityJudgement)>',
+    deposit: 'u128',
+    info: 'PalletIdentityIdentityInfo'
+  },
+  /**
+   * Lookup199: pallet_identity::types::Judgement<Balance>
+   **/
+  PalletIdentityJudgement: {
+    _enum: {
+      Unknown: 'Null',
+      FeePaid: 'u128',
+      Reasonable: 'Null',
+      KnownGood: 'Null',
+      OutOfDate: 'Null',
+      LowQuality: 'Null',
+      Erroneous: 'Null'
+    }
+  },
+  /**
+   * Lookup201: pallet_identity::types::IdentityInfo<FieldLimit>
+   **/
+  PalletIdentityIdentityInfo: {
+    additional: 'Vec<(Data,Data)>',
+    display: 'Data',
+    legal: 'Data',
+    web: 'Data',
+    riot: 'Data',
+    email: 'Data',
+    pgpFingerprint: 'Option<[u8;20]>',
+    image: 'Data',
+    twitter: 'Data'
+  },
+  /**
+   * Lookup240: pallet_identity::types::RegistrarInfo<Balance, sp_core::crypto::AccountId32>
+   **/
+  PalletIdentityRegistrarInfo: {
+    account: 'AccountId32',
+    fee: 'u128',
+    fields: 'PalletIdentityBitFlags'
+  },
+  /**
+   * Lookup241: pallet_identity::types::BitFlags<pallet_identity::types::IdentityField>
+   **/
+  PalletIdentityBitFlags: {
+    _bitLength: 64,
+    Display: 1,
+    Legal: 2,
+    Web: 4,
+    Riot: 8,
+    Email: 16,
+    PgpFingerprint: 32,
+    Image: 64,
+    Twitter: 128
+  },
+  /**
+   * Lookup242: pallet_identity::types::IdentityField
+   **/
+  PalletIdentityIdentityField: {
+    _enum: ['__Unused0', 'Display', 'Legal', '__Unused3', 'Web', '__Unused5', '__Unused6', '__Unused7', 'Riot', '__Unused9', '__Unused10', '__Unused11', '__Unused12', '__Unused13', '__Unused14', '__Unused15', 'Email', '__Unused17', '__Unused18', '__Unused19', '__Unused20', '__Unused21', '__Unused22', '__Unused23', '__Unused24', '__Unused25', '__Unused26', '__Unused27', '__Unused28', '__Unused29', '__Unused30', '__Unused31', 'PgpFingerprint', '__Unused33', '__Unused34', '__Unused35', '__Unused36', '__Unused37', '__Unused38', '__Unused39', '__Unused40', '__Unused41', '__Unused42', '__Unused43', '__Unused44', '__Unused45', '__Unused46', '__Unused47', '__Unused48', '__Unused49', '__Unused50', '__Unused51', '__Unused52', '__Unused53', '__Unused54', '__Unused55', '__Unused56', '__Unused57', '__Unused58', '__Unused59', '__Unused60', '__Unused61', '__Unused62', '__Unused63', 'Image', '__Unused65', '__Unused66', '__Unused67', '__Unused68', '__Unused69', '__Unused70', '__Unused71', '__Unused72', '__Unused73', '__Unused74', '__Unused75', '__Unused76', '__Unused77', '__Unused78', '__Unused79', '__Unused80', '__Unused81', '__Unused82', '__Unused83', '__Unused84', '__Unused85', '__Unused86', '__Unused87', '__Unused88', '__Unused89', '__Unused90', '__Unused91', '__Unused92', '__Unused93', '__Unused94', '__Unused95', '__Unused96', '__Unused97', '__Unused98', '__Unused99', '__Unused100', '__Unused101', '__Unused102', '__Unused103', '__Unused104', '__Unused105', '__Unused106', '__Unused107', '__Unused108', '__Unused109', '__Unused110', '__Unused111', '__Unused112', '__Unused113', '__Unused114', '__Unused115', '__Unused116', '__Unused117', '__Unused118', '__Unused119', '__Unused120', '__Unused121', '__Unused122', '__Unused123', '__Unused124', '__Unused125', '__Unused126', '__Unused127', 'Twitter']
+  },
+  /**
+   * Lookup244: pallet_identity::pallet::Call<T>
+   **/
+  PalletIdentityCall: {
+    _enum: {
+      add_registrar: {
+        account: 'MultiAddress',
+      },
+      set_identity: {
+        info: 'PalletIdentityIdentityInfo',
+      },
+      set_subs: {
+        subs: 'Vec<(AccountId32,Data)>',
+      },
+      clear_identity: 'Null',
+      request_judgement: {
+        regIndex: 'Compact<u32>',
+        maxFee: 'Compact<u128>',
+      },
+      cancel_request: {
+        regIndex: 'u32',
+      },
+      set_fee: {
+        index: 'Compact<u32>',
+        fee: 'Compact<u128>',
+      },
+      set_account_id: {
+        _alias: {
+          new_: 'new',
+        },
+        index: 'Compact<u32>',
+        new_: 'MultiAddress',
+      },
+      set_fields: {
+        index: 'Compact<u32>',
+        fields: 'PalletIdentityBitFlags',
+      },
+      provide_judgement: {
+        regIndex: 'Compact<u32>',
+        target: 'MultiAddress',
+        judgement: 'PalletIdentityJudgement',
+        identity: 'H256',
+      },
+      kill_identity: {
+        target: 'MultiAddress',
+      },
+      add_sub: {
+        sub: 'MultiAddress',
+        data: 'Data',
+      },
+      rename_sub: {
+        sub: 'MultiAddress',
+        data: 'Data',
+      },
+      remove_sub: {
+        sub: 'MultiAddress',
+      },
+      quit_sub: 'Null',
+      set_identities: {
+        identities: 'Vec<(AccountId32,Option<PalletIdentityRegistration>)>'
+      }
+    }
+  },
+  /**
+   * Lookup251: pallet_identity::pallet::Error<T>
+   **/
+  PalletIdentityError: {
+    _enum: ['TooManySubAccounts', 'NotFound', 'NotNamed', 'EmptyIndex', 'FeeChanged', 'NoIdentity', 'StickyJudgement', 'JudgementGiven', 'InvalidJudgement', 'InvalidIndex', 'InvalidTarget', 'TooManyFields', 'TooManyRegistrars', 'AlreadyClaimed', 'NotSub', 'NotOwned', 'JudgementForDifferentIdentity', 'JudgementPaymentFailed']
+  },
+  /**
+   * Lookup253: pallet_balances::BalanceLock<Balance>
    **/
   PalletBalancesBalanceLock: {
     id: '[u8;8]',
@@ -1543,20 +1884,20 @@ export default {
     reasons: 'PalletBalancesReasons'
   },
   /**
-   * Lookup171: pallet_balances::Reasons
+   * Lookup254: pallet_balances::Reasons
    **/
   PalletBalancesReasons: {
     _enum: ['Fee', 'Misc', 'All']
   },
   /**
-   * Lookup174: pallet_balances::ReserveData<ReserveIdentifier, Balance>
+   * Lookup257: pallet_balances::ReserveData<ReserveIdentifier, Balance>
    **/
   PalletBalancesReserveData: {
     id: '[u8;16]',
     amount: 'u128'
   },
   /**
-   * Lookup176: pallet_balances::pallet::Call<T, I>
+   * Lookup259: pallet_balances::pallet::Call<T, I>
    **/
   PalletBalancesCall: {
     _enum: {
@@ -1589,13 +1930,13 @@ export default {
     }
   },
   /**
-   * Lookup179: pallet_balances::pallet::Error<T, I>
+   * Lookup260: pallet_balances::pallet::Error<T, I>
    **/
   PalletBalancesError: {
     _enum: ['VestingBalance', 'LiquidityRestrictions', 'InsufficientBalance', 'ExistentialDeposit', 'KeepAlive', 'ExistingVestingSchedule', 'DeadAccount', 'TooManyReserves']
   },
   /**
-   * Lookup181: pallet_timestamp::pallet::Call<T>
+   * Lookup262: pallet_timestamp::pallet::Call<T>
    **/
   PalletTimestampCall: {
     _enum: {
@@ -1605,13 +1946,13 @@ export default {
     }
   },
   /**
-   * Lookup183: pallet_transaction_payment::Releases
+   * Lookup264: pallet_transaction_payment::Releases
    **/
   PalletTransactionPaymentReleases: {
     _enum: ['V1Ancient', 'V2']
   },
   /**
-   * Lookup184: pallet_treasury::Proposal<sp_core::crypto::AccountId32, Balance>
+   * Lookup265: pallet_treasury::Proposal<sp_core::crypto::AccountId32, Balance>
    **/
   PalletTreasuryProposal: {
     proposer: 'AccountId32',
@@ -1620,7 +1961,7 @@ export default {
     bond: 'u128'
   },
   /**
-   * Lookup187: pallet_treasury::pallet::Call<T, I>
+   * Lookup267: pallet_treasury::pallet::Call<T, I>
    **/
   PalletTreasuryCall: {
     _enum: {
@@ -1644,17 +1985,17 @@ export default {
     }
   },
   /**
-   * Lookup190: frame_support::PalletId
+   * Lookup269: frame_support::PalletId
    **/
   FrameSupportPalletId: '[u8;8]',
   /**
-   * Lookup191: pallet_treasury::pallet::Error<T, I>
+   * Lookup270: pallet_treasury::pallet::Error<T, I>
    **/
   PalletTreasuryError: {
     _enum: ['InsufficientProposersBalance', 'InvalidIndex', 'TooManyApprovals', 'InsufficientPermission', 'ProposalNotApproved']
   },
   /**
-   * Lookup192: pallet_sudo::pallet::Call<T>
+   * Lookup271: pallet_sudo::pallet::Call<T>
    **/
   PalletSudoCall: {
     _enum: {
@@ -1678,7 +2019,7 @@ export default {
     }
   },
   /**
-   * Lookup194: orml_vesting::module::Call<T>
+   * Lookup273: orml_vesting::module::Call<T>
    **/
   OrmlVestingModuleCall: {
     _enum: {
@@ -1697,7 +2038,7 @@ export default {
     }
   },
   /**
-   * Lookup196: orml_xtokens::module::Call<T>
+   * Lookup275: orml_xtokens::module::Call<T>
    **/
   OrmlXtokensModuleCall: {
     _enum: {
@@ -1740,7 +2081,7 @@ export default {
     }
   },
   /**
-   * Lookup197: xcm::VersionedMultiAsset
+   * Lookup276: xcm::VersionedMultiAsset
    **/
   XcmVersionedMultiAsset: {
     _enum: {
@@ -1749,7 +2090,7 @@ export default {
     }
   },
   /**
-   * Lookup200: orml_tokens::module::Call<T>
+   * Lookup279: orml_tokens::module::Call<T>
    **/
   OrmlTokensModuleCall: {
     _enum: {
@@ -1783,7 +2124,7 @@ export default {
     }
   },
   /**
-   * Lookup201: cumulus_pallet_xcmp_queue::pallet::Call<T>
+   * Lookup280: cumulus_pallet_xcmp_queue::pallet::Call<T>
    **/
   CumulusPalletXcmpQueueCall: {
     _enum: {
@@ -1832,7 +2173,7 @@ export default {
     }
   },
   /**
-   * Lookup202: pallet_xcm::pallet::Call<T>
+   * Lookup281: pallet_xcm::pallet::Call<T>
    **/
   PalletXcmCall: {
     _enum: {
@@ -1886,7 +2227,7 @@ export default {
     }
   },
   /**
-   * Lookup203: xcm::VersionedXcm<RuntimeCall>
+   * Lookup282: xcm::VersionedXcm<RuntimeCall>
    **/
   XcmVersionedXcm: {
     _enum: {
@@ -1896,7 +2237,7 @@ export default {
     }
   },
   /**
-   * Lookup204: xcm::v0::Xcm<RuntimeCall>
+   * Lookup283: xcm::v0::Xcm<RuntimeCall>
    **/
   XcmV0Xcm: {
     _enum: {
@@ -1950,7 +2291,7 @@ export default {
     }
   },
   /**
-   * Lookup206: xcm::v0::order::Order<RuntimeCall>
+   * Lookup285: xcm::v0::order::Order<RuntimeCall>
    **/
   XcmV0Order: {
     _enum: {
@@ -1993,7 +2334,7 @@ export default {
     }
   },
   /**
-   * Lookup208: xcm::v0::Response
+   * Lookup287: xcm::v0::Response
    **/
   XcmV0Response: {
     _enum: {
@@ -2001,7 +2342,7 @@ export default {
     }
   },
   /**
-   * Lookup209: xcm::v1::Xcm<RuntimeCall>
+   * Lookup288: xcm::v1::Xcm<RuntimeCall>
    **/
   XcmV1Xcm: {
     _enum: {
@@ -2060,7 +2401,7 @@ export default {
     }
   },
   /**
-   * Lookup211: xcm::v1::order::Order<RuntimeCall>
+   * Lookup290: xcm::v1::order::Order<RuntimeCall>
    **/
   XcmV1Order: {
     _enum: {
@@ -2105,7 +2446,7 @@ export default {
     }
   },
   /**
-   * Lookup213: xcm::v1::Response
+   * Lookup292: xcm::v1::Response
    **/
   XcmV1Response: {
     _enum: {
@@ -2114,11 +2455,11 @@ export default {
     }
   },
   /**
-   * Lookup227: cumulus_pallet_xcm::pallet::Call<T>
+   * Lookup306: cumulus_pallet_xcm::pallet::Call<T>
    **/
   CumulusPalletXcmCall: 'Null',
   /**
-   * Lookup228: cumulus_pallet_dmp_queue::pallet::Call<T>
+   * Lookup307: cumulus_pallet_dmp_queue::pallet::Call<T>
    **/
   CumulusPalletDmpQueueCall: {
     _enum: {
@@ -2129,7 +2470,7 @@ export default {
     }
   },
   /**
-   * Lookup229: pallet_inflation::pallet::Call<T>
+   * Lookup308: pallet_inflation::pallet::Call<T>
    **/
   PalletInflationCall: {
     _enum: {
@@ -2139,7 +2480,7 @@ export default {
     }
   },
   /**
-   * Lookup230: pallet_unique::Call<T>
+   * Lookup309: pallet_unique::Call<T>
    **/
   PalletUniqueCall: {
     _enum: {
@@ -2283,7 +2624,7 @@ export default {
     }
   },
   /**
-   * Lookup235: up_data_structs::CollectionMode
+   * Lookup314: up_data_structs::CollectionMode
    **/
   UpDataStructsCollectionMode: {
     _enum: {
@@ -2293,7 +2634,7 @@ export default {
     }
   },
   /**
-   * Lookup236: up_data_structs::CreateCollectionData<sp_core::crypto::AccountId32>
+   * Lookup315: up_data_structs::CreateCollectionData<sp_core::crypto::AccountId32>
    **/
   UpDataStructsCreateCollectionData: {
     mode: 'UpDataStructsCollectionMode',
@@ -2308,13 +2649,13 @@ export default {
     properties: 'Vec<UpDataStructsProperty>'
   },
   /**
-   * Lookup238: up_data_structs::AccessMode
+   * Lookup317: up_data_structs::AccessMode
    **/
   UpDataStructsAccessMode: {
     _enum: ['Normal', 'AllowList']
   },
   /**
-   * Lookup240: up_data_structs::CollectionLimits
+   * Lookup319: up_data_structs::CollectionLimits
    **/
   UpDataStructsCollectionLimits: {
     accountTokenOwnershipLimit: 'Option<u32>',
@@ -2328,7 +2669,7 @@ export default {
     transfersEnabled: 'Option<bool>'
   },
   /**
-   * Lookup242: up_data_structs::SponsoringRateLimit
+   * Lookup321: up_data_structs::SponsoringRateLimit
    **/
   UpDataStructsSponsoringRateLimit: {
     _enum: {
@@ -2337,7 +2678,7 @@ export default {
     }
   },
   /**
-   * Lookup245: up_data_structs::CollectionPermissions
+   * Lookup324: up_data_structs::CollectionPermissions
    **/
   UpDataStructsCollectionPermissions: {
     access: 'Option<UpDataStructsAccessMode>',
@@ -2345,7 +2686,7 @@ export default {
     nesting: 'Option<UpDataStructsNestingPermissions>'
   },
   /**
-   * Lookup247: up_data_structs::NestingPermissions
+   * Lookup326: up_data_structs::NestingPermissions
    **/
   UpDataStructsNestingPermissions: {
     tokenOwner: 'bool',
@@ -2353,18 +2694,18 @@ export default {
     restricted: 'Option<UpDataStructsOwnerRestrictedSet>'
   },
   /**
-   * Lookup249: up_data_structs::OwnerRestrictedSet
+   * Lookup328: up_data_structs::OwnerRestrictedSet
    **/
   UpDataStructsOwnerRestrictedSet: 'BTreeSet<u32>',
   /**
-   * Lookup254: up_data_structs::PropertyKeyPermission
+   * Lookup333: up_data_structs::PropertyKeyPermission
    **/
   UpDataStructsPropertyKeyPermission: {
     key: 'Bytes',
     permission: 'UpDataStructsPropertyPermission'
   },
   /**
-   * Lookup255: up_data_structs::PropertyPermission
+   * Lookup334: up_data_structs::PropertyPermission
    **/
   UpDataStructsPropertyPermission: {
     mutable: 'bool',
@@ -2372,14 +2713,14 @@ export default {
     tokenOwner: 'bool'
   },
   /**
-   * Lookup258: up_data_structs::Property
+   * Lookup337: up_data_structs::Property
    **/
   UpDataStructsProperty: {
     key: 'Bytes',
     value: 'Bytes'
   },
   /**
-   * Lookup261: up_data_structs::CreateItemData
+   * Lookup340: up_data_structs::CreateItemData
    **/
   UpDataStructsCreateItemData: {
     _enum: {
@@ -2389,26 +2730,26 @@ export default {
     }
   },
   /**
-   * Lookup262: up_data_structs::CreateNftData
+   * Lookup341: up_data_structs::CreateNftData
    **/
   UpDataStructsCreateNftData: {
     properties: 'Vec<UpDataStructsProperty>'
   },
   /**
-   * Lookup263: up_data_structs::CreateFungibleData
+   * Lookup342: up_data_structs::CreateFungibleData
    **/
   UpDataStructsCreateFungibleData: {
     value: 'u128'
   },
   /**
-   * Lookup264: up_data_structs::CreateReFungibleData
+   * Lookup343: up_data_structs::CreateReFungibleData
    **/
   UpDataStructsCreateReFungibleData: {
     pieces: 'u128',
     properties: 'Vec<UpDataStructsProperty>'
   },
   /**
-   * Lookup267: up_data_structs::CreateItemExData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup346: up_data_structs::CreateItemExData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsCreateItemExData: {
     _enum: {
@@ -2419,14 +2760,14 @@ export default {
     }
   },
   /**
-   * Lookup269: up_data_structs::CreateNftExData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup348: up_data_structs::CreateNftExData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsCreateNftExData: {
     properties: 'Vec<UpDataStructsProperty>',
     owner: 'PalletEvmAccountBasicCrossAccountIdRepr'
   },
   /**
-   * Lookup276: up_data_structs::CreateRefungibleExSingleOwner<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup355: up_data_structs::CreateRefungibleExSingleOwner<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsCreateRefungibleExSingleOwner: {
     user: 'PalletEvmAccountBasicCrossAccountIdRepr',
@@ -2434,14 +2775,14 @@ export default {
     properties: 'Vec<UpDataStructsProperty>'
   },
   /**
-   * Lookup278: up_data_structs::CreateRefungibleExMultipleOwners<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup357: up_data_structs::CreateRefungibleExMultipleOwners<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsCreateRefungibleExMultipleOwners: {
     users: 'BTreeMap<PalletEvmAccountBasicCrossAccountIdRepr, u128>',
     properties: 'Vec<UpDataStructsProperty>'
   },
   /**
-   * Lookup279: pallet_configuration::pallet::Call<T>
+   * Lookup358: pallet_configuration::pallet::Call<T>
    **/
   PalletConfigurationCall: {
     _enum: {
@@ -2455,12 +2796,21 @@ export default {
         locations: 'Option<Vec<XcmV1MultiLocation>>',
       },
       set_app_promotion_configuration_override: {
-        configuration: 'PalletConfigurationAppPromotionConfiguration'
+        configuration: 'PalletConfigurationAppPromotionConfiguration',
+      },
+      set_collator_selection_desired_collators: {
+        max: 'Option<u32>',
+      },
+      set_collator_selection_license_bond: {
+        amount: 'Option<u128>',
+      },
+      set_collator_selection_kick_threshold: {
+        threshold: 'Option<u32>'
       }
     }
   },
   /**
-   * Lookup284: pallet_configuration::AppPromotionConfiguration<BlockNumber>
+   * Lookup363: pallet_configuration::AppPromotionConfiguration<BlockNumber>
    **/
   PalletConfigurationAppPromotionConfiguration: {
     recalculationInterval: 'Option<u32>',
@@ -2469,15 +2819,15 @@ export default {
     maxStakersPerCalculation: 'Option<u8>'
   },
   /**
-   * Lookup288: pallet_template_transaction_payment::Call<T>
+   * Lookup367: pallet_template_transaction_payment::Call<T>
    **/
   PalletTemplateTransactionPaymentCall: 'Null',
   /**
-   * Lookup289: pallet_structure::pallet::Call<T>
+   * Lookup368: pallet_structure::pallet::Call<T>
    **/
   PalletStructureCall: 'Null',
   /**
-   * Lookup290: pallet_rmrk_core::pallet::Call<T>
+   * Lookup369: pallet_rmrk_core::pallet::Call<T>
    **/
   PalletRmrkCoreCall: {
     _enum: {
@@ -2568,7 +2918,7 @@ export default {
     }
   },
   /**
-   * Lookup296: rmrk_traits::resource::ResourceTypes<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup375: rmrk_traits::resource::ResourceTypes<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsResourceResourceTypes: {
     _enum: {
@@ -2578,7 +2928,7 @@ export default {
     }
   },
   /**
-   * Lookup298: rmrk_traits::resource::BasicResource<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup377: rmrk_traits::resource::BasicResource<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsResourceBasicResource: {
     src: 'Option<Bytes>',
@@ -2587,7 +2937,7 @@ export default {
     thumb: 'Option<Bytes>'
   },
   /**
-   * Lookup300: rmrk_traits::resource::ComposableResource<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup379: rmrk_traits::resource::ComposableResource<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsResourceComposableResource: {
     parts: 'Vec<u32>',
@@ -2598,7 +2948,7 @@ export default {
     thumb: 'Option<Bytes>'
   },
   /**
-   * Lookup301: rmrk_traits::resource::SlotResource<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup380: rmrk_traits::resource::SlotResource<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsResourceSlotResource: {
     base: 'u32',
@@ -2609,7 +2959,7 @@ export default {
     thumb: 'Option<Bytes>'
   },
   /**
-   * Lookup304: pallet_rmrk_equip::pallet::Call<T>
+   * Lookup383: pallet_rmrk_equip::pallet::Call<T>
    **/
   PalletRmrkEquipCall: {
     _enum: {
@@ -2630,7 +2980,7 @@ export default {
     }
   },
   /**
-   * Lookup307: rmrk_traits::part::PartType<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup386: rmrk_traits::part::PartType<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsPartPartType: {
     _enum: {
@@ -2639,7 +2989,7 @@ export default {
     }
   },
   /**
-   * Lookup309: rmrk_traits::part::FixedPart<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup388: rmrk_traits::part::FixedPart<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsPartFixedPart: {
     id: 'u32',
@@ -2647,7 +2997,7 @@ export default {
     src: 'Bytes'
   },
   /**
-   * Lookup310: rmrk_traits::part::SlotPart<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup389: rmrk_traits::part::SlotPart<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsPartSlotPart: {
     id: 'u32',
@@ -2656,7 +3006,7 @@ export default {
     z: 'u32'
   },
   /**
-   * Lookup311: rmrk_traits::part::EquippableList<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup390: rmrk_traits::part::EquippableList<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsPartEquippableList: {
     _enum: {
@@ -2666,7 +3016,7 @@ export default {
     }
   },
   /**
-   * Lookup313: rmrk_traits::theme::Theme<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<rmrk_traits::theme::ThemeProperty<sp_core::bounded::bounded_vec::BoundedVec<T, S>>, S>>
+   * Lookup392: rmrk_traits::theme::Theme<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<rmrk_traits::theme::ThemeProperty<sp_core::bounded::bounded_vec::BoundedVec<T, S>>, S>>
    **/
   RmrkTraitsTheme: {
     name: 'Bytes',
@@ -2674,14 +3024,14 @@ export default {
     inherit: 'bool'
   },
   /**
-   * Lookup315: rmrk_traits::theme::ThemeProperty<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup394: rmrk_traits::theme::ThemeProperty<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsThemeThemeProperty: {
     key: 'Bytes',
     value: 'Bytes'
   },
   /**
-   * Lookup317: pallet_app_promotion::pallet::Call<T>
+   * Lookup396: pallet_app_promotion::pallet::Call<T>
    **/
   PalletAppPromotionCall: {
     _enum: {
@@ -2710,7 +3060,7 @@ export default {
     }
   },
   /**
-   * Lookup318: pallet_foreign_assets::module::Call<T>
+   * Lookup397: pallet_foreign_assets::module::Call<T>
    **/
   PalletForeignAssetsModuleCall: {
     _enum: {
@@ -2727,7 +3077,7 @@ export default {
     }
   },
   /**
-   * Lookup319: pallet_evm::pallet::Call<T>
+   * Lookup398: pallet_evm::pallet::Call<T>
    **/
   PalletEvmCall: {
     _enum: {
@@ -2770,7 +3120,7 @@ export default {
     }
   },
   /**
-   * Lookup325: pallet_ethereum::pallet::Call<T>
+   * Lookup404: pallet_ethereum::pallet::Call<T>
    **/
   PalletEthereumCall: {
     _enum: {
@@ -2780,7 +3130,7 @@ export default {
     }
   },
   /**
-   * Lookup326: ethereum::transaction::TransactionV2
+   * Lookup405: ethereum::transaction::TransactionV2
    **/
   EthereumTransactionTransactionV2: {
     _enum: {
@@ -2790,7 +3140,7 @@ export default {
     }
   },
   /**
-   * Lookup327: ethereum::transaction::LegacyTransaction
+   * Lookup406: ethereum::transaction::LegacyTransaction
    **/
   EthereumTransactionLegacyTransaction: {
     nonce: 'U256',
@@ -2802,7 +3152,7 @@ export default {
     signature: 'EthereumTransactionTransactionSignature'
   },
   /**
-   * Lookup328: ethereum::transaction::TransactionAction
+   * Lookup407: ethereum::transaction::TransactionAction
    **/
   EthereumTransactionTransactionAction: {
     _enum: {
@@ -2811,7 +3161,7 @@ export default {
     }
   },
   /**
-   * Lookup329: ethereum::transaction::TransactionSignature
+   * Lookup408: ethereum::transaction::TransactionSignature
    **/
   EthereumTransactionTransactionSignature: {
     v: 'u64',
@@ -2819,7 +3169,7 @@ export default {
     s: 'H256'
   },
   /**
-   * Lookup331: ethereum::transaction::EIP2930Transaction
+   * Lookup410: ethereum::transaction::EIP2930Transaction
    **/
   EthereumTransactionEip2930Transaction: {
     chainId: 'u64',
@@ -2835,14 +3185,14 @@ export default {
     s: 'H256'
   },
   /**
-   * Lookup333: ethereum::transaction::AccessListItem
+   * Lookup412: ethereum::transaction::AccessListItem
    **/
   EthereumTransactionAccessListItem: {
     address: 'H160',
     storageKeys: 'Vec<H256>'
   },
   /**
-   * Lookup334: ethereum::transaction::EIP1559Transaction
+   * Lookup413: ethereum::transaction::EIP1559Transaction
    **/
   EthereumTransactionEip1559Transaction: {
     chainId: 'u64',
@@ -2859,7 +3209,7 @@ export default {
     s: 'H256'
   },
   /**
-   * Lookup335: pallet_evm_migration::pallet::Call<T>
+   * Lookup414: pallet_evm_migration::pallet::Call<T>
    **/
   PalletEvmMigrationCall: {
     _enum: {
@@ -2883,13 +3233,13 @@ export default {
     }
   },
   /**
-   * Lookup339: pallet_maintenance::pallet::Call<T>
+   * Lookup418: pallet_maintenance::pallet::Call<T>
    **/
   PalletMaintenanceCall: {
     _enum: ['enable', 'disable']
   },
   /**
-   * Lookup340: pallet_test_utils::pallet::Call<T>
+   * Lookup419: pallet_test_utils::pallet::Call<T>
    **/
   PalletTestUtilsCall: {
     _enum: {
@@ -2908,32 +3258,32 @@ export default {
     }
   },
   /**
-   * Lookup342: pallet_sudo::pallet::Error<T>
+   * Lookup421: pallet_sudo::pallet::Error<T>
    **/
   PalletSudoError: {
     _enum: ['RequireSudo']
   },
   /**
-   * Lookup344: orml_vesting::module::Error<T>
+   * Lookup423: orml_vesting::module::Error<T>
    **/
   OrmlVestingModuleError: {
     _enum: ['ZeroVestingPeriod', 'ZeroVestingPeriodCount', 'InsufficientBalanceToLock', 'TooManyVestingSchedules', 'AmountLow', 'MaxVestingSchedulesExceeded']
   },
   /**
-   * Lookup345: orml_xtokens::module::Error<T>
+   * Lookup424: orml_xtokens::module::Error<T>
    **/
   OrmlXtokensModuleError: {
     _enum: ['AssetHasNoReserve', 'NotCrossChainTransfer', 'InvalidDest', 'NotCrossChainTransferableCurrency', 'UnweighableMessage', 'XcmExecutionFailed', 'CannotReanchor', 'InvalidAncestry', 'InvalidAsset', 'DestinationNotInvertible', 'BadVersion', 'DistinctReserveForAssetAndFee', 'ZeroFee', 'ZeroAmount', 'TooManyAssetsBeingSent', 'AssetIndexNonExistent', 'FeeNotEnough', 'NotSupportedMultiLocation', 'MinXcmFeeNotDefined']
   },
   /**
-   * Lookup348: orml_tokens::BalanceLock<Balance>
+   * Lookup427: orml_tokens::BalanceLock<Balance>
    **/
   OrmlTokensBalanceLock: {
     id: '[u8;8]',
     amount: 'u128'
   },
   /**
-   * Lookup350: orml_tokens::AccountData<Balance>
+   * Lookup429: orml_tokens::AccountData<Balance>
    **/
   OrmlTokensAccountData: {
     free: 'u128',
@@ -2941,20 +3291,20 @@ export default {
     frozen: 'u128'
   },
   /**
-   * Lookup352: orml_tokens::ReserveData<ReserveIdentifier, Balance>
+   * Lookup431: orml_tokens::ReserveData<ReserveIdentifier, Balance>
    **/
   OrmlTokensReserveData: {
     id: 'Null',
     amount: 'u128'
   },
   /**
-   * Lookup354: orml_tokens::module::Error<T>
+   * Lookup433: orml_tokens::module::Error<T>
    **/
   OrmlTokensModuleError: {
     _enum: ['BalanceTooLow', 'AmountIntoBalanceFailed', 'LiquidityRestrictions', 'MaxLocksExceeded', 'KeepAlive', 'ExistentialDeposit', 'DeadAccount', 'TooManyReserves']
   },
   /**
-   * Lookup356: cumulus_pallet_xcmp_queue::InboundChannelDetails
+   * Lookup435: cumulus_pallet_xcmp_queue::InboundChannelDetails
    **/
   CumulusPalletXcmpQueueInboundChannelDetails: {
     sender: 'u32',
@@ -2962,19 +3312,19 @@ export default {
     messageMetadata: 'Vec<(u32,PolkadotParachainPrimitivesXcmpMessageFormat)>'
   },
   /**
-   * Lookup357: cumulus_pallet_xcmp_queue::InboundState
+   * Lookup436: cumulus_pallet_xcmp_queue::InboundState
    **/
   CumulusPalletXcmpQueueInboundState: {
     _enum: ['Ok', 'Suspended']
   },
   /**
-   * Lookup360: polkadot_parachain::primitives::XcmpMessageFormat
+   * Lookup439: polkadot_parachain::primitives::XcmpMessageFormat
    **/
   PolkadotParachainPrimitivesXcmpMessageFormat: {
     _enum: ['ConcatenatedVersionedXcm', 'ConcatenatedEncodedBlob', 'Signals']
   },
   /**
-   * Lookup363: cumulus_pallet_xcmp_queue::OutboundChannelDetails
+   * Lookup442: cumulus_pallet_xcmp_queue::OutboundChannelDetails
    **/
   CumulusPalletXcmpQueueOutboundChannelDetails: {
     recipient: 'u32',
@@ -2984,13 +3334,13 @@ export default {
     lastIndex: 'u16'
   },
   /**
-   * Lookup364: cumulus_pallet_xcmp_queue::OutboundState
+   * Lookup443: cumulus_pallet_xcmp_queue::OutboundState
    **/
   CumulusPalletXcmpQueueOutboundState: {
     _enum: ['Ok', 'Suspended']
   },
   /**
-   * Lookup366: cumulus_pallet_xcmp_queue::QueueConfigData
+   * Lookup445: cumulus_pallet_xcmp_queue::QueueConfigData
    **/
   CumulusPalletXcmpQueueQueueConfigData: {
     suspendThreshold: 'u32',
@@ -3001,29 +3351,29 @@ export default {
     xcmpMaxIndividualWeight: 'SpWeightsWeightV2Weight'
   },
   /**
-   * Lookup368: cumulus_pallet_xcmp_queue::pallet::Error<T>
+   * Lookup447: cumulus_pallet_xcmp_queue::pallet::Error<T>
    **/
   CumulusPalletXcmpQueueError: {
     _enum: ['FailedToSend', 'BadXcmOrigin', 'BadXcm', 'BadOverweightIndex', 'WeightOverLimit']
   },
   /**
-   * Lookup369: pallet_xcm::pallet::Error<T>
+   * Lookup448: pallet_xcm::pallet::Error<T>
    **/
   PalletXcmError: {
     _enum: ['Unreachable', 'SendFailure', 'Filtered', 'UnweighableMessage', 'DestinationNotInvertible', 'Empty', 'CannotReanchor', 'TooManyAssets', 'InvalidOrigin', 'BadVersion', 'BadLocation', 'NoSubscription', 'AlreadySubscribed']
   },
   /**
-   * Lookup370: cumulus_pallet_xcm::pallet::Error<T>
+   * Lookup449: cumulus_pallet_xcm::pallet::Error<T>
    **/
   CumulusPalletXcmError: 'Null',
   /**
-   * Lookup371: cumulus_pallet_dmp_queue::ConfigData
+   * Lookup450: cumulus_pallet_dmp_queue::ConfigData
    **/
   CumulusPalletDmpQueueConfigData: {
     maxIndividual: 'SpWeightsWeightV2Weight'
   },
   /**
-   * Lookup372: cumulus_pallet_dmp_queue::PageIndexData
+   * Lookup451: cumulus_pallet_dmp_queue::PageIndexData
    **/
   CumulusPalletDmpQueuePageIndexData: {
     beginUsed: 'u32',
@@ -3031,25 +3381,25 @@ export default {
     overweightCount: 'u64'
   },
   /**
-   * Lookup375: cumulus_pallet_dmp_queue::pallet::Error<T>
+   * Lookup454: cumulus_pallet_dmp_queue::pallet::Error<T>
    **/
   CumulusPalletDmpQueueError: {
     _enum: ['Unknown', 'OverLimit']
   },
   /**
-   * Lookup379: pallet_unique::Error<T>
+   * Lookup458: pallet_unique::Error<T>
    **/
   PalletUniqueError: {
     _enum: ['CollectionDecimalPointLimitExceeded', 'EmptyArgument', 'RepartitionCalledOnNonRefungibleCollection']
   },
   /**
-   * Lookup380: pallet_configuration::pallet::Error<T>
+   * Lookup459: pallet_configuration::pallet::Error<T>
    **/
   PalletConfigurationError: {
     _enum: ['InconsistentConfiguration']
   },
   /**
-   * Lookup381: up_data_structs::Collection<sp_core::crypto::AccountId32>
+   * Lookup460: up_data_structs::Collection<sp_core::crypto::AccountId32>
    **/
   UpDataStructsCollection: {
     owner: 'AccountId32',
@@ -3063,7 +3413,7 @@ export default {
     flags: '[u8;1]'
   },
   /**
-   * Lookup382: up_data_structs::SponsorshipState<sp_core::crypto::AccountId32>
+   * Lookup461: up_data_structs::SponsorshipState<sp_core::crypto::AccountId32>
    **/
   UpDataStructsSponsorshipStateAccountId32: {
     _enum: {
@@ -3073,7 +3423,7 @@ export default {
     }
   },
   /**
-   * Lookup384: up_data_structs::Properties
+   * Lookup462: up_data_structs::Properties
    **/
   UpDataStructsProperties: {
     map: 'UpDataStructsPropertiesMapBoundedVec',
@@ -3081,15 +3431,15 @@ export default {
     spaceLimit: 'u32'
   },
   /**
-   * Lookup385: up_data_structs::PropertiesMap<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup463: up_data_structs::PropertiesMap<sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   UpDataStructsPropertiesMapBoundedVec: 'BTreeMap<Bytes, Bytes>',
   /**
-   * Lookup390: up_data_structs::PropertiesMap<up_data_structs::PropertyPermission>
+   * Lookup468: up_data_structs::PropertiesMap<up_data_structs::PropertyPermission>
    **/
   UpDataStructsPropertiesMapPropertyPermission: 'BTreeMap<Bytes, UpDataStructsPropertyPermission>',
   /**
-   * Lookup397: up_data_structs::CollectionStats
+   * Lookup475: up_data_structs::CollectionStats
    **/
   UpDataStructsCollectionStats: {
     created: 'u32',
@@ -3097,18 +3447,18 @@ export default {
     alive: 'u32'
   },
   /**
-   * Lookup398: up_data_structs::TokenChild
+   * Lookup476: up_data_structs::TokenChild
    **/
   UpDataStructsTokenChild: {
     token: 'u32',
     collection: 'u32'
   },
   /**
-   * Lookup399: PhantomType::up_data_structs<T>
+   * Lookup477: PhantomType::up_data_structs<T>
    **/
   PhantomTypeUpDataStructs: '[(UpDataStructsTokenData,UpDataStructsRpcCollection,RmrkTraitsCollectionCollectionInfo,RmrkTraitsNftNftInfo,RmrkTraitsResourceResourceInfo,RmrkTraitsPropertyPropertyInfo,RmrkTraitsBaseBaseInfo,RmrkTraitsPartPartType,RmrkTraitsTheme,RmrkTraitsNftNftChild,UpPovEstimateRpcPovInfo);0]',
   /**
-   * Lookup401: up_data_structs::TokenData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup479: up_data_structs::TokenData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsTokenData: {
     properties: 'Vec<UpDataStructsProperty>',
@@ -3116,7 +3466,7 @@ export default {
     pieces: 'u128'
   },
   /**
-   * Lookup403: up_data_structs::RpcCollection<sp_core::crypto::AccountId32>
+   * Lookup481: up_data_structs::RpcCollection<sp_core::crypto::AccountId32>
    **/
   UpDataStructsRpcCollection: {
     owner: 'AccountId32',
@@ -3133,14 +3483,14 @@ export default {
     flags: 'UpDataStructsRpcCollectionFlags'
   },
   /**
-   * Lookup404: up_data_structs::RpcCollectionFlags
+   * Lookup482: up_data_structs::RpcCollectionFlags
    **/
   UpDataStructsRpcCollectionFlags: {
     foreign: 'bool',
     erc721metadata: 'bool'
   },
   /**
-   * Lookup405: rmrk_traits::collection::CollectionInfo<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::crypto::AccountId32>
+   * Lookup483: rmrk_traits::collection::CollectionInfo<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::crypto::AccountId32>
    **/
   RmrkTraitsCollectionCollectionInfo: {
     issuer: 'AccountId32',
@@ -3150,7 +3500,7 @@ export default {
     nftsCount: 'u32'
   },
   /**
-   * Lookup406: rmrk_traits::nft::NftInfo<sp_core::crypto::AccountId32, sp_arithmetic::per_things::Permill, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup484: rmrk_traits::nft::NftInfo<sp_core::crypto::AccountId32, sp_arithmetic::per_things::Permill, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsNftNftInfo: {
     owner: 'RmrkTraitsNftAccountIdOrCollectionNftTuple',
@@ -3160,14 +3510,14 @@ export default {
     pending: 'bool'
   },
   /**
-   * Lookup408: rmrk_traits::nft::RoyaltyInfo<sp_core::crypto::AccountId32, sp_arithmetic::per_things::Permill>
+   * Lookup486: rmrk_traits::nft::RoyaltyInfo<sp_core::crypto::AccountId32, sp_arithmetic::per_things::Permill>
    **/
   RmrkTraitsNftRoyaltyInfo: {
     recipient: 'AccountId32',
     amount: 'Permill'
   },
   /**
-   * Lookup409: rmrk_traits::resource::ResourceInfo<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup487: rmrk_traits::resource::ResourceInfo<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsResourceResourceInfo: {
     id: 'u32',
@@ -3176,14 +3526,14 @@ export default {
     pendingRemoval: 'bool'
   },
   /**
-   * Lookup410: rmrk_traits::property::PropertyInfo<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup488: rmrk_traits::property::PropertyInfo<sp_core::bounded::bounded_vec::BoundedVec<T, S>, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsPropertyPropertyInfo: {
     key: 'Bytes',
     value: 'Bytes'
   },
   /**
-   * Lookup411: rmrk_traits::base::BaseInfo<sp_core::crypto::AccountId32, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
+   * Lookup489: rmrk_traits::base::BaseInfo<sp_core::crypto::AccountId32, sp_core::bounded::bounded_vec::BoundedVec<T, S>>
    **/
   RmrkTraitsBaseBaseInfo: {
     issuer: 'AccountId32',
@@ -3191,14 +3541,14 @@ export default {
     symbol: 'Bytes'
   },
   /**
-   * Lookup412: rmrk_traits::nft::NftChild
+   * Lookup490: rmrk_traits::nft::NftChild
    **/
   RmrkTraitsNftNftChild: {
     collectionId: 'u32',
     nftId: 'u32'
   },
   /**
-   * Lookup413: up_pov_estimate_rpc::PovInfo
+   * Lookup491: up_pov_estimate_rpc::PovInfo
    **/
   UpPovEstimateRpcPovInfo: {
     proofSize: 'u64',
@@ -3208,7 +3558,7 @@ export default {
     keyValues: 'Vec<UpPovEstimateRpcTrieKeyValue>'
   },
   /**
-   * Lookup416: sp_runtime::transaction_validity::TransactionValidityError
+   * Lookup494: sp_runtime::transaction_validity::TransactionValidityError
    **/
   SpRuntimeTransactionValidityTransactionValidityError: {
     _enum: {
@@ -3217,7 +3567,7 @@ export default {
     }
   },
   /**
-   * Lookup417: sp_runtime::transaction_validity::InvalidTransaction
+   * Lookup495: sp_runtime::transaction_validity::InvalidTransaction
    **/
   SpRuntimeTransactionValidityInvalidTransaction: {
     _enum: {
@@ -3235,7 +3585,7 @@ export default {
     }
   },
   /**
-   * Lookup418: sp_runtime::transaction_validity::UnknownTransaction
+   * Lookup496: sp_runtime::transaction_validity::UnknownTransaction
    **/
   SpRuntimeTransactionValidityUnknownTransaction: {
     _enum: {
@@ -3245,86 +3595,86 @@ export default {
     }
   },
   /**
-   * Lookup420: up_pov_estimate_rpc::TrieKeyValue
+   * Lookup498: up_pov_estimate_rpc::TrieKeyValue
    **/
   UpPovEstimateRpcTrieKeyValue: {
     key: 'Bytes',
     value: 'Bytes'
   },
   /**
-   * Lookup422: pallet_common::pallet::Error<T>
+   * Lookup500: pallet_common::pallet::Error<T>
    **/
   PalletCommonError: {
     _enum: ['CollectionNotFound', 'MustBeTokenOwner', 'NoPermission', 'CantDestroyNotEmptyCollection', 'PublicMintingNotAllowed', 'AddressNotInAllowlist', 'CollectionNameLimitExceeded', 'CollectionDescriptionLimitExceeded', 'CollectionTokenPrefixLimitExceeded', 'TotalCollectionsLimitExceeded', 'CollectionAdminCountExceeded', 'CollectionLimitBoundsExceeded', 'OwnerPermissionsCantBeReverted', 'TransferNotAllowed', 'AccountTokenLimitExceeded', 'CollectionTokenLimitExceeded', 'MetadataFlagFrozen', 'TokenNotFound', 'TokenValueTooLow', 'ApprovedValueTooLow', 'CantApproveMoreThanOwned', 'AddressIsZero', 'UnsupportedOperation', 'NotSufficientFounds', 'UserIsNotAllowedToNest', 'SourceCollectionIsNotAllowedToNest', 'CollectionFieldSizeExceeded', 'NoSpaceForProperty', 'PropertyLimitReached', 'PropertyKeyIsTooLong', 'InvalidCharacterInPropertyKey', 'EmptyPropertyKey', 'CollectionIsExternal', 'CollectionIsInternal', 'ConfirmSponsorshipFail', 'UserIsNotCollectionAdmin']
   },
   /**
-   * Lookup424: pallet_fungible::pallet::Error<T>
+   * Lookup502: pallet_fungible::pallet::Error<T>
    **/
   PalletFungibleError: {
     _enum: ['NotFungibleDataUsedToMintFungibleCollectionToken', 'FungibleItemsHaveNoId', 'FungibleItemsDontHaveData', 'FungibleDisallowsNesting', 'SettingPropertiesNotAllowed', 'SettingAllowanceForAllNotAllowed', 'FungibleTokensAreAlwaysValid']
   },
   /**
-   * Lookup428: pallet_refungible::pallet::Error<T>
+   * Lookup506: pallet_refungible::pallet::Error<T>
    **/
   PalletRefungibleError: {
     _enum: ['NotRefungibleDataUsedToMintFungibleCollectionToken', 'WrongRefungiblePieces', 'RepartitionWhileNotOwningAllPieces', 'RefungibleDisallowsNesting', 'SettingPropertiesNotAllowed']
   },
   /**
-   * Lookup429: pallet_nonfungible::ItemData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup507: pallet_nonfungible::ItemData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   PalletNonfungibleItemData: {
     owner: 'PalletEvmAccountBasicCrossAccountIdRepr'
   },
   /**
-   * Lookup431: up_data_structs::PropertyScope
+   * Lookup509: up_data_structs::PropertyScope
    **/
   UpDataStructsPropertyScope: {
     _enum: ['None', 'Rmrk']
   },
   /**
-   * Lookup434: pallet_nonfungible::pallet::Error<T>
+   * Lookup512: pallet_nonfungible::pallet::Error<T>
    **/
   PalletNonfungibleError: {
     _enum: ['NotNonfungibleDataUsedToMintFungibleCollectionToken', 'NonfungibleItemsHaveNoAmount', 'CantBurnNftWithChildren']
   },
   /**
-   * Lookup435: pallet_structure::pallet::Error<T>
+   * Lookup513: pallet_structure::pallet::Error<T>
    **/
   PalletStructureError: {
     _enum: ['OuroborosDetected', 'DepthLimit', 'BreadthLimit', 'TokenNotFound']
   },
   /**
-   * Lookup436: pallet_rmrk_core::pallet::Error<T>
+   * Lookup514: pallet_rmrk_core::pallet::Error<T>
    **/
   PalletRmrkCoreError: {
     _enum: ['CorruptedCollectionType', 'RmrkPropertyKeyIsTooLong', 'RmrkPropertyValueIsTooLong', 'RmrkPropertyIsNotFound', 'UnableToDecodeRmrkData', 'CollectionNotEmpty', 'NoAvailableCollectionId', 'NoAvailableNftId', 'CollectionUnknown', 'NoPermission', 'NonTransferable', 'CollectionFullOrLocked', 'ResourceDoesntExist', 'CannotSendToDescendentOrSelf', 'CannotAcceptNonOwnedNft', 'CannotRejectNonOwnedNft', 'CannotRejectNonPendingNft', 'ResourceNotPending', 'NoAvailableResourceId']
   },
   /**
-   * Lookup438: pallet_rmrk_equip::pallet::Error<T>
+   * Lookup516: pallet_rmrk_equip::pallet::Error<T>
    **/
   PalletRmrkEquipError: {
     _enum: ['PermissionError', 'NoAvailableBaseId', 'NoAvailablePartId', 'BaseDoesntExist', 'NeedsDefaultThemeFirst', 'PartDoesntExist', 'NoEquippableOnFixedPart']
   },
   /**
-   * Lookup444: pallet_app_promotion::pallet::Error<T>
+   * Lookup522: pallet_app_promotion::pallet::Error<T>
    **/
   PalletAppPromotionError: {
     _enum: ['AdminNotSet', 'NoPermission', 'NotSufficientFunds', 'PendingForBlockOverflow', 'SponsorNotSet', 'IncorrectLockedBalanceOperation']
   },
   /**
-   * Lookup445: pallet_foreign_assets::module::Error<T>
+   * Lookup523: pallet_foreign_assets::module::Error<T>
    **/
   PalletForeignAssetsModuleError: {
     _enum: ['BadLocation', 'MultiLocationExisted', 'AssetIdNotExists', 'AssetIdExisted']
   },
   /**
-   * Lookup447: pallet_evm::pallet::Error<T>
+   * Lookup525: pallet_evm::pallet::Error<T>
    **/
   PalletEvmError: {
     _enum: ['BalanceLow', 'FeeOverflow', 'PaymentOverflow', 'WithdrawFailed', 'GasPriceTooLow', 'InvalidNonce', 'GasLimitTooLow', 'GasLimitTooHigh', 'Undefined', 'Reentrancy', 'TransactionMustComeFromEOA']
   },
   /**
-   * Lookup450: fp_rpc::TransactionStatus
+   * Lookup528: fp_rpc::TransactionStatus
    **/
   FpRpcTransactionStatus: {
     transactionHash: 'H256',
@@ -3336,11 +3686,11 @@ export default {
     logsBloom: 'EthbloomBloom'
   },
   /**
-   * Lookup452: ethbloom::Bloom
+   * Lookup530: ethbloom::Bloom
    **/
   EthbloomBloom: '[u8;256]',
   /**
-   * Lookup454: ethereum::receipt::ReceiptV3
+   * Lookup532: ethereum::receipt::ReceiptV3
    **/
   EthereumReceiptReceiptV3: {
     _enum: {
@@ -3350,7 +3700,7 @@ export default {
     }
   },
   /**
-   * Lookup455: ethereum::receipt::EIP658ReceiptData
+   * Lookup533: ethereum::receipt::EIP658ReceiptData
    **/
   EthereumReceiptEip658ReceiptData: {
     statusCode: 'u8',
@@ -3359,7 +3709,7 @@ export default {
     logs: 'Vec<EthereumLog>'
   },
   /**
-   * Lookup456: ethereum::block::Block<ethereum::transaction::TransactionV2>
+   * Lookup534: ethereum::block::Block<ethereum::transaction::TransactionV2>
    **/
   EthereumBlock: {
     header: 'EthereumHeader',
@@ -3367,7 +3717,7 @@ export default {
     ommers: 'Vec<EthereumHeader>'
   },
   /**
-   * Lookup457: ethereum::header::Header
+   * Lookup535: ethereum::header::Header
    **/
   EthereumHeader: {
     parentHash: 'H256',
@@ -3387,23 +3737,23 @@ export default {
     nonce: 'EthereumTypesHashH64'
   },
   /**
-   * Lookup458: ethereum_types::hash::H64
+   * Lookup536: ethereum_types::hash::H64
    **/
   EthereumTypesHashH64: '[u8;8]',
   /**
-   * Lookup463: pallet_ethereum::pallet::Error<T>
+   * Lookup541: pallet_ethereum::pallet::Error<T>
    **/
   PalletEthereumError: {
     _enum: ['InvalidSignature', 'PreLogExists']
   },
   /**
-   * Lookup464: pallet_evm_coder_substrate::pallet::Error<T>
+   * Lookup542: pallet_evm_coder_substrate::pallet::Error<T>
    **/
   PalletEvmCoderSubstrateError: {
     _enum: ['OutOfGas', 'OutOfFund']
   },
   /**
-   * Lookup465: up_data_structs::SponsorshipState<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup543: up_data_structs::SponsorshipState<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsSponsorshipStateBasicCrossAccountIdRepr: {
     _enum: {
@@ -3413,35 +3763,35 @@ export default {
     }
   },
   /**
-   * Lookup466: pallet_evm_contract_helpers::SponsoringModeT
+   * Lookup544: pallet_evm_contract_helpers::SponsoringModeT
    **/
   PalletEvmContractHelpersSponsoringModeT: {
     _enum: ['Disabled', 'Allowlisted', 'Generous']
   },
   /**
-   * Lookup472: pallet_evm_contract_helpers::pallet::Error<T>
+   * Lookup550: pallet_evm_contract_helpers::pallet::Error<T>
    **/
   PalletEvmContractHelpersError: {
     _enum: ['NoPermission', 'NoPendingSponsor', 'TooManyMethodsHaveSponsoredLimit']
   },
   /**
-   * Lookup473: pallet_evm_migration::pallet::Error<T>
+   * Lookup551: pallet_evm_migration::pallet::Error<T>
    **/
   PalletEvmMigrationError: {
     _enum: ['AccountNotEmpty', 'AccountIsNotMigrating', 'BadEvent']
   },
   /**
-   * Lookup474: pallet_maintenance::pallet::Error<T>
+   * Lookup552: pallet_maintenance::pallet::Error<T>
    **/
   PalletMaintenanceError: 'Null',
   /**
-   * Lookup475: pallet_test_utils::pallet::Error<T>
+   * Lookup553: pallet_test_utils::pallet::Error<T>
    **/
   PalletTestUtilsError: {
     _enum: ['TestPalletDisabled', 'TriggerRollback']
   },
   /**
-   * Lookup477: sp_runtime::MultiSignature
+   * Lookup555: sp_runtime::MultiSignature
    **/
   SpRuntimeMultiSignature: {
     _enum: {
@@ -3451,51 +3801,55 @@ export default {
     }
   },
   /**
-   * Lookup478: sp_core::ed25519::Signature
+   * Lookup556: sp_core::ed25519::Signature
    **/
   SpCoreEd25519Signature: '[u8;64]',
   /**
-   * Lookup480: sp_core::sr25519::Signature
+   * Lookup558: sp_core::sr25519::Signature
    **/
   SpCoreSr25519Signature: '[u8;64]',
   /**
-   * Lookup481: sp_core::ecdsa::Signature
+   * Lookup559: sp_core::ecdsa::Signature
    **/
   SpCoreEcdsaSignature: '[u8;65]',
   /**
-   * Lookup484: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
+   * Lookup562: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
    **/
   FrameSystemExtensionsCheckSpecVersion: 'Null',
   /**
-   * Lookup485: frame_system::extensions::check_tx_version::CheckTxVersion<T>
+   * Lookup563: frame_system::extensions::check_tx_version::CheckTxVersion<T>
    **/
   FrameSystemExtensionsCheckTxVersion: 'Null',
   /**
-   * Lookup486: frame_system::extensions::check_genesis::CheckGenesis<T>
+   * Lookup564: frame_system::extensions::check_genesis::CheckGenesis<T>
    **/
   FrameSystemExtensionsCheckGenesis: 'Null',
   /**
-   * Lookup489: frame_system::extensions::check_nonce::CheckNonce<T>
+   * Lookup567: frame_system::extensions::check_nonce::CheckNonce<T>
    **/
   FrameSystemExtensionsCheckNonce: 'Compact<u32>',
   /**
-   * Lookup490: frame_system::extensions::check_weight::CheckWeight<T>
+   * Lookup568: frame_system::extensions::check_weight::CheckWeight<T>
    **/
   FrameSystemExtensionsCheckWeight: 'Null',
   /**
-   * Lookup491: opal_runtime::runtime_common::maintenance::CheckMaintenance
+   * Lookup569: opal_runtime::runtime_common::maintenance::CheckMaintenance
    **/
   OpalRuntimeRuntimeCommonMaintenanceCheckMaintenance: 'Null',
   /**
-   * Lookup492: pallet_template_transaction_payment::ChargeTransactionPayment<opal_runtime::Runtime>
+   * Lookup570: opal_runtime::runtime_common::data_management::FilterIdentity
+   **/
+  OpalRuntimeRuntimeCommonDataManagementFilterIdentity: 'Null',
+  /**
+   * Lookup571: pallet_template_transaction_payment::ChargeTransactionPayment<opal_runtime::Runtime>
    **/
   PalletTemplateTransactionPaymentChargeTransactionPayment: 'Compact<u128>',
   /**
-   * Lookup493: opal_runtime::Runtime
+   * Lookup572: opal_runtime::Runtime
    **/
   OpalRuntimeRuntime: 'Null',
   /**
-   * Lookup494: pallet_ethereum::FakeTransactionFinalizer<opal_runtime::Runtime>
+   * Lookup573: pallet_ethereum::FakeTransactionFinalizer<opal_runtime::Runtime>
    **/
   PalletEthereumFakeTransactionFinalizer: 'Null'
 };
