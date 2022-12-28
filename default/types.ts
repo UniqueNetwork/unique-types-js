@@ -2,6 +2,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
+import type { Data } from '@polkadot/types';
 import type { BTreeMap, BTreeSet, Bytes, Compact, Enum, Null, Option, Result, Struct, Text, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
@@ -693,8 +694,16 @@ export interface FrameSystemPhase extends Enum {
 /** @name OpalRuntimeRuntime */
 export interface OpalRuntimeRuntime extends Null {}
 
+/** @name OpalRuntimeRuntimeCommonDataManagementFilterIdentity */
+export interface OpalRuntimeRuntimeCommonDataManagementFilterIdentity extends Null {}
+
 /** @name OpalRuntimeRuntimeCommonMaintenanceCheckMaintenance */
 export interface OpalRuntimeRuntimeCommonMaintenanceCheckMaintenance extends Null {}
+
+/** @name OpalRuntimeRuntimeCommonSessionKeys */
+export interface OpalRuntimeRuntimeCommonSessionKeys extends Struct {
+  readonly aura: SpConsensusAuraSr25519AppSr25519Public;
+}
 
 /** @name OrmlTokensAccountData */
 export interface OrmlTokensAccountData extends Struct {
@@ -1053,6 +1062,36 @@ export interface PalletAppPromotionEvent extends Enum {
   readonly type: 'StakingRecalculation' | 'Stake' | 'Unstake' | 'SetAdmin';
 }
 
+/** @name PalletAuthorshipCall */
+export interface PalletAuthorshipCall extends Enum {
+  readonly isSetUncles: boolean;
+  readonly asSetUncles: {
+    readonly newUncles: Vec<SpRuntimeHeader>;
+  } & Struct;
+  readonly type: 'SetUncles';
+}
+
+/** @name PalletAuthorshipError */
+export interface PalletAuthorshipError extends Enum {
+  readonly isInvalidUncleParent: boolean;
+  readonly isUnclesAlreadySet: boolean;
+  readonly isTooManyUncles: boolean;
+  readonly isGenesisUncle: boolean;
+  readonly isTooHighUncle: boolean;
+  readonly isUncleAlreadyIncluded: boolean;
+  readonly isOldUncle: boolean;
+  readonly type: 'InvalidUncleParent' | 'UnclesAlreadySet' | 'TooManyUncles' | 'GenesisUncle' | 'TooHighUncle' | 'UncleAlreadyIncluded' | 'OldUncle';
+}
+
+/** @name PalletAuthorshipUncleEntryItem */
+export interface PalletAuthorshipUncleEntryItem extends Enum {
+  readonly isInclusionHeight: boolean;
+  readonly asInclusionHeight: u32;
+  readonly isUncle: boolean;
+  readonly asUncle: ITuple<[H256, Option<AccountId32>]>;
+  readonly type: 'InclusionHeight' | 'Uncle';
+}
+
 /** @name PalletBalancesAccountData */
 export interface PalletBalancesAccountData extends Struct {
   readonly free: u128;
@@ -1191,6 +1230,76 @@ export interface PalletBalancesReserveData extends Struct {
   readonly amount: u128;
 }
 
+/** @name PalletCollatorSelectionCall */
+export interface PalletCollatorSelectionCall extends Enum {
+  readonly isAddInvulnerable: boolean;
+  readonly asAddInvulnerable: {
+    readonly new_: AccountId32;
+  } & Struct;
+  readonly isRemoveInvulnerable: boolean;
+  readonly asRemoveInvulnerable: {
+    readonly who: AccountId32;
+  } & Struct;
+  readonly isGetLicense: boolean;
+  readonly isOnboard: boolean;
+  readonly isOffboard: boolean;
+  readonly isReleaseLicense: boolean;
+  readonly isForceReleaseLicense: boolean;
+  readonly asForceReleaseLicense: {
+    readonly who: AccountId32;
+  } & Struct;
+  readonly type: 'AddInvulnerable' | 'RemoveInvulnerable' | 'GetLicense' | 'Onboard' | 'Offboard' | 'ReleaseLicense' | 'ForceReleaseLicense';
+}
+
+/** @name PalletCollatorSelectionError */
+export interface PalletCollatorSelectionError extends Enum {
+  readonly isTooManyCandidates: boolean;
+  readonly isUnknown: boolean;
+  readonly isPermission: boolean;
+  readonly isAlreadyHoldingLicense: boolean;
+  readonly isNoLicense: boolean;
+  readonly isAlreadyCandidate: boolean;
+  readonly isNotCandidate: boolean;
+  readonly isTooManyInvulnerables: boolean;
+  readonly isTooFewInvulnerables: boolean;
+  readonly isAlreadyInvulnerable: boolean;
+  readonly isNotInvulnerable: boolean;
+  readonly isNoAssociatedValidatorId: boolean;
+  readonly isValidatorNotRegistered: boolean;
+  readonly type: 'TooManyCandidates' | 'Unknown' | 'Permission' | 'AlreadyHoldingLicense' | 'NoLicense' | 'AlreadyCandidate' | 'NotCandidate' | 'TooManyInvulnerables' | 'TooFewInvulnerables' | 'AlreadyInvulnerable' | 'NotInvulnerable' | 'NoAssociatedValidatorId' | 'ValidatorNotRegistered';
+}
+
+/** @name PalletCollatorSelectionEvent */
+export interface PalletCollatorSelectionEvent extends Enum {
+  readonly isInvulnerableAdded: boolean;
+  readonly asInvulnerableAdded: {
+    readonly invulnerable: AccountId32;
+  } & Struct;
+  readonly isInvulnerableRemoved: boolean;
+  readonly asInvulnerableRemoved: {
+    readonly invulnerable: AccountId32;
+  } & Struct;
+  readonly isLicenseObtained: boolean;
+  readonly asLicenseObtained: {
+    readonly accountId: AccountId32;
+    readonly deposit: u128;
+  } & Struct;
+  readonly isLicenseReleased: boolean;
+  readonly asLicenseReleased: {
+    readonly accountId: AccountId32;
+    readonly depositReturned: u128;
+  } & Struct;
+  readonly isCandidateAdded: boolean;
+  readonly asCandidateAdded: {
+    readonly accountId: AccountId32;
+  } & Struct;
+  readonly isCandidateRemoved: boolean;
+  readonly asCandidateRemoved: {
+    readonly accountId: AccountId32;
+  } & Struct;
+  readonly type: 'InvulnerableAdded' | 'InvulnerableRemoved' | 'LicenseObtained' | 'LicenseReleased' | 'CandidateAdded' | 'CandidateRemoved';
+}
+
 /** @name PalletCommonError */
 export interface PalletCommonError extends Enum {
   readonly isCollectionNotFound: boolean;
@@ -1307,13 +1416,42 @@ export interface PalletConfigurationCall extends Enum {
   readonly asSetAppPromotionConfigurationOverride: {
     readonly configuration: PalletConfigurationAppPromotionConfiguration;
   } & Struct;
-  readonly type: 'SetWeightToFeeCoefficientOverride' | 'SetMinGasPriceOverride' | 'SetXcmAllowedLocations' | 'SetAppPromotionConfigurationOverride';
+  readonly isSetCollatorSelectionDesiredCollators: boolean;
+  readonly asSetCollatorSelectionDesiredCollators: {
+    readonly max: Option<u32>;
+  } & Struct;
+  readonly isSetCollatorSelectionLicenseBond: boolean;
+  readonly asSetCollatorSelectionLicenseBond: {
+    readonly amount: Option<u128>;
+  } & Struct;
+  readonly isSetCollatorSelectionKickThreshold: boolean;
+  readonly asSetCollatorSelectionKickThreshold: {
+    readonly threshold: Option<u32>;
+  } & Struct;
+  readonly type: 'SetWeightToFeeCoefficientOverride' | 'SetMinGasPriceOverride' | 'SetXcmAllowedLocations' | 'SetAppPromotionConfigurationOverride' | 'SetCollatorSelectionDesiredCollators' | 'SetCollatorSelectionLicenseBond' | 'SetCollatorSelectionKickThreshold';
 }
 
 /** @name PalletConfigurationError */
 export interface PalletConfigurationError extends Enum {
   readonly isInconsistentConfiguration: boolean;
   readonly type: 'InconsistentConfiguration';
+}
+
+/** @name PalletConfigurationEvent */
+export interface PalletConfigurationEvent extends Enum {
+  readonly isNewDesiredCollators: boolean;
+  readonly asNewDesiredCollators: {
+    readonly desiredCollators: Option<u32>;
+  } & Struct;
+  readonly isNewCollatorLicenseBond: boolean;
+  readonly asNewCollatorLicenseBond: {
+    readonly bondCost: Option<u128>;
+  } & Struct;
+  readonly isNewCollatorKickThreshold: boolean;
+  readonly asNewCollatorKickThreshold: {
+    readonly lengthInBlocks: Option<u32>;
+  } & Struct;
+  readonly type: 'NewDesiredCollators' | 'NewCollatorLicenseBond' | 'NewCollatorKickThreshold';
 }
 
 /** @name PalletEthereumCall */
@@ -1604,6 +1742,223 @@ export interface PalletFungibleError extends Enum {
   readonly isSettingAllowanceForAllNotAllowed: boolean;
   readonly isFungibleTokensAreAlwaysValid: boolean;
   readonly type: 'NotFungibleDataUsedToMintFungibleCollectionToken' | 'FungibleItemsHaveNoId' | 'FungibleItemsDontHaveData' | 'FungibleDisallowsNesting' | 'SettingPropertiesNotAllowed' | 'SettingAllowanceForAllNotAllowed' | 'FungibleTokensAreAlwaysValid';
+}
+
+/** @name PalletIdentityBitFlags */
+export interface PalletIdentityBitFlags extends Struct {
+  readonly _bitLength: 64;
+  readonly Display: 1;
+  readonly Legal: 2;
+  readonly Web: 4;
+  readonly Riot: 8;
+  readonly Email: 16;
+  readonly PgpFingerprint: 32;
+  readonly Image: 64;
+  readonly Twitter: 128;
+}
+
+/** @name PalletIdentityCall */
+export interface PalletIdentityCall extends Enum {
+  readonly isAddRegistrar: boolean;
+  readonly asAddRegistrar: {
+    readonly account: MultiAddress;
+  } & Struct;
+  readonly isSetIdentity: boolean;
+  readonly asSetIdentity: {
+    readonly info: PalletIdentityIdentityInfo;
+  } & Struct;
+  readonly isSetSubs: boolean;
+  readonly asSetSubs: {
+    readonly subs: Vec<ITuple<[AccountId32, Data]>>;
+  } & Struct;
+  readonly isClearIdentity: boolean;
+  readonly isRequestJudgement: boolean;
+  readonly asRequestJudgement: {
+    readonly regIndex: Compact<u32>;
+    readonly maxFee: Compact<u128>;
+  } & Struct;
+  readonly isCancelRequest: boolean;
+  readonly asCancelRequest: {
+    readonly regIndex: u32;
+  } & Struct;
+  readonly isSetFee: boolean;
+  readonly asSetFee: {
+    readonly index: Compact<u32>;
+    readonly fee: Compact<u128>;
+  } & Struct;
+  readonly isSetAccountId: boolean;
+  readonly asSetAccountId: {
+    readonly index: Compact<u32>;
+    readonly new_: MultiAddress;
+  } & Struct;
+  readonly isSetFields: boolean;
+  readonly asSetFields: {
+    readonly index: Compact<u32>;
+    readonly fields: PalletIdentityBitFlags;
+  } & Struct;
+  readonly isProvideJudgement: boolean;
+  readonly asProvideJudgement: {
+    readonly regIndex: Compact<u32>;
+    readonly target: MultiAddress;
+    readonly judgement: PalletIdentityJudgement;
+    readonly identity: H256;
+  } & Struct;
+  readonly isKillIdentity: boolean;
+  readonly asKillIdentity: {
+    readonly target: MultiAddress;
+  } & Struct;
+  readonly isAddSub: boolean;
+  readonly asAddSub: {
+    readonly sub: MultiAddress;
+    readonly data: Data;
+  } & Struct;
+  readonly isRenameSub: boolean;
+  readonly asRenameSub: {
+    readonly sub: MultiAddress;
+    readonly data: Data;
+  } & Struct;
+  readonly isRemoveSub: boolean;
+  readonly asRemoveSub: {
+    readonly sub: MultiAddress;
+  } & Struct;
+  readonly isQuitSub: boolean;
+  readonly isSetIdentities: boolean;
+  readonly asSetIdentities: {
+    readonly identities: Vec<ITuple<[AccountId32, Option<PalletIdentityRegistration>]>>;
+  } & Struct;
+  readonly type: 'AddRegistrar' | 'SetIdentity' | 'SetSubs' | 'ClearIdentity' | 'RequestJudgement' | 'CancelRequest' | 'SetFee' | 'SetAccountId' | 'SetFields' | 'ProvideJudgement' | 'KillIdentity' | 'AddSub' | 'RenameSub' | 'RemoveSub' | 'QuitSub' | 'SetIdentities';
+}
+
+/** @name PalletIdentityError */
+export interface PalletIdentityError extends Enum {
+  readonly isTooManySubAccounts: boolean;
+  readonly isNotFound: boolean;
+  readonly isNotNamed: boolean;
+  readonly isEmptyIndex: boolean;
+  readonly isFeeChanged: boolean;
+  readonly isNoIdentity: boolean;
+  readonly isStickyJudgement: boolean;
+  readonly isJudgementGiven: boolean;
+  readonly isInvalidJudgement: boolean;
+  readonly isInvalidIndex: boolean;
+  readonly isInvalidTarget: boolean;
+  readonly isTooManyFields: boolean;
+  readonly isTooManyRegistrars: boolean;
+  readonly isAlreadyClaimed: boolean;
+  readonly isNotSub: boolean;
+  readonly isNotOwned: boolean;
+  readonly isJudgementForDifferentIdentity: boolean;
+  readonly isJudgementPaymentFailed: boolean;
+  readonly type: 'TooManySubAccounts' | 'NotFound' | 'NotNamed' | 'EmptyIndex' | 'FeeChanged' | 'NoIdentity' | 'StickyJudgement' | 'JudgementGiven' | 'InvalidJudgement' | 'InvalidIndex' | 'InvalidTarget' | 'TooManyFields' | 'TooManyRegistrars' | 'AlreadyClaimed' | 'NotSub' | 'NotOwned' | 'JudgementForDifferentIdentity' | 'JudgementPaymentFailed';
+}
+
+/** @name PalletIdentityEvent */
+export interface PalletIdentityEvent extends Enum {
+  readonly isIdentitySet: boolean;
+  readonly asIdentitySet: {
+    readonly who: AccountId32;
+  } & Struct;
+  readonly isIdentityCleared: boolean;
+  readonly asIdentityCleared: {
+    readonly who: AccountId32;
+    readonly deposit: u128;
+  } & Struct;
+  readonly isIdentityKilled: boolean;
+  readonly asIdentityKilled: {
+    readonly who: AccountId32;
+    readonly deposit: u128;
+  } & Struct;
+  readonly isJudgementRequested: boolean;
+  readonly asJudgementRequested: {
+    readonly who: AccountId32;
+    readonly registrarIndex: u32;
+  } & Struct;
+  readonly isJudgementUnrequested: boolean;
+  readonly asJudgementUnrequested: {
+    readonly who: AccountId32;
+    readonly registrarIndex: u32;
+  } & Struct;
+  readonly isJudgementGiven: boolean;
+  readonly asJudgementGiven: {
+    readonly target: AccountId32;
+    readonly registrarIndex: u32;
+  } & Struct;
+  readonly isRegistrarAdded: boolean;
+  readonly asRegistrarAdded: {
+    readonly registrarIndex: u32;
+  } & Struct;
+  readonly isSubIdentityAdded: boolean;
+  readonly asSubIdentityAdded: {
+    readonly sub: AccountId32;
+    readonly main: AccountId32;
+    readonly deposit: u128;
+  } & Struct;
+  readonly isSubIdentityRemoved: boolean;
+  readonly asSubIdentityRemoved: {
+    readonly sub: AccountId32;
+    readonly main: AccountId32;
+    readonly deposit: u128;
+  } & Struct;
+  readonly isSubIdentityRevoked: boolean;
+  readonly asSubIdentityRevoked: {
+    readonly sub: AccountId32;
+    readonly main: AccountId32;
+    readonly deposit: u128;
+  } & Struct;
+  readonly type: 'IdentitySet' | 'IdentityCleared' | 'IdentityKilled' | 'JudgementRequested' | 'JudgementUnrequested' | 'JudgementGiven' | 'RegistrarAdded' | 'SubIdentityAdded' | 'SubIdentityRemoved' | 'SubIdentityRevoked';
+}
+
+/** @name PalletIdentityIdentityField */
+export interface PalletIdentityIdentityField extends Enum {
+  readonly isDisplay: boolean;
+  readonly isLegal: boolean;
+  readonly isWeb: boolean;
+  readonly isRiot: boolean;
+  readonly isEmail: boolean;
+  readonly isPgpFingerprint: boolean;
+  readonly isImage: boolean;
+  readonly isTwitter: boolean;
+  readonly type: 'Display' | 'Legal' | 'Web' | 'Riot' | 'Email' | 'PgpFingerprint' | 'Image' | 'Twitter';
+}
+
+/** @name PalletIdentityIdentityInfo */
+export interface PalletIdentityIdentityInfo extends Struct {
+  readonly additional: Vec<ITuple<[Data, Data]>>;
+  readonly display: Data;
+  readonly legal: Data;
+  readonly web: Data;
+  readonly riot: Data;
+  readonly email: Data;
+  readonly pgpFingerprint: Option<U8aFixed>;
+  readonly image: Data;
+  readonly twitter: Data;
+}
+
+/** @name PalletIdentityJudgement */
+export interface PalletIdentityJudgement extends Enum {
+  readonly isUnknown: boolean;
+  readonly isFeePaid: boolean;
+  readonly asFeePaid: u128;
+  readonly isReasonable: boolean;
+  readonly isKnownGood: boolean;
+  readonly isOutOfDate: boolean;
+  readonly isLowQuality: boolean;
+  readonly isErroneous: boolean;
+  readonly type: 'Unknown' | 'FeePaid' | 'Reasonable' | 'KnownGood' | 'OutOfDate' | 'LowQuality' | 'Erroneous';
+}
+
+/** @name PalletIdentityRegistrarInfo */
+export interface PalletIdentityRegistrarInfo extends Struct {
+  readonly account: AccountId32;
+  readonly fee: u128;
+  readonly fields: PalletIdentityBitFlags;
+}
+
+/** @name PalletIdentityRegistration */
+export interface PalletIdentityRegistration extends Struct {
+  readonly judgements: Vec<ITuple<[u32, PalletIdentityJudgement]>>;
+  readonly deposit: u128;
+  readonly info: PalletIdentityIdentityInfo;
 }
 
 /** @name PalletInflationCall */
@@ -1922,6 +2277,36 @@ export interface PalletRmrkEquipEvent extends Enum {
     readonly slotId: u32;
   } & Struct;
   readonly type: 'BaseCreated' | 'EquippablesUpdated';
+}
+
+/** @name PalletSessionCall */
+export interface PalletSessionCall extends Enum {
+  readonly isSetKeys: boolean;
+  readonly asSetKeys: {
+    readonly keys_: OpalRuntimeRuntimeCommonSessionKeys;
+    readonly proof: Bytes;
+  } & Struct;
+  readonly isPurgeKeys: boolean;
+  readonly type: 'SetKeys' | 'PurgeKeys';
+}
+
+/** @name PalletSessionError */
+export interface PalletSessionError extends Enum {
+  readonly isInvalidProof: boolean;
+  readonly isNoAssociatedValidatorId: boolean;
+  readonly isDuplicatedKey: boolean;
+  readonly isNoKeys: boolean;
+  readonly isNoAccount: boolean;
+  readonly type: 'InvalidProof' | 'NoAssociatedValidatorId' | 'DuplicatedKey' | 'NoKeys' | 'NoAccount';
+}
+
+/** @name PalletSessionEvent */
+export interface PalletSessionEvent extends Enum {
+  readonly isNewSession: boolean;
+  readonly asNewSession: {
+    readonly sessionIndex: u32;
+  } & Struct;
+  readonly type: 'NewSession';
 }
 
 /** @name PalletStructureCall */
@@ -2655,11 +3040,20 @@ export interface RmrkTraitsThemeThemeProperty extends Struct {
   readonly value: Bytes;
 }
 
+/** @name SpConsensusAuraSr25519AppSr25519Public */
+export interface SpConsensusAuraSr25519AppSr25519Public extends SpCoreSr25519Public {}
+
+/** @name SpCoreCryptoKeyTypeId */
+export interface SpCoreCryptoKeyTypeId extends U8aFixed {}
+
 /** @name SpCoreEcdsaSignature */
 export interface SpCoreEcdsaSignature extends U8aFixed {}
 
 /** @name SpCoreEd25519Signature */
 export interface SpCoreEd25519Signature extends U8aFixed {}
+
+/** @name SpCoreSr25519Public */
+export interface SpCoreSr25519Public extends U8aFixed {}
 
 /** @name SpCoreSr25519Signature */
 export interface SpCoreSr25519Signature extends U8aFixed {}
@@ -2671,6 +3065,9 @@ export interface SpRuntimeArithmeticError extends Enum {
   readonly isDivisionByZero: boolean;
   readonly type: 'Underflow' | 'Overflow' | 'DivisionByZero';
 }
+
+/** @name SpRuntimeBlakeTwo256 */
+export interface SpRuntimeBlakeTwo256 extends Null {}
 
 /** @name SpRuntimeDigest */
 export interface SpRuntimeDigest extends Struct {
@@ -2711,6 +3108,15 @@ export interface SpRuntimeDispatchError extends Enum {
   readonly isCorruption: boolean;
   readonly isUnavailable: boolean;
   readonly type: 'Other' | 'CannotLookup' | 'BadOrigin' | 'Module' | 'ConsumerRemaining' | 'NoProviders' | 'TooManyConsumers' | 'Token' | 'Arithmetic' | 'Transactional' | 'Exhausted' | 'Corruption' | 'Unavailable';
+}
+
+/** @name SpRuntimeHeader */
+export interface SpRuntimeHeader extends Struct {
+  readonly parentHash: H256;
+  readonly number: Compact<u32>;
+  readonly stateRoot: H256;
+  readonly extrinsicsRoot: H256;
+  readonly digest: SpRuntimeDigest;
 }
 
 /** @name SpRuntimeModuleError */
