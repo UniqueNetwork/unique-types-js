@@ -178,6 +178,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       AccountTokenLimitExceeded: AugmentedError<ApiType>;
       /**
+       * Only spending from eth mirror could be approved
+       **/
+      AddressIsNotEthMirror: AugmentedError<ApiType>;
+      /**
        * Can't transfer tokens to ethereum zero address
        **/
       AddressIsZero: AugmentedError<ApiType>;
