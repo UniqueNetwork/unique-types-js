@@ -3657,7 +3657,7 @@ export default {
    * Lookup512: pallet_structure::pallet::Error<T>
    **/
   PalletStructureError: {
-    _enum: ['OuroborosDetected', 'DepthLimit', 'BreadthLimit', 'TokenNotFound']
+    _enum: ['OuroborosDetected', 'DepthLimit', 'BreadthLimit', 'TokenNotFound', 'CantNestTokenUnderCollection']
   },
   /**
    * Lookup513: pallet_rmrk_core::pallet::Error<T>

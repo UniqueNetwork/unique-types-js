@@ -4024,7 +4024,8 @@ declare module '@polkadot/types/lookup' {
     readonly isDepthLimit: boolean;
     readonly isBreadthLimit: boolean;
     readonly isTokenNotFound: boolean;
-    readonly type: 'OuroborosDetected' | 'DepthLimit' | 'BreadthLimit' | 'TokenNotFound';
+    readonly isCantNestTokenUnderCollection: boolean;
+    readonly type: 'OuroborosDetected' | 'DepthLimit' | 'BreadthLimit' | 'TokenNotFound' | 'CantNestTokenUnderCollection';
   }
 
   /** @name PalletRmrkCoreError (513) */
