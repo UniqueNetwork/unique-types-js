@@ -526,6 +526,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       BreadthLimit: AugmentedError<ApiType>;
       /**
+       * Tried to nest token under collection contract address, instead of token address
+       **/
+      CantNestTokenUnderCollection: AugmentedError<ApiType>;
+      /**
        * While nesting, reached the depth limit of nesting, exceeding the provided budget.
        **/
       DepthLimit: AugmentedError<ApiType>;

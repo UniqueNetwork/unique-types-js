@@ -3048,7 +3048,7 @@ export default {
    * Lookup416: pallet_structure::pallet::Error<T>
    **/
   PalletStructureError: {
-    _enum: ['OuroborosDetected', 'DepthLimit', 'BreadthLimit', 'TokenNotFound']
+    _enum: ['OuroborosDetected', 'DepthLimit', 'BreadthLimit', 'TokenNotFound', 'CantNestTokenUnderCollection']
   },
   /**
    * Lookup417: pallet_foreign_assets::module::Error<T>
