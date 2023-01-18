@@ -470,6 +470,14 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       forceRemoveIdentities: AugmentedSubmittable<(identities: Vec<AccountId32> | (AccountId32 | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<AccountId32>]>;
       /**
+       * Set sub-identities to be associated with the provided accounts as force origin.
+       * 
+       * This is not meant to operate in tandem with the identity pallet as is,
+       * and be instead used to keep identities made and verified externally,
+       * forbidden from interacting with an ordinary user, since it ignores any safety mechanism.
+       **/
+      forceSetSubs: AugmentedSubmittable<(subs: Vec<ITuple<[AccountId32, ITuple<[u128, Vec<ITuple<[AccountId32, Data]>>]>]>> | ([AccountId32 | string | Uint8Array, ITuple<[u128, Vec<ITuple<[AccountId32, Data]>>]> | [u128 | AnyNumber | Uint8Array, Vec<ITuple<[AccountId32, Data]>> | ([AccountId32 | string | Uint8Array, Data | { None: any } | { Raw: any } | { BlakeTwo256: any } | { Sha256: any } | { Keccak256: any } | { ShaThree256: any } | string | Uint8Array])[]]])[]) => SubmittableExtrinsic<ApiType>, [Vec<ITuple<[AccountId32, ITuple<[u128, Vec<ITuple<[AccountId32, Data]>>]>]>>]>;
+      /**
        * Remove an account's identity and sub-account information and slash the deposits.
        * 
        * Payment: Reserved balances from `set_subs` and `set_identity` are slashed and handled by

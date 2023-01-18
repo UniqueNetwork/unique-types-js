@@ -391,6 +391,10 @@ declare module '@polkadot/api-base/types/events' {
        **/
       RegistrarAdded: AugmentedEvent<ApiType, [registrarIndex: u32], { registrarIndex: u32 }>;
       /**
+       * A number of identities were forcibly updated with new sub-identities.
+       **/
+      SubIdentitiesInserted: AugmentedEvent<ApiType, [amount: u32], { amount: u32 }>;
+      /**
        * A sub-identity was added to an identity and the deposit paid.
        **/
       SubIdentityAdded: AugmentedEvent<ApiType, [sub: AccountId32, main: AccountId32, deposit: u128], { sub: AccountId32, main: AccountId32, deposit: u128 }>;
