@@ -1366,6 +1366,10 @@ declare module '@polkadot/api-base/types/submittable' {
        * * `token_prefix`: Byte string containing the token prefix to mark a collection
        * to which a token belongs (limit [`MAX_TOKEN_PREFIX_LENGTH`]).
        * * `mode`: Type of items stored in the collection and type dependent data.
+       * 
+       * returns collection ID
+       * 
+       * Deprecated: `create_collection_ex` is more up-to-date and advanced, prefer it instead.
        **/
       createCollection: AugmentedSubmittable<(collectionName: Vec<u16> | (u16 | AnyNumber | Uint8Array)[], collectionDescription: Vec<u16> | (u16 | AnyNumber | Uint8Array)[], tokenPrefix: Bytes | string | Uint8Array, mode: UpDataStructsCollectionMode | { NFT: any } | { Fungible: any } | { ReFungible: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<u16>, Vec<u16>, Bytes, UpDataStructsCollectionMode]>;
       /**
