@@ -442,6 +442,7 @@ export interface EvmCoreErrorExitError extends Enum {
   readonly isOther: boolean;
   readonly asOther: Text;
   readonly isInvalidCode: boolean;
+  readonly asInvalidCode: u8;
   readonly type: 'StackUnderflow' | 'StackOverflow' | 'InvalidJump' | 'InvalidRange' | 'DesignatedInvalid' | 'CallTooDeep' | 'CreateCollision' | 'CreateContractLimit' | 'OutOfOffset' | 'OutOfGas' | 'OutOfFund' | 'PcUnderflow' | 'CreateEmpty' | 'Other' | 'InvalidCode';
 }
 
