@@ -933,7 +933,7 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * The amount which has been reported as inactive to Currency.
        **/
-      inactive: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
+      deactivated: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Number of proposals that have been made.
        **/
