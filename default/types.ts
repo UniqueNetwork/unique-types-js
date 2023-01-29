@@ -2223,7 +2223,12 @@ export interface PalletTreasuryEvent extends Enum {
     readonly amount: u128;
     readonly beneficiary: AccountId32;
   } & Struct;
-  readonly type: 'Proposed' | 'Spending' | 'Awarded' | 'Rejected' | 'Burnt' | 'Rollover' | 'Deposit' | 'SpendApproved';
+  readonly isUpdatedInactive: boolean;
+  readonly asUpdatedInactive: {
+    readonly reactivated: u128;
+    readonly deactivated: u128;
+  } & Struct;
+  readonly type: 'Proposed' | 'Spending' | 'Awarded' | 'Rejected' | 'Burnt' | 'Rollover' | 'Deposit' | 'SpendApproved' | 'UpdatedInactive';
 }
 
 /** @name PalletTreasuryProposal */
@@ -2767,6 +2772,14 @@ export interface RmrkTraitsThemeThemeProperty extends Struct {
   readonly value: Bytes;
 }
 
+/** @name SpArithmeticArithmeticError */
+export interface SpArithmeticArithmeticError extends Enum {
+  readonly isUnderflow: boolean;
+  readonly isOverflow: boolean;
+  readonly isDivisionByZero: boolean;
+  readonly type: 'Underflow' | 'Overflow' | 'DivisionByZero';
+}
+
 /** @name SpConsensusAuraSr25519AppSr25519Public */
 export interface SpConsensusAuraSr25519AppSr25519Public extends SpCoreSr25519Public {}
 
@@ -2784,14 +2797,6 @@ export interface SpCoreSr25519Public extends U8aFixed {}
 
 /** @name SpCoreSr25519Signature */
 export interface SpCoreSr25519Signature extends U8aFixed {}
-
-/** @name SpRuntimeArithmeticError */
-export interface SpRuntimeArithmeticError extends Enum {
-  readonly isUnderflow: boolean;
-  readonly isOverflow: boolean;
-  readonly isDivisionByZero: boolean;
-  readonly type: 'Underflow' | 'Overflow' | 'DivisionByZero';
-}
 
 /** @name SpRuntimeBlakeTwo256 */
 export interface SpRuntimeBlakeTwo256 extends Null {}
@@ -2828,7 +2833,7 @@ export interface SpRuntimeDispatchError extends Enum {
   readonly isToken: boolean;
   readonly asToken: SpRuntimeTokenError;
   readonly isArithmetic: boolean;
-  readonly asArithmetic: SpRuntimeArithmeticError;
+  readonly asArithmetic: SpArithmeticArithmeticError;
   readonly isTransactional: boolean;
   readonly asTransactional: SpRuntimeTransactionalError;
   readonly isExhausted: boolean;
@@ -3253,7 +3258,10 @@ export interface XcmV0JunctionBodyId extends Enum {
   readonly isTechnical: boolean;
   readonly isLegislative: boolean;
   readonly isJudicial: boolean;
-  readonly type: 'Unit' | 'Named' | 'Index' | 'Executive' | 'Technical' | 'Legislative' | 'Judicial';
+  readonly isDefense: boolean;
+  readonly isAdministration: boolean;
+  readonly isTreasury: boolean;
+  readonly type: 'Unit' | 'Named' | 'Index' | 'Executive' | 'Technical' | 'Legislative' | 'Judicial' | 'Defense' | 'Administration' | 'Treasury';
 }
 
 /** @name XcmV0JunctionBodyPart */
