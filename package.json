@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/unique-mainnet-types",
   "private": false,
-  "version": "936.50.3",
+  "version": "937.51.0",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
