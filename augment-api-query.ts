@@ -733,34 +733,6 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
-    rmrkCore: {
-      /**
-       * Latest yet-unused collection ID.
-       **/
-      collectionIndex: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Mapping from RMRK collection ID to Unique's.
-       **/
-      uniqueCollectionId: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<u32>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-    rmrkEquip: {
-      /**
-       * Checkmark that a Base has a Theme NFT named "default".
-       **/
-      baseHasDefaultTheme: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<bool>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * Map of a Base ID and a Part ID to an NFT in the Base collection serving as the Part.
-       **/
-      inernalPartId: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<u32>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
     session: {
       /**
        * Current index of the session.
@@ -969,7 +941,7 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * The amount which has been reported as inactive to Currency.
        **/
-      inactive: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
+      deactivated: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Number of proposals that have been made.
        **/
