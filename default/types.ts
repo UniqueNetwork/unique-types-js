@@ -5,7 +5,7 @@
 import type { Data } from '@polkadot/types';
 import type { BTreeMap, BTreeSet, Bytes, Compact, Enum, Null, Option, Result, Struct, Text, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
+import type { AccountId32, Call, H160, H256, MultiAddress, Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Event } from '@polkadot/types/interfaces/system';
 
 /** @name CumulusPalletDmpQueueCall */
@@ -2548,7 +2548,7 @@ export interface PalletXcmEvent extends Enum {
 }
 
 /** @name PhantomTypeUpDataStructs */
-export interface PhantomTypeUpDataStructs extends Vec<ITuple<[UpDataStructsTokenData, UpDataStructsRpcCollection, RmrkTraitsCollectionCollectionInfo, RmrkTraitsNftNftInfo, RmrkTraitsResourceResourceInfo, RmrkTraitsPropertyPropertyInfo, RmrkTraitsBaseBaseInfo, RmrkTraitsPartPartType, RmrkTraitsTheme, RmrkTraitsNftNftChild, UpPovEstimateRpcPovInfo]>> {}
+export interface PhantomTypeUpDataStructs extends Vec<ITuple<[UpDataStructsTokenData, UpDataStructsRpcCollection, UpPovEstimateRpcPovInfo]>> {}
 
 /** @name PolkadotCorePrimitivesInboundDownwardMessage */
 export interface PolkadotCorePrimitivesInboundDownwardMessage extends Struct {
@@ -2625,151 +2625,6 @@ export interface QuartzRuntimeRuntimeCommonMaintenanceCheckMaintenance extends N
 /** @name QuartzRuntimeRuntimeCommonSessionKeys */
 export interface QuartzRuntimeRuntimeCommonSessionKeys extends Struct {
   readonly aura: SpConsensusAuraSr25519AppSr25519Public;
-}
-
-/** @name RmrkTraitsBaseBaseInfo */
-export interface RmrkTraitsBaseBaseInfo extends Struct {
-  readonly issuer: AccountId32;
-  readonly baseType: Bytes;
-  readonly symbol: Bytes;
-}
-
-/** @name RmrkTraitsCollectionCollectionInfo */
-export interface RmrkTraitsCollectionCollectionInfo extends Struct {
-  readonly issuer: AccountId32;
-  readonly metadata: Bytes;
-  readonly max: Option<u32>;
-  readonly symbol: Bytes;
-  readonly nftsCount: u32;
-}
-
-/** @name RmrkTraitsNftAccountIdOrCollectionNftTuple */
-export interface RmrkTraitsNftAccountIdOrCollectionNftTuple extends Enum {
-  readonly isAccountId: boolean;
-  readonly asAccountId: AccountId32;
-  readonly isCollectionAndNftTuple: boolean;
-  readonly asCollectionAndNftTuple: ITuple<[u32, u32]>;
-  readonly type: 'AccountId' | 'CollectionAndNftTuple';
-}
-
-/** @name RmrkTraitsNftNftChild */
-export interface RmrkTraitsNftNftChild extends Struct {
-  readonly collectionId: u32;
-  readonly nftId: u32;
-}
-
-/** @name RmrkTraitsNftNftInfo */
-export interface RmrkTraitsNftNftInfo extends Struct {
-  readonly owner: RmrkTraitsNftAccountIdOrCollectionNftTuple;
-  readonly royalty: Option<RmrkTraitsNftRoyaltyInfo>;
-  readonly metadata: Bytes;
-  readonly equipped: bool;
-  readonly pending: bool;
-}
-
-/** @name RmrkTraitsNftRoyaltyInfo */
-export interface RmrkTraitsNftRoyaltyInfo extends Struct {
-  readonly recipient: AccountId32;
-  readonly amount: Permill;
-}
-
-/** @name RmrkTraitsPartEquippableList */
-export interface RmrkTraitsPartEquippableList extends Enum {
-  readonly isAll: boolean;
-  readonly isEmpty: boolean;
-  readonly isCustom: boolean;
-  readonly asCustom: Vec<u32>;
-  readonly type: 'All' | 'Empty' | 'Custom';
-}
-
-/** @name RmrkTraitsPartFixedPart */
-export interface RmrkTraitsPartFixedPart extends Struct {
-  readonly id: u32;
-  readonly z: u32;
-  readonly src: Bytes;
-}
-
-/** @name RmrkTraitsPartPartType */
-export interface RmrkTraitsPartPartType extends Enum {
-  readonly isFixedPart: boolean;
-  readonly asFixedPart: RmrkTraitsPartFixedPart;
-  readonly isSlotPart: boolean;
-  readonly asSlotPart: RmrkTraitsPartSlotPart;
-  readonly type: 'FixedPart' | 'SlotPart';
-}
-
-/** @name RmrkTraitsPartSlotPart */
-export interface RmrkTraitsPartSlotPart extends Struct {
-  readonly id: u32;
-  readonly equippable: RmrkTraitsPartEquippableList;
-  readonly src: Bytes;
-  readonly z: u32;
-}
-
-/** @name RmrkTraitsPropertyPropertyInfo */
-export interface RmrkTraitsPropertyPropertyInfo extends Struct {
-  readonly key: Bytes;
-  readonly value: Bytes;
-}
-
-/** @name RmrkTraitsResourceBasicResource */
-export interface RmrkTraitsResourceBasicResource extends Struct {
-  readonly src: Option<Bytes>;
-  readonly metadata: Option<Bytes>;
-  readonly license: Option<Bytes>;
-  readonly thumb: Option<Bytes>;
-}
-
-/** @name RmrkTraitsResourceComposableResource */
-export interface RmrkTraitsResourceComposableResource extends Struct {
-  readonly parts: Vec<u32>;
-  readonly base: u32;
-  readonly src: Option<Bytes>;
-  readonly metadata: Option<Bytes>;
-  readonly license: Option<Bytes>;
-  readonly thumb: Option<Bytes>;
-}
-
-/** @name RmrkTraitsResourceResourceInfo */
-export interface RmrkTraitsResourceResourceInfo extends Struct {
-  readonly id: u32;
-  readonly resource: RmrkTraitsResourceResourceTypes;
-  readonly pending: bool;
-  readonly pendingRemoval: bool;
-}
-
-/** @name RmrkTraitsResourceResourceTypes */
-export interface RmrkTraitsResourceResourceTypes extends Enum {
-  readonly isBasic: boolean;
-  readonly asBasic: RmrkTraitsResourceBasicResource;
-  readonly isComposable: boolean;
-  readonly asComposable: RmrkTraitsResourceComposableResource;
-  readonly isSlot: boolean;
-  readonly asSlot: RmrkTraitsResourceSlotResource;
-  readonly type: 'Basic' | 'Composable' | 'Slot';
-}
-
-/** @name RmrkTraitsResourceSlotResource */
-export interface RmrkTraitsResourceSlotResource extends Struct {
-  readonly base: u32;
-  readonly src: Option<Bytes>;
-  readonly metadata: Option<Bytes>;
-  readonly slot: u32;
-  readonly license: Option<Bytes>;
-  readonly thumb: Option<Bytes>;
-}
-
-/** @name RmrkTraitsTheme */
-export interface RmrkTraitsTheme extends Struct {
-  readonly name: Bytes;
-  readonly properties: Vec<RmrkTraitsThemeThemeProperty>;
-  readonly inherit: bool;
-}
-
-/** @name RmrkTraitsThemeThemeProperty */
-export interface RmrkTraitsThemeThemeProperty extends Struct {
-  readonly key: Bytes;
-  readonly value: Bytes;
 }
 
 /** @name SpArithmeticArithmeticError */
