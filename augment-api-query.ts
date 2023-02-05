@@ -387,7 +387,7 @@ declare module '@polkadot/api-base/types/storage' {
        * usual [`TokenProperties`] due to an unlimited number
        * and separately stored and written-to key-value pairs.
        * 
-       * Currently used to store RMRK data.
+       * Currently unused.
        **/
       tokenAuxProperties: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array, arg3: UpDataStructsPropertyScope | 'None' | 'Rmrk' | number | Uint8Array, arg4: Bytes | string | Uint8Array) => Observable<Option<Bytes>>, [u32, u32, UpDataStructsPropertyScope, Bytes]> & QueryableStorageEntry<ApiType, [u32, u32, UpDataStructsPropertyScope, Bytes]>;
       /**

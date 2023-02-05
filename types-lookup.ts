@@ -7,7 +7,7 @@ import '@polkadot/types/lookup';
 
 import type { BTreeMap, BTreeSet, Bytes, Compact, Enum, Null, Option, Result, Struct, Text, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
+import type { AccountId32, Call, H160, H256, MultiAddress, Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Event } from '@polkadot/types/interfaces/system';
 
 declare module '@polkadot/types/lookup' {
@@ -3024,7 +3024,7 @@ declare module '@polkadot/types/lookup' {
   }
 
   /** @name PhantomTypeUpDataStructs (364) */
-  interface PhantomTypeUpDataStructs extends Vec<ITuple<[UpDataStructsTokenData, UpDataStructsRpcCollection, RmrkTraitsCollectionCollectionInfo, RmrkTraitsNftNftInfo, RmrkTraitsResourceResourceInfo, RmrkTraitsPropertyPropertyInfo, RmrkTraitsBaseBaseInfo, RmrkTraitsPartPartType, RmrkTraitsTheme, RmrkTraitsNftNftChild, UpPovEstimateRpcPovInfo]>> {}
+  interface PhantomTypeUpDataStructs extends Vec<ITuple<[UpDataStructsTokenData, UpDataStructsRpcCollection, UpPovEstimateRpcPovInfo]>> {}
 
   /** @name UpDataStructsTokenData (366) */
   interface UpDataStructsTokenData extends Struct {
@@ -3055,152 +3055,7 @@ declare module '@polkadot/types/lookup' {
     readonly erc721metadata: bool;
   }
 
-  /** @name RmrkTraitsCollectionCollectionInfo (370) */
-  interface RmrkTraitsCollectionCollectionInfo extends Struct {
-    readonly issuer: AccountId32;
-    readonly metadata: Bytes;
-    readonly max: Option<u32>;
-    readonly symbol: Bytes;
-    readonly nftsCount: u32;
-  }
-
-  /** @name RmrkTraitsNftNftInfo (373) */
-  interface RmrkTraitsNftNftInfo extends Struct {
-    readonly owner: RmrkTraitsNftAccountIdOrCollectionNftTuple;
-    readonly royalty: Option<RmrkTraitsNftRoyaltyInfo>;
-    readonly metadata: Bytes;
-    readonly equipped: bool;
-    readonly pending: bool;
-  }
-
-  /** @name RmrkTraitsNftAccountIdOrCollectionNftTuple (374) */
-  interface RmrkTraitsNftAccountIdOrCollectionNftTuple extends Enum {
-    readonly isAccountId: boolean;
-    readonly asAccountId: AccountId32;
-    readonly isCollectionAndNftTuple: boolean;
-    readonly asCollectionAndNftTuple: ITuple<[u32, u32]>;
-    readonly type: 'AccountId' | 'CollectionAndNftTuple';
-  }
-
-  /** @name RmrkTraitsNftRoyaltyInfo (376) */
-  interface RmrkTraitsNftRoyaltyInfo extends Struct {
-    readonly recipient: AccountId32;
-    readonly amount: Permill;
-  }
-
-  /** @name RmrkTraitsResourceResourceInfo (377) */
-  interface RmrkTraitsResourceResourceInfo extends Struct {
-    readonly id: u32;
-    readonly resource: RmrkTraitsResourceResourceTypes;
-    readonly pending: bool;
-    readonly pendingRemoval: bool;
-  }
-
-  /** @name RmrkTraitsResourceResourceTypes (379) */
-  interface RmrkTraitsResourceResourceTypes extends Enum {
-    readonly isBasic: boolean;
-    readonly asBasic: RmrkTraitsResourceBasicResource;
-    readonly isComposable: boolean;
-    readonly asComposable: RmrkTraitsResourceComposableResource;
-    readonly isSlot: boolean;
-    readonly asSlot: RmrkTraitsResourceSlotResource;
-    readonly type: 'Basic' | 'Composable' | 'Slot';
-  }
-
-  /** @name RmrkTraitsResourceBasicResource (380) */
-  interface RmrkTraitsResourceBasicResource extends Struct {
-    readonly src: Option<Bytes>;
-    readonly metadata: Option<Bytes>;
-    readonly license: Option<Bytes>;
-    readonly thumb: Option<Bytes>;
-  }
-
-  /** @name RmrkTraitsResourceComposableResource (382) */
-  interface RmrkTraitsResourceComposableResource extends Struct {
-    readonly parts: Vec<u32>;
-    readonly base: u32;
-    readonly src: Option<Bytes>;
-    readonly metadata: Option<Bytes>;
-    readonly license: Option<Bytes>;
-    readonly thumb: Option<Bytes>;
-  }
-
-  /** @name RmrkTraitsResourceSlotResource (383) */
-  interface RmrkTraitsResourceSlotResource extends Struct {
-    readonly base: u32;
-    readonly src: Option<Bytes>;
-    readonly metadata: Option<Bytes>;
-    readonly slot: u32;
-    readonly license: Option<Bytes>;
-    readonly thumb: Option<Bytes>;
-  }
-
-  /** @name RmrkTraitsPropertyPropertyInfo (384) */
-  interface RmrkTraitsPropertyPropertyInfo extends Struct {
-    readonly key: Bytes;
-    readonly value: Bytes;
-  }
-
-  /** @name RmrkTraitsBaseBaseInfo (387) */
-  interface RmrkTraitsBaseBaseInfo extends Struct {
-    readonly issuer: AccountId32;
-    readonly baseType: Bytes;
-    readonly symbol: Bytes;
-  }
-
-  /** @name RmrkTraitsPartPartType (388) */
-  interface RmrkTraitsPartPartType extends Enum {
-    readonly isFixedPart: boolean;
-    readonly asFixedPart: RmrkTraitsPartFixedPart;
-    readonly isSlotPart: boolean;
-    readonly asSlotPart: RmrkTraitsPartSlotPart;
-    readonly type: 'FixedPart' | 'SlotPart';
-  }
-
-  /** @name RmrkTraitsPartFixedPart (390) */
-  interface RmrkTraitsPartFixedPart extends Struct {
-    readonly id: u32;
-    readonly z: u32;
-    readonly src: Bytes;
-  }
-
-  /** @name RmrkTraitsPartSlotPart (391) */
-  interface RmrkTraitsPartSlotPart extends Struct {
-    readonly id: u32;
-    readonly equippable: RmrkTraitsPartEquippableList;
-    readonly src: Bytes;
-    readonly z: u32;
-  }
-
-  /** @name RmrkTraitsPartEquippableList (392) */
-  interface RmrkTraitsPartEquippableList extends Enum {
-    readonly isAll: boolean;
-    readonly isEmpty: boolean;
-    readonly isCustom: boolean;
-    readonly asCustom: Vec<u32>;
-    readonly type: 'All' | 'Empty' | 'Custom';
-  }
-
-  /** @name RmrkTraitsTheme (393) */
-  interface RmrkTraitsTheme extends Struct {
-    readonly name: Bytes;
-    readonly properties: Vec<RmrkTraitsThemeThemeProperty>;
-    readonly inherit: bool;
-  }
-
-  /** @name RmrkTraitsThemeThemeProperty (395) */
-  interface RmrkTraitsThemeThemeProperty extends Struct {
-    readonly key: Bytes;
-    readonly value: Bytes;
-  }
-
-  /** @name RmrkTraitsNftNftChild (397) */
-  interface RmrkTraitsNftNftChild extends Struct {
-    readonly collectionId: u32;
-    readonly nftId: u32;
-  }
-
-  /** @name UpPovEstimateRpcPovInfo (398) */
+  /** @name UpPovEstimateRpcPovInfo (370) */
   interface UpPovEstimateRpcPovInfo extends Struct {
     readonly proofSize: u64;
     readonly compactProofSize: u64;
@@ -3209,7 +3064,7 @@ declare module '@polkadot/types/lookup' {
     readonly keyValues: Vec<UpPovEstimateRpcTrieKeyValue>;
   }
 
-  /** @name SpRuntimeTransactionValidityTransactionValidityError (401) */
+  /** @name SpRuntimeTransactionValidityTransactionValidityError (373) */
   interface SpRuntimeTransactionValidityTransactionValidityError extends Enum {
     readonly isInvalid: boolean;
     readonly asInvalid: SpRuntimeTransactionValidityInvalidTransaction;
@@ -3218,7 +3073,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'Invalid' | 'Unknown';
   }
 
-  /** @name SpRuntimeTransactionValidityInvalidTransaction (402) */
+  /** @name SpRuntimeTransactionValidityInvalidTransaction (374) */
   interface SpRuntimeTransactionValidityInvalidTransaction extends Enum {
     readonly isCall: boolean;
     readonly isPayment: boolean;
@@ -3235,7 +3090,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'Call' | 'Payment' | 'Future' | 'Stale' | 'BadProof' | 'AncientBirthBlock' | 'ExhaustsResources' | 'Custom' | 'BadMandatory' | 'MandatoryValidation' | 'BadSigner';
   }
 
-  /** @name SpRuntimeTransactionValidityUnknownTransaction (403) */
+  /** @name SpRuntimeTransactionValidityUnknownTransaction (375) */
   interface SpRuntimeTransactionValidityUnknownTransaction extends Enum {
     readonly isCannotLookup: boolean;
     readonly isNoUnsignedValidator: boolean;
@@ -3244,13 +3099,13 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'CannotLookup' | 'NoUnsignedValidator' | 'Custom';
   }
 
-  /** @name UpPovEstimateRpcTrieKeyValue (405) */
+  /** @name UpPovEstimateRpcTrieKeyValue (377) */
   interface UpPovEstimateRpcTrieKeyValue extends Struct {
     readonly key: Bytes;
     readonly value: Bytes;
   }
 
-  /** @name PalletCommonError (407) */
+  /** @name PalletCommonError (379) */
   interface PalletCommonError extends Enum {
     readonly isCollectionNotFound: boolean;
     readonly isMustBeTokenOwner: boolean;
@@ -3292,7 +3147,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'CollectionNotFound' | 'MustBeTokenOwner' | 'NoPermission' | 'CantDestroyNotEmptyCollection' | 'PublicMintingNotAllowed' | 'AddressNotInAllowlist' | 'CollectionNameLimitExceeded' | 'CollectionDescriptionLimitExceeded' | 'CollectionTokenPrefixLimitExceeded' | 'TotalCollectionsLimitExceeded' | 'CollectionAdminCountExceeded' | 'CollectionLimitBoundsExceeded' | 'OwnerPermissionsCantBeReverted' | 'TransferNotAllowed' | 'AccountTokenLimitExceeded' | 'CollectionTokenLimitExceeded' | 'MetadataFlagFrozen' | 'TokenNotFound' | 'TokenValueTooLow' | 'ApprovedValueTooLow' | 'CantApproveMoreThanOwned' | 'AddressIsNotEthMirror' | 'AddressIsZero' | 'UnsupportedOperation' | 'NotSufficientFounds' | 'UserIsNotAllowedToNest' | 'SourceCollectionIsNotAllowedToNest' | 'CollectionFieldSizeExceeded' | 'NoSpaceForProperty' | 'PropertyLimitReached' | 'PropertyKeyIsTooLong' | 'InvalidCharacterInPropertyKey' | 'EmptyPropertyKey' | 'CollectionIsExternal' | 'CollectionIsInternal' | 'ConfirmSponsorshipFail' | 'UserIsNotCollectionAdmin';
   }
 
-  /** @name PalletFungibleError (409) */
+  /** @name PalletFungibleError (381) */
   interface PalletFungibleError extends Enum {
     readonly isNotFungibleDataUsedToMintFungibleCollectionToken: boolean;
     readonly isFungibleItemsHaveNoId: boolean;
@@ -3304,19 +3159,19 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'NotFungibleDataUsedToMintFungibleCollectionToken' | 'FungibleItemsHaveNoId' | 'FungibleItemsDontHaveData' | 'FungibleDisallowsNesting' | 'SettingPropertiesNotAllowed' | 'SettingAllowanceForAllNotAllowed' | 'FungibleTokensAreAlwaysValid';
   }
 
-  /** @name PalletNonfungibleItemData (410) */
+  /** @name PalletNonfungibleItemData (382) */
   interface PalletNonfungibleItemData extends Struct {
     readonly owner: PalletEvmAccountBasicCrossAccountIdRepr;
   }
 
-  /** @name UpDataStructsPropertyScope (412) */
+  /** @name UpDataStructsPropertyScope (384) */
   interface UpDataStructsPropertyScope extends Enum {
     readonly isNone: boolean;
     readonly isRmrk: boolean;
     readonly type: 'None' | 'Rmrk';
   }
 
-  /** @name PalletNonfungibleError (416) */
+  /** @name PalletNonfungibleError (388) */
   interface PalletNonfungibleError extends Enum {
     readonly isNotNonfungibleDataUsedToMintFungibleCollectionToken: boolean;
     readonly isNonfungibleItemsHaveNoAmount: boolean;
@@ -3324,7 +3179,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'NotNonfungibleDataUsedToMintFungibleCollectionToken' | 'NonfungibleItemsHaveNoAmount' | 'CantBurnNftWithChildren';
   }
 
-  /** @name PalletStructureError (417) */
+  /** @name PalletStructureError (389) */
   interface PalletStructureError extends Enum {
     readonly isOuroborosDetected: boolean;
     readonly isDepthLimit: boolean;
@@ -3334,7 +3189,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'OuroborosDetected' | 'DepthLimit' | 'BreadthLimit' | 'TokenNotFound' | 'CantNestTokenUnderCollection';
   }
 
-  /** @name PalletForeignAssetsModuleError (418) */
+  /** @name PalletForeignAssetsModuleError (390) */
   interface PalletForeignAssetsModuleError extends Enum {
     readonly isBadLocation: boolean;
     readonly isMultiLocationExisted: boolean;
@@ -3343,7 +3198,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'BadLocation' | 'MultiLocationExisted' | 'AssetIdNotExists' | 'AssetIdExisted';
   }
 
-  /** @name PalletEvmError (420) */
+  /** @name PalletEvmError (392) */
   interface PalletEvmError extends Enum {
     readonly isBalanceLow: boolean;
     readonly isFeeOverflow: boolean;
@@ -3359,7 +3214,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'BalanceLow' | 'FeeOverflow' | 'PaymentOverflow' | 'WithdrawFailed' | 'GasPriceTooLow' | 'InvalidNonce' | 'GasLimitTooLow' | 'GasLimitTooHigh' | 'Undefined' | 'Reentrancy' | 'TransactionMustComeFromEOA';
   }
 
-  /** @name FpRpcTransactionStatus (423) */
+  /** @name FpRpcTransactionStatus (395) */
   interface FpRpcTransactionStatus extends Struct {
     readonly transactionHash: H256;
     readonly transactionIndex: u32;
@@ -3370,10 +3225,10 @@ declare module '@polkadot/types/lookup' {
     readonly logsBloom: EthbloomBloom;
   }
 
-  /** @name EthbloomBloom (425) */
+  /** @name EthbloomBloom (397) */
   interface EthbloomBloom extends U8aFixed {}
 
-  /** @name EthereumReceiptReceiptV3 (427) */
+  /** @name EthereumReceiptReceiptV3 (399) */
   interface EthereumReceiptReceiptV3 extends Enum {
     readonly isLegacy: boolean;
     readonly asLegacy: EthereumReceiptEip658ReceiptData;
@@ -3384,7 +3239,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'Legacy' | 'Eip2930' | 'Eip1559';
   }
 
-  /** @name EthereumReceiptEip658ReceiptData (428) */
+  /** @name EthereumReceiptEip658ReceiptData (400) */
   interface EthereumReceiptEip658ReceiptData extends Struct {
     readonly statusCode: u8;
     readonly usedGas: U256;
@@ -3392,14 +3247,14 @@ declare module '@polkadot/types/lookup' {
     readonly logs: Vec<EthereumLog>;
   }
 
-  /** @name EthereumBlock (429) */
+  /** @name EthereumBlock (401) */
   interface EthereumBlock extends Struct {
     readonly header: EthereumHeader;
     readonly transactions: Vec<EthereumTransactionTransactionV2>;
     readonly ommers: Vec<EthereumHeader>;
   }
 
-  /** @name EthereumHeader (430) */
+  /** @name EthereumHeader (402) */
   interface EthereumHeader extends Struct {
     readonly parentHash: H256;
     readonly ommersHash: H256;
@@ -3418,24 +3273,24 @@ declare module '@polkadot/types/lookup' {
     readonly nonce: EthereumTypesHashH64;
   }
 
-  /** @name EthereumTypesHashH64 (431) */
+  /** @name EthereumTypesHashH64 (403) */
   interface EthereumTypesHashH64 extends U8aFixed {}
 
-  /** @name PalletEthereumError (436) */
+  /** @name PalletEthereumError (408) */
   interface PalletEthereumError extends Enum {
     readonly isInvalidSignature: boolean;
     readonly isPreLogExists: boolean;
     readonly type: 'InvalidSignature' | 'PreLogExists';
   }
 
-  /** @name PalletEvmCoderSubstrateError (437) */
+  /** @name PalletEvmCoderSubstrateError (409) */
   interface PalletEvmCoderSubstrateError extends Enum {
     readonly isOutOfGas: boolean;
     readonly isOutOfFund: boolean;
     readonly type: 'OutOfGas' | 'OutOfFund';
   }
 
-  /** @name UpDataStructsSponsorshipStateBasicCrossAccountIdRepr (438) */
+  /** @name UpDataStructsSponsorshipStateBasicCrossAccountIdRepr (410) */
   interface UpDataStructsSponsorshipStateBasicCrossAccountIdRepr extends Enum {
     readonly isDisabled: boolean;
     readonly isUnconfirmed: boolean;
@@ -3445,7 +3300,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'Disabled' | 'Unconfirmed' | 'Confirmed';
   }
 
-  /** @name PalletEvmContractHelpersSponsoringModeT (439) */
+  /** @name PalletEvmContractHelpersSponsoringModeT (411) */
   interface PalletEvmContractHelpersSponsoringModeT extends Enum {
     readonly isDisabled: boolean;
     readonly isAllowlisted: boolean;
@@ -3453,7 +3308,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'Disabled' | 'Allowlisted' | 'Generous';
   }
 
-  /** @name PalletEvmContractHelpersError (445) */
+  /** @name PalletEvmContractHelpersError (417) */
   interface PalletEvmContractHelpersError extends Enum {
     readonly isNoPermission: boolean;
     readonly isNoPendingSponsor: boolean;
@@ -3461,7 +3316,7 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'NoPermission' | 'NoPendingSponsor' | 'TooManyMethodsHaveSponsoredLimit';
   }
 
-  /** @name PalletEvmMigrationError (446) */
+  /** @name PalletEvmMigrationError (418) */
   interface PalletEvmMigrationError extends Enum {
     readonly isAccountNotEmpty: boolean;
     readonly isAccountIsNotMigrating: boolean;
@@ -3469,10 +3324,10 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'AccountNotEmpty' | 'AccountIsNotMigrating' | 'BadEvent';
   }
 
-  /** @name PalletMaintenanceError (447) */
+  /** @name PalletMaintenanceError (419) */
   type PalletMaintenanceError = Null;
 
-  /** @name SpRuntimeMultiSignature (449) */
+  /** @name SpRuntimeMultiSignature (421) */
   interface SpRuntimeMultiSignature extends Enum {
     readonly isEd25519: boolean;
     readonly asEd25519: SpCoreEd25519Signature;
@@ -3483,43 +3338,43 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'Ed25519' | 'Sr25519' | 'Ecdsa';
   }
 
-  /** @name SpCoreEd25519Signature (450) */
+  /** @name SpCoreEd25519Signature (422) */
   interface SpCoreEd25519Signature extends U8aFixed {}
 
-  /** @name SpCoreSr25519Signature (452) */
+  /** @name SpCoreSr25519Signature (424) */
   interface SpCoreSr25519Signature extends U8aFixed {}
 
-  /** @name SpCoreEcdsaSignature (453) */
+  /** @name SpCoreEcdsaSignature (425) */
   interface SpCoreEcdsaSignature extends U8aFixed {}
 
-  /** @name FrameSystemExtensionsCheckSpecVersion (456) */
+  /** @name FrameSystemExtensionsCheckSpecVersion (428) */
   type FrameSystemExtensionsCheckSpecVersion = Null;
 
-  /** @name FrameSystemExtensionsCheckTxVersion (457) */
+  /** @name FrameSystemExtensionsCheckTxVersion (429) */
   type FrameSystemExtensionsCheckTxVersion = Null;
 
-  /** @name FrameSystemExtensionsCheckGenesis (458) */
+  /** @name FrameSystemExtensionsCheckGenesis (430) */
   type FrameSystemExtensionsCheckGenesis = Null;
 
-  /** @name FrameSystemExtensionsCheckNonce (461) */
+  /** @name FrameSystemExtensionsCheckNonce (433) */
   interface FrameSystemExtensionsCheckNonce extends Compact<u32> {}
 
-  /** @name FrameSystemExtensionsCheckWeight (462) */
+  /** @name FrameSystemExtensionsCheckWeight (434) */
   type FrameSystemExtensionsCheckWeight = Null;
 
-  /** @name UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance (463) */
+  /** @name UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance (435) */
   type UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance = Null;
 
-  /** @name UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls (464) */
+  /** @name UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls (436) */
   type UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls = Null;
 
-  /** @name PalletTemplateTransactionPaymentChargeTransactionPayment (465) */
+  /** @name PalletTemplateTransactionPaymentChargeTransactionPayment (437) */
   interface PalletTemplateTransactionPaymentChargeTransactionPayment extends Compact<u128> {}
 
-  /** @name UniqueRuntimeRuntime (466) */
+  /** @name UniqueRuntimeRuntime (438) */
   type UniqueRuntimeRuntime = Null;
 
-  /** @name PalletEthereumFakeTransactionFinalizer (467) */
+  /** @name PalletEthereumFakeTransactionFinalizer (439) */
   type PalletEthereumFakeTransactionFinalizer = Null;
 
 } // declare module
