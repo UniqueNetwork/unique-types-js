@@ -22,6 +22,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       IncorrectLockedBalanceOperation: AugmentedError<ApiType>;
       /**
+       * Errors caused by insufficient staked balance.
+       **/
+      InsufficientStakedBalance: AugmentedError<ApiType>;
+      /**
        * No permission to perform an action.
        **/
       NoPermission: AugmentedError<ApiType>;

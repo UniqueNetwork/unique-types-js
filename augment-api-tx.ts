@@ -111,11 +111,21 @@ declare module '@polkadot/api-base/types/submittable' {
       stopSponsoringContract: AugmentedSubmittable<(contractId: H160 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160]>;
       /**
        * Unstakes all stakes.
-       * Moves the sum of all stakes to the `reserved` state.
        * After the end of `PendingInterval` this sum becomes completely
        * free for further use.
        **/
-      unstake: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      unstakeAll: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Unstakes the amount of balance for the staker.
+       * After the end of `PendingInterval` this sum becomes completely
+       * free for further use.
+       * 
+       * # Arguments
+       * 
+       * * `staker`: staker account.
+       * * `amount`: amount of unstaked funds.
+       **/
+      unstakePartial: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128]>;
       /**
        * Generic tx
        **/
@@ -367,6 +377,10 @@ declare module '@polkadot/api-base/types/submittable' {
        * Create substrate events
        **/
       insertEvents: AugmentedSubmittable<(events: Vec<Bytes> | (Bytes | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<Bytes>]>;
+      /**
+       * Remove remark compatibility data leftovers
+       **/
+      removeRmrkData: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
        * Insert items into contract storage, this method can be called
        * multiple times

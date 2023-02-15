@@ -2752,7 +2752,7 @@ export default {
       stake: {
         amount: 'u128',
       },
-      unstake: 'Null',
+      unstake_all: 'Null',
       sponsor_collection: {
         collectionId: 'u32',
       },
@@ -2766,7 +2766,10 @@ export default {
         contractId: 'H160',
       },
       payout_stakers: {
-        stakersNumber: 'Option<u8>'
+        stakersNumber: 'Option<u8>',
+      },
+      unstake_partial: {
+        amount: 'u128'
       }
     }
   },
@@ -2939,8 +2942,9 @@ export default {
         logs: 'Vec<EthereumLog>',
       },
       insert_events: {
-        events: 'Vec<Bytes>'
-      }
+        events: 'Vec<Bytes>',
+      },
+      remove_rmrk_data: 'Null'
     }
   },
   /**
@@ -3314,7 +3318,7 @@ export default {
    * Lookup483: pallet_app_promotion::pallet::Error<T>
    **/
   PalletAppPromotionError: {
-    _enum: ['AdminNotSet', 'NoPermission', 'NotSufficientFunds', 'PendingForBlockOverflow', 'SponsorNotSet', 'IncorrectLockedBalanceOperation']
+    _enum: ['AdminNotSet', 'NoPermission', 'NotSufficientFunds', 'PendingForBlockOverflow', 'SponsorNotSet', 'IncorrectLockedBalanceOperation', 'InsufficientStakedBalance']
   },
   /**
    * Lookup484: pallet_foreign_assets::module::Error<T>
