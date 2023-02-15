@@ -1001,7 +1001,7 @@ export interface PalletAppPromotionCall extends Enum {
   readonly asStake: {
     readonly amount: u128;
   } & Struct;
-  readonly isUnstake: boolean;
+  readonly isUnstakeAll: boolean;
   readonly isSponsorCollection: boolean;
   readonly asSponsorCollection: {
     readonly collectionId: u32;
@@ -1022,7 +1022,11 @@ export interface PalletAppPromotionCall extends Enum {
   readonly asPayoutStakers: {
     readonly stakersNumber: Option<u8>;
   } & Struct;
-  readonly type: 'SetAdminAddress' | 'Stake' | 'Unstake' | 'SponsorCollection' | 'StopSponsoringCollection' | 'SponsorContract' | 'StopSponsoringContract' | 'PayoutStakers';
+  readonly isUnstakePartial: boolean;
+  readonly asUnstakePartial: {
+    readonly amount: u128;
+  } & Struct;
+  readonly type: 'SetAdminAddress' | 'Stake' | 'UnstakeAll' | 'SponsorCollection' | 'StopSponsoringCollection' | 'SponsorContract' | 'StopSponsoringContract' | 'PayoutStakers' | 'UnstakePartial';
 }
 
 /** @name PalletAppPromotionError */
@@ -1033,7 +1037,8 @@ export interface PalletAppPromotionError extends Enum {
   readonly isPendingForBlockOverflow: boolean;
   readonly isSponsorNotSet: boolean;
   readonly isIncorrectLockedBalanceOperation: boolean;
-  readonly type: 'AdminNotSet' | 'NoPermission' | 'NotSufficientFunds' | 'PendingForBlockOverflow' | 'SponsorNotSet' | 'IncorrectLockedBalanceOperation';
+  readonly isInsufficientStakedBalance: boolean;
+  readonly type: 'AdminNotSet' | 'NoPermission' | 'NotSufficientFunds' | 'PendingForBlockOverflow' | 'SponsorNotSet' | 'IncorrectLockedBalanceOperation' | 'InsufficientStakedBalance';
 }
 
 /** @name PalletAppPromotionEvent */
@@ -1626,7 +1631,8 @@ export interface PalletEvmMigrationCall extends Enum {
   readonly asInsertEvents: {
     readonly events: Vec<Bytes>;
   } & Struct;
-  readonly type: 'Begin' | 'SetData' | 'Finish' | 'InsertEthLogs' | 'InsertEvents';
+  readonly isRemoveRmrkData: boolean;
+  readonly type: 'Begin' | 'SetData' | 'Finish' | 'InsertEthLogs' | 'InsertEvents' | 'RemoveRmrkData';
 }
 
 /** @name PalletEvmMigrationError */
