@@ -207,6 +207,10 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       insertEvents: AugmentedSubmittable<(events: Vec<Bytes> | (Bytes | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<Bytes>]>;
       /**
+       * Remove remark compatibility data leftovers
+       **/
+      removeRmrkData: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
        * Insert items into contract storage, this method can be called
        * multiple times
        **/

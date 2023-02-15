@@ -1467,7 +1467,8 @@ export interface PalletEvmMigrationCall extends Enum {
   readonly asInsertEvents: {
     readonly events: Vec<Bytes>;
   } & Struct;
-  readonly type: 'Begin' | 'SetData' | 'Finish' | 'InsertEthLogs' | 'InsertEvents';
+  readonly isRemoveRmrkData: boolean;
+  readonly type: 'Begin' | 'SetData' | 'Finish' | 'InsertEthLogs' | 'InsertEvents' | 'RemoveRmrkData';
 }
 
 /** @name PalletEvmMigrationError */
@@ -1610,6 +1611,16 @@ export interface PalletNonfungibleError extends Enum {
 /** @name PalletNonfungibleItemData */
 export interface PalletNonfungibleItemData extends Struct {
   readonly owner: PalletEvmAccountBasicCrossAccountIdRepr;
+}
+
+/** @name PalletRefungibleError */
+export interface PalletRefungibleError extends Enum {
+  readonly isNotRefungibleDataUsedToMintFungibleCollectionToken: boolean;
+  readonly isWrongRefungiblePieces: boolean;
+  readonly isRepartitionWhileNotOwningAllPieces: boolean;
+  readonly isRefungibleDisallowsNesting: boolean;
+  readonly isSettingPropertiesNotAllowed: boolean;
+  readonly type: 'NotRefungibleDataUsedToMintFungibleCollectionToken' | 'WrongRefungiblePieces' | 'RepartitionWhileNotOwningAllPieces' | 'RefungibleDisallowsNesting' | 'SettingPropertiesNotAllowed';
 }
 
 /** @name PalletStructureCall */

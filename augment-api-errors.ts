@@ -520,6 +520,32 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    refungible: {
+      /**
+       * Not Refungible item data used to mint in Refungible collection.
+       **/
+      NotRefungibleDataUsedToMintFungibleCollectionToken: AugmentedError<ApiType>;
+      /**
+       * Refungible token can't nest other tokens.
+       **/
+      RefungibleDisallowsNesting: AugmentedError<ApiType>;
+      /**
+       * Refungible token can't be repartitioned by user who isn't owns all pieces.
+       **/
+      RepartitionWhileNotOwningAllPieces: AugmentedError<ApiType>;
+      /**
+       * Setting item properties is not allowed.
+       **/
+      SettingPropertiesNotAllowed: AugmentedError<ApiType>;
+      /**
+       * Maximum refungibility exceeded.
+       **/
+      WrongRefungiblePieces: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     structure: {
       /**
        * While nesting, reached the breadth limit of nesting, exceeding the provided budget.

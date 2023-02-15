@@ -2567,8 +2567,9 @@ export default {
         logs: 'Vec<EthereumLog>',
       },
       insert_events: {
-        events: 'Vec<Bytes>'
-      }
+        events: 'Vec<Bytes>',
+      },
+      remove_rmrk_data: 'Null'
     }
   },
   /**
@@ -2876,43 +2877,49 @@ export default {
     _enum: ['NotFungibleDataUsedToMintFungibleCollectionToken', 'FungibleItemsHaveNoId', 'FungibleItemsDontHaveData', 'FungibleDisallowsNesting', 'SettingPropertiesNotAllowed', 'SettingAllowanceForAllNotAllowed', 'FungibleTokensAreAlwaysValid']
   },
   /**
-   * Lookup382: pallet_nonfungible::ItemData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup385: pallet_refungible::pallet::Error<T>
+   **/
+  PalletRefungibleError: {
+    _enum: ['NotRefungibleDataUsedToMintFungibleCollectionToken', 'WrongRefungiblePieces', 'RepartitionWhileNotOwningAllPieces', 'RefungibleDisallowsNesting', 'SettingPropertiesNotAllowed']
+  },
+  /**
+   * Lookup386: pallet_nonfungible::ItemData<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   PalletNonfungibleItemData: {
     owner: 'PalletEvmAccountBasicCrossAccountIdRepr'
   },
   /**
-   * Lookup384: up_data_structs::PropertyScope
+   * Lookup388: up_data_structs::PropertyScope
    **/
   UpDataStructsPropertyScope: {
     _enum: ['None', 'Rmrk']
   },
   /**
-   * Lookup388: pallet_nonfungible::pallet::Error<T>
+   * Lookup391: pallet_nonfungible::pallet::Error<T>
    **/
   PalletNonfungibleError: {
     _enum: ['NotNonfungibleDataUsedToMintFungibleCollectionToken', 'NonfungibleItemsHaveNoAmount', 'CantBurnNftWithChildren']
   },
   /**
-   * Lookup389: pallet_structure::pallet::Error<T>
+   * Lookup392: pallet_structure::pallet::Error<T>
    **/
   PalletStructureError: {
     _enum: ['OuroborosDetected', 'DepthLimit', 'BreadthLimit', 'TokenNotFound', 'CantNestTokenUnderCollection']
   },
   /**
-   * Lookup390: pallet_foreign_assets::module::Error<T>
+   * Lookup393: pallet_foreign_assets::module::Error<T>
    **/
   PalletForeignAssetsModuleError: {
     _enum: ['BadLocation', 'MultiLocationExisted', 'AssetIdNotExists', 'AssetIdExisted']
   },
   /**
-   * Lookup392: pallet_evm::pallet::Error<T>
+   * Lookup395: pallet_evm::pallet::Error<T>
    **/
   PalletEvmError: {
     _enum: ['BalanceLow', 'FeeOverflow', 'PaymentOverflow', 'WithdrawFailed', 'GasPriceTooLow', 'InvalidNonce', 'GasLimitTooLow', 'GasLimitTooHigh', 'Undefined', 'Reentrancy', 'TransactionMustComeFromEOA']
   },
   /**
-   * Lookup395: fp_rpc::TransactionStatus
+   * Lookup398: fp_rpc::TransactionStatus
    **/
   FpRpcTransactionStatus: {
     transactionHash: 'H256',
@@ -2924,11 +2931,11 @@ export default {
     logsBloom: 'EthbloomBloom'
   },
   /**
-   * Lookup397: ethbloom::Bloom
+   * Lookup400: ethbloom::Bloom
    **/
   EthbloomBloom: '[u8;256]',
   /**
-   * Lookup399: ethereum::receipt::ReceiptV3
+   * Lookup402: ethereum::receipt::ReceiptV3
    **/
   EthereumReceiptReceiptV3: {
     _enum: {
@@ -2938,7 +2945,7 @@ export default {
     }
   },
   /**
-   * Lookup400: ethereum::receipt::EIP658ReceiptData
+   * Lookup403: ethereum::receipt::EIP658ReceiptData
    **/
   EthereumReceiptEip658ReceiptData: {
     statusCode: 'u8',
@@ -2947,7 +2954,7 @@ export default {
     logs: 'Vec<EthereumLog>'
   },
   /**
-   * Lookup401: ethereum::block::Block<ethereum::transaction::TransactionV2>
+   * Lookup404: ethereum::block::Block<ethereum::transaction::TransactionV2>
    **/
   EthereumBlock: {
     header: 'EthereumHeader',
@@ -2955,7 +2962,7 @@ export default {
     ommers: 'Vec<EthereumHeader>'
   },
   /**
-   * Lookup402: ethereum::header::Header
+   * Lookup405: ethereum::header::Header
    **/
   EthereumHeader: {
     parentHash: 'H256',
@@ -2975,23 +2982,23 @@ export default {
     nonce: 'EthereumTypesHashH64'
   },
   /**
-   * Lookup403: ethereum_types::hash::H64
+   * Lookup406: ethereum_types::hash::H64
    **/
   EthereumTypesHashH64: '[u8;8]',
   /**
-   * Lookup408: pallet_ethereum::pallet::Error<T>
+   * Lookup411: pallet_ethereum::pallet::Error<T>
    **/
   PalletEthereumError: {
     _enum: ['InvalidSignature', 'PreLogExists']
   },
   /**
-   * Lookup409: pallet_evm_coder_substrate::pallet::Error<T>
+   * Lookup412: pallet_evm_coder_substrate::pallet::Error<T>
    **/
   PalletEvmCoderSubstrateError: {
     _enum: ['OutOfGas', 'OutOfFund']
   },
   /**
-   * Lookup410: up_data_structs::SponsorshipState<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
+   * Lookup413: up_data_structs::SponsorshipState<pallet_evm::account::BasicCrossAccountIdRepr<sp_core::crypto::AccountId32>>
    **/
   UpDataStructsSponsorshipStateBasicCrossAccountIdRepr: {
     _enum: {
@@ -3001,29 +3008,29 @@ export default {
     }
   },
   /**
-   * Lookup411: pallet_evm_contract_helpers::SponsoringModeT
+   * Lookup414: pallet_evm_contract_helpers::SponsoringModeT
    **/
   PalletEvmContractHelpersSponsoringModeT: {
     _enum: ['Disabled', 'Allowlisted', 'Generous']
   },
   /**
-   * Lookup417: pallet_evm_contract_helpers::pallet::Error<T>
+   * Lookup420: pallet_evm_contract_helpers::pallet::Error<T>
    **/
   PalletEvmContractHelpersError: {
     _enum: ['NoPermission', 'NoPendingSponsor', 'TooManyMethodsHaveSponsoredLimit']
   },
   /**
-   * Lookup418: pallet_evm_migration::pallet::Error<T>
+   * Lookup421: pallet_evm_migration::pallet::Error<T>
    **/
   PalletEvmMigrationError: {
     _enum: ['AccountNotEmpty', 'AccountIsNotMigrating', 'BadEvent']
   },
   /**
-   * Lookup419: pallet_maintenance::pallet::Error<T>
+   * Lookup422: pallet_maintenance::pallet::Error<T>
    **/
   PalletMaintenanceError: 'Null',
   /**
-   * Lookup421: sp_runtime::MultiSignature
+   * Lookup424: sp_runtime::MultiSignature
    **/
   SpRuntimeMultiSignature: {
     _enum: {
@@ -3033,55 +3040,55 @@ export default {
     }
   },
   /**
-   * Lookup422: sp_core::ed25519::Signature
+   * Lookup425: sp_core::ed25519::Signature
    **/
   SpCoreEd25519Signature: '[u8;64]',
   /**
-   * Lookup424: sp_core::sr25519::Signature
+   * Lookup427: sp_core::sr25519::Signature
    **/
   SpCoreSr25519Signature: '[u8;64]',
   /**
-   * Lookup425: sp_core::ecdsa::Signature
+   * Lookup428: sp_core::ecdsa::Signature
    **/
   SpCoreEcdsaSignature: '[u8;65]',
   /**
-   * Lookup428: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
+   * Lookup431: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
    **/
   FrameSystemExtensionsCheckSpecVersion: 'Null',
   /**
-   * Lookup429: frame_system::extensions::check_tx_version::CheckTxVersion<T>
+   * Lookup432: frame_system::extensions::check_tx_version::CheckTxVersion<T>
    **/
   FrameSystemExtensionsCheckTxVersion: 'Null',
   /**
-   * Lookup430: frame_system::extensions::check_genesis::CheckGenesis<T>
+   * Lookup433: frame_system::extensions::check_genesis::CheckGenesis<T>
    **/
   FrameSystemExtensionsCheckGenesis: 'Null',
   /**
-   * Lookup433: frame_system::extensions::check_nonce::CheckNonce<T>
+   * Lookup436: frame_system::extensions::check_nonce::CheckNonce<T>
    **/
   FrameSystemExtensionsCheckNonce: 'Compact<u32>',
   /**
-   * Lookup434: frame_system::extensions::check_weight::CheckWeight<T>
+   * Lookup437: frame_system::extensions::check_weight::CheckWeight<T>
    **/
   FrameSystemExtensionsCheckWeight: 'Null',
   /**
-   * Lookup435: unique_runtime::runtime_common::maintenance::CheckMaintenance
+   * Lookup438: unique_runtime::runtime_common::maintenance::CheckMaintenance
    **/
   UniqueRuntimeRuntimeCommonMaintenanceCheckMaintenance: 'Null',
   /**
-   * Lookup436: unique_runtime::runtime_common::identity::DisableIdentityCalls
+   * Lookup439: unique_runtime::runtime_common::identity::DisableIdentityCalls
    **/
   UniqueRuntimeRuntimeCommonIdentityDisableIdentityCalls: 'Null',
   /**
-   * Lookup437: pallet_template_transaction_payment::ChargeTransactionPayment<unique_runtime::Runtime>
+   * Lookup440: pallet_template_transaction_payment::ChargeTransactionPayment<unique_runtime::Runtime>
    **/
   PalletTemplateTransactionPaymentChargeTransactionPayment: 'Compact<u128>',
   /**
-   * Lookup438: unique_runtime::Runtime
+   * Lookup441: unique_runtime::Runtime
    **/
   UniqueRuntimeRuntime: 'Null',
   /**
-   * Lookup439: pallet_ethereum::FakeTransactionFinalizer<unique_runtime::Runtime>
+   * Lookup442: pallet_ethereum::FakeTransactionFinalizer<unique_runtime::Runtime>
    **/
   PalletEthereumFakeTransactionFinalizer: 'Null'
 };
