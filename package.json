@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/quartz-mainnet-types",
   "private": false,
-  "version": "937.52.0",
+  "version": "937.53.0",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
