@@ -7,7 +7,7 @@
 import '@polkadot/api-base/types/submittable';
 
 import type { ApiTypes, AugmentedSubmittable, SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api-base/types';
-import type { Bytes, Compact, Option, U256, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
+import type { Bytes, Compact, Option, U256, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { AnyNumber, IMethod, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H160, H256, MultiAddress } from '@polkadot/types/interfaces/runtime';
 import type { CumulusPrimitivesParachainInherentParachainInherentData, EthereumLog, EthereumTransactionTransactionV2, OrmlVestingVestingSchedule, PalletConfigurationAppPromotionConfiguration, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetIds, PalletForeignAssetsModuleAssetMetadata, SpWeightsWeightV2Weight, UpDataStructsCollectionLimits, UpDataStructsCollectionMode, UpDataStructsCollectionPermissions, UpDataStructsCreateCollectionData, UpDataStructsCreateItemData, UpDataStructsCreateItemExData, UpDataStructsProperty, UpDataStructsPropertyKeyPermission, XcmV1MultiLocation, XcmV2WeightLimit, XcmVersionedMultiAsset, XcmVersionedMultiAssets, XcmVersionedMultiLocation, XcmVersionedXcm } from '@polkadot/types/lookup';
@@ -18,6 +18,118 @@ export type __SubmittableExtrinsicFunction<ApiType extends ApiTypes> = Submittab
 
 declare module '@polkadot/api-base/types/submittable' {
   interface AugmentedSubmittables<ApiType extends ApiTypes> {
+    appPromotion: {
+      /**
+       * Recalculates interest for the specified number of stakers.
+       * If all stakers are not recalculated, the next call of the extrinsic
+       * will continue the recalculation, from those stakers for whom this
+       * was not perform in last call.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `stakers_number`: the number of stakers for which recalculation will be performed
+       **/
+      payoutStakers: AugmentedSubmittable<(stakersNumber: Option<u8> | null | Uint8Array | u8 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u8>]>;
+      /**
+       * Sets an address as the the admin.
+       * 
+       * # Permissions
+       * 
+       * * Sudo
+       * 
+       * # Arguments
+       * 
+       * * `admin`: account of the new admin.
+       **/
+      setAdminAddress: AugmentedSubmittable<(admin: PalletEvmAccountBasicCrossAccountIdRepr | { Substrate: any } | { Ethereum: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [PalletEvmAccountBasicCrossAccountIdRepr]>;
+      /**
+       * Sets the pallet to be the sponsor for the collection.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `collection_id`: ID of the collection that will be sponsored by `pallet_id`
+       **/
+      sponsorCollection: AugmentedSubmittable<(collectionId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Sets the pallet to be the sponsor for the contract.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `contract_id`: the contract address that will be sponsored by `pallet_id`
+       **/
+      sponsorContract: AugmentedSubmittable<(contractId: H160 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160]>;
+      /**
+       * Stakes the amount of native tokens.
+       * Sets `amount` to the locked state.
+       * The maximum number of stakes for a staker is 10.
+       * 
+       * # Arguments
+       * 
+       * * `amount`: in native tokens.
+       **/
+      stake: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128]>;
+      /**
+       * Removes the pallet as the sponsor for the collection.
+       * Returns [`NoPermission`][`Error::NoPermission`]
+       * if the pallet wasn't the sponsor.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `collection_id`: ID of the collection that is sponsored by `pallet_id`
+       **/
+      stopSponsoringCollection: AugmentedSubmittable<(collectionId: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Removes the pallet as the sponsor for the contract.
+       * Returns [`NoPermission`][`Error::NoPermission`]
+       * if the pallet wasn't the sponsor.
+       * 
+       * # Permissions
+       * 
+       * * Pallet admin
+       * 
+       * # Arguments
+       * 
+       * * `contract_id`: the contract address that is sponsored by `pallet_id`
+       **/
+      stopSponsoringContract: AugmentedSubmittable<(contractId: H160 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160]>;
+      /**
+       * Unstakes all stakes.
+       * After the end of `PendingInterval` this sum becomes completely
+       * free for further use.
+       **/
+      unstakeAll: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Unstakes the amount of balance for the staker.
+       * After the end of `PendingInterval` this sum becomes completely
+       * free for further use.
+       * 
+       * # Arguments
+       * 
+       * * `staker`: staker account.
+       * * `amount`: amount of unstaked funds.
+       **/
+      unstakePartial: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
     balances: {
       /**
        * Exactly as `transfer`, except the origin must be root and the source account may be
