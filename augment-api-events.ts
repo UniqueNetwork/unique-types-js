@@ -578,6 +578,24 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    preimage: {
+      /**
+       * A preimage has ben cleared.
+       **/
+      Cleared: AugmentedEvent<ApiType, [hash_: H256], { hash_: H256 }>;
+      /**
+       * A preimage has been noted.
+       **/
+      Noted: AugmentedEvent<ApiType, [hash_: H256], { hash_: H256 }>;
+      /**
+       * A preimage has been requested.
+       **/
+      Requested: AugmentedEvent<ApiType, [hash_: H256], { hash_: H256 }>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     session: {
       /**
        * New session has happened. Note that the argument is the session index, not the

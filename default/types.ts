@@ -2002,7 +2002,12 @@ export interface PalletInflationCall extends Enum {
 export interface PalletMaintenanceCall extends Enum {
   readonly isEnable: boolean;
   readonly isDisable: boolean;
-  readonly type: 'Enable' | 'Disable';
+  readonly isExecutePreimage: boolean;
+  readonly asExecutePreimage: {
+    readonly hash_: H256;
+    readonly weightBound: SpWeightsWeightV2Weight;
+  } & Struct;
+  readonly type: 'Enable' | 'Disable' | 'ExecutePreimage';
 }
 
 /** @name PalletMaintenanceError */
@@ -2026,6 +2031,71 @@ export interface PalletNonfungibleError extends Enum {
 /** @name PalletNonfungibleItemData */
 export interface PalletNonfungibleItemData extends Struct {
   readonly owner: PalletEvmAccountBasicCrossAccountIdRepr;
+}
+
+/** @name PalletPreimageCall */
+export interface PalletPreimageCall extends Enum {
+  readonly isNotePreimage: boolean;
+  readonly asNotePreimage: {
+    readonly bytes: Bytes;
+  } & Struct;
+  readonly isUnnotePreimage: boolean;
+  readonly asUnnotePreimage: {
+    readonly hash_: H256;
+  } & Struct;
+  readonly isRequestPreimage: boolean;
+  readonly asRequestPreimage: {
+    readonly hash_: H256;
+  } & Struct;
+  readonly isUnrequestPreimage: boolean;
+  readonly asUnrequestPreimage: {
+    readonly hash_: H256;
+  } & Struct;
+  readonly type: 'NotePreimage' | 'UnnotePreimage' | 'RequestPreimage' | 'UnrequestPreimage';
+}
+
+/** @name PalletPreimageError */
+export interface PalletPreimageError extends Enum {
+  readonly isTooBig: boolean;
+  readonly isAlreadyNoted: boolean;
+  readonly isNotAuthorized: boolean;
+  readonly isNotNoted: boolean;
+  readonly isRequested: boolean;
+  readonly isNotRequested: boolean;
+  readonly type: 'TooBig' | 'AlreadyNoted' | 'NotAuthorized' | 'NotNoted' | 'Requested' | 'NotRequested';
+}
+
+/** @name PalletPreimageEvent */
+export interface PalletPreimageEvent extends Enum {
+  readonly isNoted: boolean;
+  readonly asNoted: {
+    readonly hash_: H256;
+  } & Struct;
+  readonly isRequested: boolean;
+  readonly asRequested: {
+    readonly hash_: H256;
+  } & Struct;
+  readonly isCleared: boolean;
+  readonly asCleared: {
+    readonly hash_: H256;
+  } & Struct;
+  readonly type: 'Noted' | 'Requested' | 'Cleared';
+}
+
+/** @name PalletPreimageRequestStatus */
+export interface PalletPreimageRequestStatus extends Enum {
+  readonly isUnrequested: boolean;
+  readonly asUnrequested: {
+    readonly deposit: ITuple<[AccountId32, u128]>;
+    readonly len: u32;
+  } & Struct;
+  readonly isRequested: boolean;
+  readonly asRequested: {
+    readonly deposit: Option<ITuple<[AccountId32, u128]>>;
+    readonly count: u32;
+    readonly len: Option<u32>;
+  } & Struct;
+  readonly type: 'Unrequested' | 'Requested';
 }
 
 /** @name PalletRefungibleError */
