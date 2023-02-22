@@ -1650,7 +1650,12 @@ export interface PalletInflationCall extends Enum {
 export interface PalletMaintenanceCall extends Enum {
   readonly isEnable: boolean;
   readonly isDisable: boolean;
-  readonly type: 'Enable' | 'Disable';
+  readonly isExecutePreimage: boolean;
+  readonly asExecutePreimage: {
+    readonly hash_: H256;
+    readonly weightBound: SpWeightsWeightV2Weight;
+  } & Struct;
+  readonly type: 'Enable' | 'Disable' | 'ExecutePreimage';
 }
 
 /** @name PalletMaintenanceError */

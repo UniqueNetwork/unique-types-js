@@ -2619,7 +2619,17 @@ export default {
    * Lookup308: pallet_maintenance::pallet::Call<T>
    **/
   PalletMaintenanceCall: {
-    _enum: ['enable', 'disable']
+    _enum: {
+      enable: 'Null',
+      disable: 'Null',
+      execute_preimage: {
+        _alias: {
+          hash_: 'hash',
+        },
+        hash_: 'H256',
+        weightBound: 'SpWeightsWeightV2Weight'
+      }
+    }
   },
   /**
    * Lookup309: pallet_sudo::pallet::Error<T>

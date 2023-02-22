@@ -2838,7 +2838,12 @@ declare module '@polkadot/types/lookup' {
   interface PalletMaintenanceCall extends Enum {
     readonly isEnable: boolean;
     readonly isDisable: boolean;
-    readonly type: 'Enable' | 'Disable';
+    readonly isExecutePreimage: boolean;
+    readonly asExecutePreimage: {
+      readonly hash_: H256;
+      readonly weightBound: SpWeightsWeightV2Weight;
+    } & Struct;
+    readonly type: 'Enable' | 'Disable' | 'ExecutePreimage';
   }
 
   /** @name PalletSudoError (309) */
