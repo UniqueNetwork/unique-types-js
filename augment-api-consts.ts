@@ -10,7 +10,7 @@ import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
 import type { Option, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { Codec } from '@polkadot/types-codec/types';
 import type { H160, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, UpDataStructsCollectionLimits, XcmV1MultiLocation } from '@polkadot/types/lookup';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight, UpDataStructsCollectionLimits, XcmV3MultiLocation } from '@polkadot/types/lookup';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
@@ -313,11 +313,11 @@ declare module '@polkadot/api-base/types/consts' {
        * The actually weight for an XCM message is `T::BaseXcmWeight +
        * T::Weigher::weight(&msg)`.
        **/
-      baseXcmWeight: u64 & AugmentedConst<ApiType>;
+      baseXcmWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
       /**
        * Self chain location.
        **/
-      selfLocation: XcmV1MultiLocation & AugmentedConst<ApiType>;
+      selfLocation: XcmV3MultiLocation & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
