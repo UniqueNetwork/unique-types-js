@@ -227,7 +227,6 @@ declare module '@polkadot/api-base/types/submittable' {
       setCollatorSelectionLicenseBond: AugmentedSubmittable<(amount: Option<u128> | null | Uint8Array | u128 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u128>]>;
       setMinGasPriceOverride: AugmentedSubmittable<(coeff: Option<u64> | null | Uint8Array | u64 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u64>]>;
       setWeightToFeeCoefficientOverride: AugmentedSubmittable<(coeff: Option<u64> | null | Uint8Array | u64 | AnyNumber) => SubmittableExtrinsic<ApiType>, [Option<u64>]>;
-      setXcmAllowedLocations: AugmentedSubmittable<(locations: Option<Vec<XcmV3MultiLocation>> | null | Uint8Array | Vec<XcmV3MultiLocation> | (XcmV3MultiLocation | { parents?: any; interior?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Option<Vec<XcmV3MultiLocation>>]>;
       /**
        * Generic tx
        **/
