@@ -1401,10 +1401,6 @@ export interface PalletConfigurationCall extends Enum {
   readonly asSetMinGasPriceOverride: {
     readonly coeff: Option<u64>;
   } & Struct;
-  readonly isSetXcmAllowedLocations: boolean;
-  readonly asSetXcmAllowedLocations: {
-    readonly locations: Option<Vec<XcmV3MultiLocation>>;
-  } & Struct;
   readonly isSetAppPromotionConfigurationOverride: boolean;
   readonly asSetAppPromotionConfigurationOverride: {
     readonly configuration: PalletConfigurationAppPromotionConfiguration;
@@ -1421,7 +1417,7 @@ export interface PalletConfigurationCall extends Enum {
   readonly asSetCollatorSelectionKickThreshold: {
     readonly threshold: Option<u32>;
   } & Struct;
-  readonly type: 'SetWeightToFeeCoefficientOverride' | 'SetMinGasPriceOverride' | 'SetXcmAllowedLocations' | 'SetAppPromotionConfigurationOverride' | 'SetCollatorSelectionDesiredCollators' | 'SetCollatorSelectionLicenseBond' | 'SetCollatorSelectionKickThreshold';
+  readonly type: 'SetWeightToFeeCoefficientOverride' | 'SetMinGasPriceOverride' | 'SetAppPromotionConfigurationOverride' | 'SetCollatorSelectionDesiredCollators' | 'SetCollatorSelectionLicenseBond' | 'SetCollatorSelectionKickThreshold';
 }
 
 /** @name PalletConfigurationError */
