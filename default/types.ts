@@ -89,12 +89,19 @@ export interface CumulusPalletParachainSystemCall extends Enum {
   readonly isAuthorizeUpgrade: boolean;
   readonly asAuthorizeUpgrade: {
     readonly codeHash: H256;
+    readonly checkVersion: bool;
   } & Struct;
   readonly isEnactAuthorizedUpgrade: boolean;
   readonly asEnactAuthorizedUpgrade: {
     readonly code: Bytes;
   } & Struct;
   readonly type: 'SetValidationData' | 'SudoSendUpwardMessage' | 'AuthorizeUpgrade' | 'EnactAuthorizedUpgrade';
+}
+
+/** @name CumulusPalletParachainSystemCodeUpgradeAuthorization */
+export interface CumulusPalletParachainSystemCodeUpgradeAuthorization extends Struct {
+  readonly codeHash: H256;
+  readonly checkVersion: bool;
 }
 
 /** @name CumulusPalletParachainSystemError */
