@@ -215,12 +215,6 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
-    charging: {
-      /**
-       * Generic tx
-       **/
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
-    };
     collatorSelection: {
       /**
        * Add a collator to the list of invulnerable (fixed) collators.
