@@ -2208,9 +2208,6 @@ export interface PalletSudoEvent extends Enum {
   readonly type: 'Sudid' | 'KeyChanged' | 'SudoAsDone';
 }
 
-/** @name PalletTemplateTransactionPaymentCall */
-export interface PalletTemplateTransactionPaymentCall extends Null {}
-
 /** @name PalletTemplateTransactionPaymentChargeTransactionPayment */
 export interface PalletTemplateTransactionPaymentChargeTransactionPayment extends Compact<u128> {}
 
