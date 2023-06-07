@@ -18,9 +18,9 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       AdminNotSet: AugmentedError<ApiType>;
       /**
-       * Errors caused by incorrect actions with a locked balance.
+       * Errors caused by incorrect state of a staker in context of the pallet.
        **/
-      IncorrectLockedBalanceOperation: AugmentedError<ApiType>;
+      InconsistencyState: AugmentedError<ApiType>;
       /**
        * Errors caused by insufficient staked balance.
        **/
@@ -48,35 +48,43 @@ declare module '@polkadot/api-base/types/errors' {
     };
     balances: {
       /**
-       * Beneficiary account must pre-exist
+       * Beneficiary account must pre-exist.
        **/
       DeadAccount: AugmentedError<ApiType>;
       /**
-       * Value too low to create account due to existential deposit
+       * Value too low to create account due to existential deposit.
        **/
       ExistentialDeposit: AugmentedError<ApiType>;
       /**
-       * A vesting schedule already exists for this account
+       * A vesting schedule already exists for this account.
        **/
       ExistingVestingSchedule: AugmentedError<ApiType>;
+      /**
+       * Transfer/payment would kill account.
+       **/
+      Expendability: AugmentedError<ApiType>;
       /**
        * Balance too low to send value.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
       /**
-       * Transfer/payment would kill account
-       **/
-      KeepAlive: AugmentedError<ApiType>;
-      /**
-       * Account liquidity restrictions prevent withdrawal
+       * Account liquidity restrictions prevent withdrawal.
        **/
       LiquidityRestrictions: AugmentedError<ApiType>;
       /**
-       * Number of named reserves exceed MaxReserves
+       * Number of freezes exceed `MaxFreezes`.
+       **/
+      TooManyFreezes: AugmentedError<ApiType>;
+      /**
+       * Number of holds exceed `MaxHolds`.
+       **/
+      TooManyHolds: AugmentedError<ApiType>;
+      /**
+       * Number of named reserves exceed `MaxReserves`.
        **/
       TooManyReserves: AugmentedError<ApiType>;
       /**
-       * Vesting balance too high to send value
+       * Vesting balance too high to send value.
        **/
       VestingBalance: AugmentedError<ApiType>;
       /**
@@ -603,6 +611,42 @@ declare module '@polkadot/api-base/types/errors' {
        * Maximum refungibility exceeded.
        **/
       WrongRefungiblePieces: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    stateTrieMigration: {
+      /**
+       * Bad child root provided.
+       **/
+      BadChildRoot: AugmentedError<ApiType>;
+      /**
+       * Bad witness data provided.
+       **/
+      BadWitness: AugmentedError<ApiType>;
+      /**
+       * A key was longer than the configured maximum.
+       * 
+       * This means that the migration halted at the current [`Progress`] and
+       * can be resumed with a larger [`crate::Config::MaxKeyLen`] value.
+       * Retrying with the same [`crate::Config::MaxKeyLen`] value will not work.
+       * The value should only be increased to avoid a storage migration for the currently
+       * stored [`crate::Progress::LastKey`].
+       **/
+      KeyTooLong: AugmentedError<ApiType>;
+      /**
+       * Max signed limits not respected.
+       **/
+      MaxSignedLimits: AugmentedError<ApiType>;
+      /**
+       * submitter does not have enough funds.
+       **/
+      NotEnoughFunds: AugmentedError<ApiType>;
+      /**
+       * Signed migration is not allowed because the maximum limit is not set yet.
+       **/
+      SignedMigrationNotAllowed: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
