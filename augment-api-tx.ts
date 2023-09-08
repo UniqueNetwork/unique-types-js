@@ -139,19 +139,6 @@ declare module '@polkadot/api-base/types/submittable' {
        **/
       unstakePartial: AugmentedSubmittable<(amount: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u128]>;
       /**
-       * Migrates lock state into freeze one
-       * 
-       * # Permissions
-       * 
-       * * Sudo
-       * 
-       * # Arguments
-       * 
-       * * `origin`: Must be `Root`.
-       * * `stakers`: Accounts to be upgraded.
-       **/
-      upgradeAccounts: AugmentedSubmittable<(stakers: Vec<AccountId32> | (AccountId32 | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<AccountId32>]>;
-      /**
        * Generic tx
        **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
@@ -298,13 +285,6 @@ declare module '@polkadot/api-base/types/submittable' {
        * Withdraw balance from EVM into currency/balances pallet.
        **/
       withdraw: AugmentedSubmittable<(address: H160 | string | Uint8Array, value: u128 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160, u128]>;
-      /**
-       * Generic tx
-       **/
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
-    };
-    evmCoderSubstrate: {
-      emptyCall: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
        * Generic tx
        **/
@@ -719,7 +699,6 @@ declare module '@polkadot/api-base/types/submittable' {
       /**
        * Make some on-chain remark.
        * 
-       * ## Complexity
        * - `O(1)`
        **/
       remark: AugmentedSubmittable<(remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
@@ -729,16 +708,10 @@ declare module '@polkadot/api-base/types/submittable' {
       remarkWithEvent: AugmentedSubmittable<(remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
        * Set the new runtime code.
-       * 
-       * ## Complexity
-       * - `O(C + S)` where `C` length of `code` and `S` complexity of `can_set_code`
        **/
       setCode: AugmentedSubmittable<(code: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
        * Set the new runtime code without doing any checks of the given `code`.
-       * 
-       * ## Complexity
-       * - `O(C)` where `C` length of `code`
        **/
       setCodeWithoutChecks: AugmentedSubmittable<(code: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
@@ -1106,7 +1079,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * 
        * * `data`: Explicit data of a collection used for its creation.
        **/
-      createCollectionEx: AugmentedSubmittable<(data: UpDataStructsCreateCollectionData | { mode?: any; access?: any; name?: any; description?: any; tokenPrefix?: any; pendingSponsor?: any; limits?: any; permissions?: any; tokenPropertyPermissions?: any; properties?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [UpDataStructsCreateCollectionData]>;
+      createCollectionEx: AugmentedSubmittable<(data: UpDataStructsCreateCollectionData | { mode?: any; access?: any; name?: any; description?: any; tokenPrefix?: any; limits?: any; permissions?: any; tokenPropertyPermissions?: any; properties?: any; adminList?: any; pendingSponsor?: any; flags?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [UpDataStructsCreateCollectionData]>;
       /**
        * Mint an item within a collection.
        * 

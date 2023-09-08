@@ -147,9 +147,15 @@ export interface CumulusPalletParachainSystemEvent extends Enum {
 /** @name CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot */
 export interface CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot extends Struct {
   readonly dmqMqcHead: H256;
-  readonly relayDispatchQueueSize: ITuple<[u32, u32]>;
+  readonly relayDispatchQueueSize: CumulusPalletParachainSystemRelayStateSnapshotRelayDispachQueueSize;
   readonly ingressChannels: Vec<ITuple<[u32, PolkadotPrimitivesV4AbridgedHrmpChannel]>>;
   readonly egressChannels: Vec<ITuple<[u32, PolkadotPrimitivesV4AbridgedHrmpChannel]>>;
+}
+
+/** @name CumulusPalletParachainSystemRelayStateSnapshotRelayDispachQueueSize */
+export interface CumulusPalletParachainSystemRelayStateSnapshotRelayDispachQueueSize extends Struct {
+  readonly remainingCount: u32;
+  readonly remainingSize: u32;
 }
 
 /** @name CumulusPalletXcmCall */
@@ -452,9 +458,10 @@ export interface EvmCoreErrorExitError extends Enum {
   readonly isCreateEmpty: boolean;
   readonly isOther: boolean;
   readonly asOther: Text;
+  readonly isMaxNonce: boolean;
   readonly isInvalidCode: boolean;
   readonly asInvalidCode: u8;
-  readonly type: 'StackUnderflow' | 'StackOverflow' | 'InvalidJump' | 'InvalidRange' | 'DesignatedInvalid' | 'CallTooDeep' | 'CreateCollision' | 'CreateContractLimit' | 'OutOfOffset' | 'OutOfGas' | 'OutOfFund' | 'PcUnderflow' | 'CreateEmpty' | 'Other' | 'InvalidCode';
+  readonly type: 'StackUnderflow' | 'StackOverflow' | 'InvalidJump' | 'InvalidRange' | 'DesignatedInvalid' | 'CallTooDeep' | 'CreateCollision' | 'CreateContractLimit' | 'OutOfOffset' | 'OutOfGas' | 'OutOfFund' | 'PcUnderflow' | 'CreateEmpty' | 'Other' | 'MaxNonce' | 'InvalidCode';
 }
 
 /** @name EvmCoreErrorExitFatal */
@@ -1048,15 +1055,11 @@ export interface PalletAppPromotionCall extends Enum {
   readonly asUnstakePartial: {
     readonly amount: u128;
   } & Struct;
-  readonly isUpgradeAccounts: boolean;
-  readonly asUpgradeAccounts: {
-    readonly stakers: Vec<AccountId32>;
-  } & Struct;
   readonly isForceUnstake: boolean;
   readonly asForceUnstake: {
     readonly pendingBlocks: Vec<u32>;
   } & Struct;
-  readonly type: 'SetAdminAddress' | 'Stake' | 'UnstakeAll' | 'SponsorCollection' | 'StopSponsoringCollection' | 'SponsorContract' | 'StopSponsoringContract' | 'PayoutStakers' | 'UnstakePartial' | 'UpgradeAccounts' | 'ForceUnstake';
+  readonly type: 'SetAdminAddress' | 'Stake' | 'UnstakeAll' | 'SponsorCollection' | 'StopSponsoringCollection' | 'SponsorContract' | 'StopSponsoringContract' | 'PayoutStakers' | 'UnstakePartial' | 'ForceUnstake';
 }
 
 /** @name PalletAppPromotionError */
@@ -1532,10 +1535,10 @@ export interface PalletEvmCall extends Enum {
   readonly type: 'Withdraw' | 'Call' | 'Create' | 'Create2';
 }
 
-/** @name PalletEvmCoderSubstrateCall */
-export interface PalletEvmCoderSubstrateCall extends Enum {
-  readonly isEmptyCall: boolean;
-  readonly type: 'EmptyCall';
+/** @name PalletEvmCodeMetadata */
+export interface PalletEvmCodeMetadata extends Struct {
+  readonly size_: u64;
+  readonly hash_: H256;
 }
 
 /** @name PalletEvmCoderSubstrateError */
@@ -2451,7 +2454,7 @@ export interface PalletXcmRemoteLockedFungibleRecord extends Struct {
   readonly amount: u128;
   readonly owner: XcmVersionedMultiLocation;
   readonly locker: XcmVersionedMultiLocation;
-  readonly users: u32;
+  readonly consumers: Vec<ITuple<[Null, u128]>>;
 }
 
 /** @name PalletXcmVersionMigrationStage */
@@ -2594,7 +2597,8 @@ export interface SpRuntimeDispatchError extends Enum {
   readonly isExhausted: boolean;
   readonly isCorruption: boolean;
   readonly isUnavailable: boolean;
-  readonly type: 'Other' | 'CannotLookup' | 'BadOrigin' | 'Module' | 'ConsumerRemaining' | 'NoProviders' | 'TooManyConsumers' | 'Token' | 'Arithmetic' | 'Transactional' | 'Exhausted' | 'Corruption' | 'Unavailable';
+  readonly isRootNotAllowed: boolean;
+  readonly type: 'Other' | 'CannotLookup' | 'BadOrigin' | 'Module' | 'ConsumerRemaining' | 'NoProviders' | 'TooManyConsumers' | 'Token' | 'Arithmetic' | 'Transactional' | 'Exhausted' | 'Corruption' | 'Unavailable' | 'RootNotAllowed';
 }
 
 /** @name SpRuntimeModuleError */
@@ -2625,7 +2629,8 @@ export interface SpRuntimeTokenError extends Enum {
   readonly isUnsupported: boolean;
   readonly isCannotCreateHold: boolean;
   readonly isNotExpendable: boolean;
-  readonly type: 'FundsUnavailable' | 'OnlyProvider' | 'BelowMinimum' | 'CannotCreate' | 'UnknownAsset' | 'Frozen' | 'Unsupported' | 'CannotCreateHold' | 'NotExpendable';
+  readonly isBlocked: boolean;
+  readonly type: 'FundsUnavailable' | 'OnlyProvider' | 'BelowMinimum' | 'CannotCreate' | 'UnknownAsset' | 'Frozen' | 'Unsupported' | 'CannotCreateHold' | 'NotExpendable' | 'Blocked';
 }
 
 /** @name SpRuntimeTransactionalError */
@@ -2771,11 +2776,13 @@ export interface UpDataStructsCreateCollectionData extends Struct {
   readonly name: Vec<u16>;
   readonly description: Vec<u16>;
   readonly tokenPrefix: Bytes;
-  readonly pendingSponsor: Option<AccountId32>;
   readonly limits: Option<UpDataStructsCollectionLimits>;
   readonly permissions: Option<UpDataStructsCollectionPermissions>;
   readonly tokenPropertyPermissions: Vec<UpDataStructsPropertyKeyPermission>;
   readonly properties: Vec<UpDataStructsProperty>;
+  readonly adminList: Vec<PalletEvmAccountBasicCrossAccountIdRepr>;
+  readonly pendingSponsor: Option<PalletEvmAccountBasicCrossAccountIdRepr>;
+  readonly flags: U8aFixed;
 }
 
 /** @name UpDataStructsCreateFungibleData */
