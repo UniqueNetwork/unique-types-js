@@ -3631,6 +3631,65 @@ export interface PalletUniqueError extends Enum {
   readonly type: 'CollectionDecimalPointLimitExceeded' | 'EmptyArgument' | 'RepartitionCalledOnNonRefungibleCollection';
 }
 
+/** @name PalletUtilityCall */
+export interface PalletUtilityCall extends Enum {
+  readonly isBatch: boolean;
+  readonly asBatch: {
+    readonly calls: Vec<Call>;
+  } & Struct;
+  readonly isAsDerivative: boolean;
+  readonly asAsDerivative: {
+    readonly index: u16;
+    readonly call: Call;
+  } & Struct;
+  readonly isBatchAll: boolean;
+  readonly asBatchAll: {
+    readonly calls: Vec<Call>;
+  } & Struct;
+  readonly isDispatchAs: boolean;
+  readonly asDispatchAs: {
+    readonly asOrigin: QuartzRuntimeOriginCaller;
+    readonly call: Call;
+  } & Struct;
+  readonly isForceBatch: boolean;
+  readonly asForceBatch: {
+    readonly calls: Vec<Call>;
+  } & Struct;
+  readonly isWithWeight: boolean;
+  readonly asWithWeight: {
+    readonly call: Call;
+    readonly weight: SpWeightsWeightV2Weight;
+  } & Struct;
+  readonly type: 'Batch' | 'AsDerivative' | 'BatchAll' | 'DispatchAs' | 'ForceBatch' | 'WithWeight';
+}
+
+/** @name PalletUtilityError */
+export interface PalletUtilityError extends Enum {
+  readonly isTooManyCalls: boolean;
+  readonly type: 'TooManyCalls';
+}
+
+/** @name PalletUtilityEvent */
+export interface PalletUtilityEvent extends Enum {
+  readonly isBatchInterrupted: boolean;
+  readonly asBatchInterrupted: {
+    readonly index: u32;
+    readonly error: SpRuntimeDispatchError;
+  } & Struct;
+  readonly isBatchCompleted: boolean;
+  readonly isBatchCompletedWithErrors: boolean;
+  readonly isItemCompleted: boolean;
+  readonly isItemFailed: boolean;
+  readonly asItemFailed: {
+    readonly error: SpRuntimeDispatchError;
+  } & Struct;
+  readonly isDispatchedAs: boolean;
+  readonly asDispatchedAs: {
+    readonly result: Result<Null, SpRuntimeDispatchError>;
+  } & Struct;
+  readonly type: 'BatchInterrupted' | 'BatchCompleted' | 'BatchCompletedWithErrors' | 'ItemCompleted' | 'ItemFailed' | 'DispatchedAs';
+}
+
 /** @name PalletXcmCall */
 export interface PalletXcmCall extends Enum {
   readonly isSend: boolean;
