@@ -175,6 +175,14 @@ export interface CumulusPalletXcmEvent extends Enum {
   readonly type: 'InvalidFormat' | 'UnsupportedVersion' | 'ExecutedDownward';
 }
 
+/** @name CumulusPalletXcmOrigin */
+export interface CumulusPalletXcmOrigin extends Enum {
+  readonly isRelay: boolean;
+  readonly isSiblingParachain: boolean;
+  readonly asSiblingParachain: u32;
+  readonly type: 'Relay' | 'SiblingParachain';
+}
+
 /** @name CumulusPalletXcmpQueueCall */
 export interface CumulusPalletXcmpQueueCall extends Enum {
   readonly isServiceOverweight: boolean;
@@ -554,6 +562,15 @@ export interface FrameSupportDispatchPerDispatchClassWeightsPerClass extends Str
   readonly normal: FrameSystemLimitsWeightsPerClass;
   readonly operational: FrameSystemLimitsWeightsPerClass;
   readonly mandatory: FrameSystemLimitsWeightsPerClass;
+}
+
+/** @name FrameSupportDispatchRawOrigin */
+export interface FrameSupportDispatchRawOrigin extends Enum {
+  readonly isRoot: boolean;
+  readonly isSigned: boolean;
+  readonly asSigned: AccountId32;
+  readonly isNone: boolean;
+  readonly type: 'Root' | 'Signed' | 'None';
 }
 
 /** @name FrameSupportPalletId */
@@ -1481,6 +1498,13 @@ export interface PalletEthereumEvent extends Enum {
 /** @name PalletEthereumFakeTransactionFinalizer */
 export interface PalletEthereumFakeTransactionFinalizer extends Null {}
 
+/** @name PalletEthereumRawOrigin */
+export interface PalletEthereumRawOrigin extends Enum {
+  readonly isEthereumTransaction: boolean;
+  readonly asEthereumTransaction: H160;
+  readonly type: 'EthereumTransaction';
+}
+
 /** @name PalletEvmAccountBasicCrossAccountIdRepr */
 export interface PalletEvmAccountBasicCrossAccountIdRepr extends Enum {
   readonly isSubstrate: boolean;
@@ -2285,6 +2309,65 @@ export interface PalletUniqueError extends Enum {
   readonly type: 'CollectionDecimalPointLimitExceeded' | 'EmptyArgument' | 'RepartitionCalledOnNonRefungibleCollection';
 }
 
+/** @name PalletUtilityCall */
+export interface PalletUtilityCall extends Enum {
+  readonly isBatch: boolean;
+  readonly asBatch: {
+    readonly calls: Vec<Call>;
+  } & Struct;
+  readonly isAsDerivative: boolean;
+  readonly asAsDerivative: {
+    readonly index: u16;
+    readonly call: Call;
+  } & Struct;
+  readonly isBatchAll: boolean;
+  readonly asBatchAll: {
+    readonly calls: Vec<Call>;
+  } & Struct;
+  readonly isDispatchAs: boolean;
+  readonly asDispatchAs: {
+    readonly asOrigin: UniqueRuntimeOriginCaller;
+    readonly call: Call;
+  } & Struct;
+  readonly isForceBatch: boolean;
+  readonly asForceBatch: {
+    readonly calls: Vec<Call>;
+  } & Struct;
+  readonly isWithWeight: boolean;
+  readonly asWithWeight: {
+    readonly call: Call;
+    readonly weight: SpWeightsWeightV2Weight;
+  } & Struct;
+  readonly type: 'Batch' | 'AsDerivative' | 'BatchAll' | 'DispatchAs' | 'ForceBatch' | 'WithWeight';
+}
+
+/** @name PalletUtilityError */
+export interface PalletUtilityError extends Enum {
+  readonly isTooManyCalls: boolean;
+  readonly type: 'TooManyCalls';
+}
+
+/** @name PalletUtilityEvent */
+export interface PalletUtilityEvent extends Enum {
+  readonly isBatchInterrupted: boolean;
+  readonly asBatchInterrupted: {
+    readonly index: u32;
+    readonly error: SpRuntimeDispatchError;
+  } & Struct;
+  readonly isBatchCompleted: boolean;
+  readonly isBatchCompletedWithErrors: boolean;
+  readonly isItemCompleted: boolean;
+  readonly isItemFailed: boolean;
+  readonly asItemFailed: {
+    readonly error: SpRuntimeDispatchError;
+  } & Struct;
+  readonly isDispatchedAs: boolean;
+  readonly asDispatchedAs: {
+    readonly result: Result<Null, SpRuntimeDispatchError>;
+  } & Struct;
+  readonly type: 'BatchInterrupted' | 'BatchCompleted' | 'BatchCompletedWithErrors' | 'ItemCompleted' | 'ItemFailed' | 'DispatchedAs';
+}
+
 /** @name PalletXcmCall */
 export interface PalletXcmCall extends Enum {
   readonly isSend: boolean;
@@ -2427,6 +2510,15 @@ export interface PalletXcmEvent extends Enum {
   readonly type: 'Attempted' | 'Sent' | 'UnexpectedResponse' | 'ResponseReady' | 'Notified' | 'NotifyOverweight' | 'NotifyDispatchError' | 'NotifyDecodeFailed' | 'InvalidResponder' | 'InvalidResponderVersion' | 'ResponseTaken' | 'AssetsTrapped' | 'VersionChangeNotified' | 'SupportedVersionChanged' | 'NotifyTargetSendFail' | 'NotifyTargetMigrationFail' | 'InvalidQuerierVersion' | 'InvalidQuerier' | 'VersionNotifyStarted' | 'VersionNotifyRequested' | 'VersionNotifyUnrequested' | 'FeesPaid' | 'AssetsClaimed';
 }
 
+/** @name PalletXcmOrigin */
+export interface PalletXcmOrigin extends Enum {
+  readonly isXcm: boolean;
+  readonly asXcm: XcmV3MultiLocation;
+  readonly isResponse: boolean;
+  readonly asResponse: XcmV3MultiLocation;
+  readonly type: 'Xcm' | 'Response';
+}
+
 /** @name PalletXcmQueryStatus */
 export interface PalletXcmQueryStatus extends Enum {
   readonly isPending: boolean;
@@ -2558,6 +2650,9 @@ export interface SpCoreSr25519Public extends U8aFixed {}
 
 /** @name SpCoreSr25519Signature */
 export interface SpCoreSr25519Signature extends U8aFixed {}
+
+/** @name SpCoreVoid */
+export interface SpCoreVoid extends Null {}
 
 /** @name SpRuntimeDigest */
 export interface SpRuntimeDigest extends Struct {
@@ -2702,6 +2797,21 @@ export interface SpWeightsRuntimeDbWeight extends Struct {
 export interface SpWeightsWeightV2Weight extends Struct {
   readonly refTime: Compact<u64>;
   readonly proofSize: Compact<u64>;
+}
+
+/** @name UniqueRuntimeOriginCaller */
+export interface UniqueRuntimeOriginCaller extends Enum {
+  readonly isSystem: boolean;
+  readonly asSystem: FrameSupportDispatchRawOrigin;
+  readonly isVoid: boolean;
+  readonly asVoid: SpCoreVoid;
+  readonly isPolkadotXcm: boolean;
+  readonly asPolkadotXcm: PalletXcmOrigin;
+  readonly isCumulusXcm: boolean;
+  readonly asCumulusXcm: CumulusPalletXcmOrigin;
+  readonly isEthereum: boolean;
+  readonly asEthereum: PalletEthereumRawOrigin;
+  readonly type: 'System' | 'Void' | 'PolkadotXcm' | 'CumulusXcm' | 'Ethereum';
 }
 
 /** @name UniqueRuntimeRuntime */

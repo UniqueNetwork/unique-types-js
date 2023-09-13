@@ -345,6 +345,16 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
+    utility: {
+      /**
+       * The limit on the number of batched calls.
+       **/
+      batchedCallsLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     vesting: {
       /**
        * The minimum amount transferred to call `vested_transfer`.
