@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/opal-testnet-types",
   "private": false,
-  "version": "943.61.0",
+  "version": "100.100.0",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
