@@ -564,8 +564,8 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       NoSubscription: AugmentedError<ApiType>;
       /**
-       * There was some other issue (i.e. not to do with routing) in sending the message. Perhaps
-       * a lack of space for buffering the message.
+       * There was some other issue (i.e. not to do with routing) in sending the message.
+       * Perhaps a lack of space for buffering the message.
        **/
       SendFailure: AugmentedError<ApiType>;
       /**
