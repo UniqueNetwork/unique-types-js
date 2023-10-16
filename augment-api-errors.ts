@@ -170,6 +170,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       EmptyPropertyKey: AugmentedError<ApiType>;
       /**
+       * Fungible tokens hold no ID, and the default value of TokenId for a fungible collection is 0.
+       **/
+      FungibleItemsHaveNoId: AugmentedError<ApiType>;
+      /**
        * Only ASCII letters, digits, and symbols `_`, `-`, and `.` are allowed
        **/
       InvalidCharacterInPropertyKey: AugmentedError<ApiType>;
@@ -413,10 +417,6 @@ declare module '@polkadot/api-base/types/errors' {
        * Tried to set data for fungible item.
        **/
       FungibleItemsDontHaveData: AugmentedError<ApiType>;
-      /**
-       * Fungible tokens hold no ID, and the default value of TokenId for Fungible collection is 0.
-       **/
-      FungibleItemsHaveNoId: AugmentedError<ApiType>;
       /**
        * Only a fungible collection could be possibly broken; any fungible token is valid.
        **/
