@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/sapphire-mainnet-types",
   "private": false,
-  "version": "100.100.0",
+  "version": "100.100.1",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
