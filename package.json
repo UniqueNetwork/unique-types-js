@@ -1,7 +1,7 @@
 {
   "name": "@unique-nft/unique-mainnet-types",
   "private": false,
-  "version": "100.100.1",
+  "version": "100.100.2",
   "main": "index.js",
   "repository": "git@github.com:UniqueNetwork/unique-types-js.git",
   "homepage": "https://unique.network/",
@@ -10,12 +10,12 @@
     "prepublish": "tsc -d"
   },
   "peerDependencies": {
-    "@polkadot/api": "^10.9.1",
-    "@polkadot/types": "^10.9.1"
+    "@polkadot/api": "^10.10.1",
+    "@polkadot/types": "^10.10.1"
   },
   "devDependencies": {
-    "@polkadot/api": "^10.9.1",
-    "@polkadot/types": "^10.9.1",
+    "@polkadot/api": "^10.10.1",
+    "@polkadot/types": "^10.10.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
