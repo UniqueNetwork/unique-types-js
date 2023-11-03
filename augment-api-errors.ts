@@ -257,7 +257,178 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    council: {
+      /**
+       * Members are already initialized!
+       **/
+      AlreadyInitialized: AugmentedError<ApiType>;
+      /**
+       * Duplicate proposals not allowed
+       **/
+      DuplicateProposal: AugmentedError<ApiType>;
+      /**
+       * Duplicate vote ignored
+       **/
+      DuplicateVote: AugmentedError<ApiType>;
+      /**
+       * Account is not a member
+       **/
+      NotMember: AugmentedError<ApiType>;
+      /**
+       * Prime account is not a member
+       **/
+      PrimeAccountNotMember: AugmentedError<ApiType>;
+      /**
+       * Proposal must exist
+       **/
+      ProposalMissing: AugmentedError<ApiType>;
+      /**
+       * The close call was made too early, before the end of the voting.
+       **/
+      TooEarly: AugmentedError<ApiType>;
+      /**
+       * There can only be a maximum of `MaxProposals` active proposals.
+       **/
+      TooManyProposals: AugmentedError<ApiType>;
+      /**
+       * Mismatched index
+       **/
+      WrongIndex: AugmentedError<ApiType>;
+      /**
+       * The given length bound for the proposal was too low.
+       **/
+      WrongProposalLength: AugmentedError<ApiType>;
+      /**
+       * The given weight bound for the proposal was too low.
+       **/
+      WrongProposalWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    councilMembership: {
+      /**
+       * Already a member.
+       **/
+      AlreadyMember: AugmentedError<ApiType>;
+      /**
+       * Not a member.
+       **/
+      NotMember: AugmentedError<ApiType>;
+      /**
+       * Too many members.
+       **/
+      TooManyMembers: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     cumulusXcm: {
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    democracy: {
+      /**
+       * Cannot cancel the same proposal twice
+       **/
+      AlreadyCanceled: AugmentedError<ApiType>;
+      /**
+       * The account is already delegating.
+       **/
+      AlreadyDelegating: AugmentedError<ApiType>;
+      /**
+       * Identity may not veto a proposal twice
+       **/
+      AlreadyVetoed: AugmentedError<ApiType>;
+      /**
+       * Proposal already made
+       **/
+      DuplicateProposal: AugmentedError<ApiType>;
+      /**
+       * The instant referendum origin is currently disallowed.
+       **/
+      InstantNotAllowed: AugmentedError<ApiType>;
+      /**
+       * Too high a balance was provided that the account cannot afford.
+       **/
+      InsufficientFunds: AugmentedError<ApiType>;
+      /**
+       * Invalid hash
+       **/
+      InvalidHash: AugmentedError<ApiType>;
+      /**
+       * Maximum number of votes reached.
+       **/
+      MaxVotesReached: AugmentedError<ApiType>;
+      /**
+       * No proposals waiting
+       **/
+      NoneWaiting: AugmentedError<ApiType>;
+      /**
+       * Delegation to oneself makes no sense.
+       **/
+      Nonsense: AugmentedError<ApiType>;
+      /**
+       * The actor has no permission to conduct the action.
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * No external proposal
+       **/
+      NoProposal: AugmentedError<ApiType>;
+      /**
+       * The account is not currently delegating.
+       **/
+      NotDelegating: AugmentedError<ApiType>;
+      /**
+       * Next external proposal not simple majority
+       **/
+      NotSimpleMajority: AugmentedError<ApiType>;
+      /**
+       * The given account did not vote on the referendum.
+       **/
+      NotVoter: AugmentedError<ApiType>;
+      /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
+      /**
+       * Proposal still blacklisted
+       **/
+      ProposalBlacklisted: AugmentedError<ApiType>;
+      /**
+       * Proposal does not exist
+       **/
+      ProposalMissing: AugmentedError<ApiType>;
+      /**
+       * Vote given for invalid referendum
+       **/
+      ReferendumInvalid: AugmentedError<ApiType>;
+      /**
+       * Maximum number of items reached.
+       **/
+      TooMany: AugmentedError<ApiType>;
+      /**
+       * Value too low
+       **/
+      ValueLow: AugmentedError<ApiType>;
+      /**
+       * The account currently has votes attached to it and the operation cannot succeed until
+       * these are removed, either through `unvote` or `reap_vote`.
+       **/
+      VotesExist: AugmentedError<ApiType>;
+      /**
+       * Voting period too low
+       **/
+      VotingPeriodLow: AugmentedError<ApiType>;
+      /**
+       * Invalid upper bound.
+       **/
+      WrongUpperBound: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -385,6 +556,106 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    fellowshipCollective: {
+      /**
+       * Account is already a member.
+       **/
+      AlreadyMember: AugmentedError<ApiType>;
+      /**
+       * Unexpected error in state.
+       **/
+      Corruption: AugmentedError<ApiType>;
+      /**
+       * The information provided is incorrect.
+       **/
+      InvalidWitness: AugmentedError<ApiType>;
+      /**
+       * There are no further records to be removed.
+       **/
+      NoneRemaining: AugmentedError<ApiType>;
+      /**
+       * The origin is not sufficiently privileged to do the operation.
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * Account is not a member.
+       **/
+      NotMember: AugmentedError<ApiType>;
+      /**
+       * The given poll index is unknown or has closed.
+       **/
+      NotPolling: AugmentedError<ApiType>;
+      /**
+       * The given poll is still ongoing.
+       **/
+      Ongoing: AugmentedError<ApiType>;
+      /**
+       * The member's rank is too low to vote.
+       **/
+      RankTooLow: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    fellowshipReferenda: {
+      /**
+       * The referendum index provided is invalid in this context.
+       **/
+      BadReferendum: AugmentedError<ApiType>;
+      /**
+       * The referendum status is invalid for this operation.
+       **/
+      BadStatus: AugmentedError<ApiType>;
+      /**
+       * The track identifier given was invalid.
+       **/
+      BadTrack: AugmentedError<ApiType>;
+      /**
+       * There are already a full complement of referenda in progress for this track.
+       **/
+      Full: AugmentedError<ApiType>;
+      /**
+       * Referendum's decision deposit is already paid.
+       **/
+      HasDeposit: AugmentedError<ApiType>;
+      /**
+       * The deposit cannot be refunded since none was made.
+       **/
+      NoDeposit: AugmentedError<ApiType>;
+      /**
+       * The deposit refunder is not the depositor.
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * There was nothing to do in the advancement.
+       **/
+      NothingToDo: AugmentedError<ApiType>;
+      /**
+       * Referendum is not ongoing.
+       **/
+      NotOngoing: AugmentedError<ApiType>;
+      /**
+       * No track exists for the proposal origin.
+       **/
+      NoTrack: AugmentedError<ApiType>;
+      /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
+      /**
+       * The queue of the track is empty.
+       **/
+      QueueEmpty: AugmentedError<ApiType>;
+      /**
+       * Any deposit cannot be refunded until after the decision is over.
+       **/
+      Unfinished: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     foreignAssets: {
       /**
        * AssetId exists
@@ -433,6 +704,84 @@ declare module '@polkadot/api-base/types/errors' {
        * Setting item properties is not allowed.
        **/
       SettingPropertiesNotAllowed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    identity: {
+      /**
+       * Account ID is already named.
+       **/
+      AlreadyClaimed: AugmentedError<ApiType>;
+      /**
+       * Empty index.
+       **/
+      EmptyIndex: AugmentedError<ApiType>;
+      /**
+       * Fee is changed.
+       **/
+      FeeChanged: AugmentedError<ApiType>;
+      /**
+       * The index is invalid.
+       **/
+      InvalidIndex: AugmentedError<ApiType>;
+      /**
+       * Invalid judgement.
+       **/
+      InvalidJudgement: AugmentedError<ApiType>;
+      /**
+       * The target is invalid.
+       **/
+      InvalidTarget: AugmentedError<ApiType>;
+      /**
+       * The provided judgement was for a different identity.
+       **/
+      JudgementForDifferentIdentity: AugmentedError<ApiType>;
+      /**
+       * Judgement given.
+       **/
+      JudgementGiven: AugmentedError<ApiType>;
+      /**
+       * Error that occurs when there is an issue paying for judgement.
+       **/
+      JudgementPaymentFailed: AugmentedError<ApiType>;
+      /**
+       * No identity found.
+       **/
+      NoIdentity: AugmentedError<ApiType>;
+      /**
+       * Account isn't found.
+       **/
+      NotFound: AugmentedError<ApiType>;
+      /**
+       * Account isn't named.
+       **/
+      NotNamed: AugmentedError<ApiType>;
+      /**
+       * Sub-account isn't owned by sender.
+       **/
+      NotOwned: AugmentedError<ApiType>;
+      /**
+       * Sender is not a sub-account.
+       **/
+      NotSub: AugmentedError<ApiType>;
+      /**
+       * Sticky judgement.
+       **/
+      StickyJudgement: AugmentedError<ApiType>;
+      /**
+       * Too many additional fields.
+       **/
+      TooManyFields: AugmentedError<ApiType>;
+      /**
+       * Maximum amount of registrars reached. Cannot add any more.
+       **/
+      TooManyRegistrars: AugmentedError<ApiType>;
+      /**
+       * Too many subs-accounts.
+       **/
+      TooManySubAccounts: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -590,6 +939,36 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    preimage: {
+      /**
+       * Preimage has already been noted on-chain.
+       **/
+      AlreadyNoted: AugmentedError<ApiType>;
+      /**
+       * The user is not authorized to perform this action.
+       **/
+      NotAuthorized: AugmentedError<ApiType>;
+      /**
+       * The preimage cannot be removed since it has not yet been noted.
+       **/
+      NotNoted: AugmentedError<ApiType>;
+      /**
+       * The preimage request cannot be removed since no outstanding requests exist.
+       **/
+      NotRequested: AugmentedError<ApiType>;
+      /**
+       * A preimage may not be removed when there are outstanding requests.
+       **/
+      Requested: AugmentedError<ApiType>;
+      /**
+       * Preimage is too large to store on-chain.
+       **/
+      TooBig: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     refungible: {
       /**
        * Not Refungible item data used to mint in Refungible collection.
@@ -611,6 +990,32 @@ declare module '@polkadot/api-base/types/errors' {
        * Maximum refungibility exceeded.
        **/
       WrongRefungiblePieces: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    scheduler: {
+      /**
+       * Failed to schedule a call
+       **/
+      FailedToSchedule: AugmentedError<ApiType>;
+      /**
+       * Attempt to use a non-named function on a named task.
+       **/
+      Named: AugmentedError<ApiType>;
+      /**
+       * Cannot find the scheduled call.
+       **/
+      NotFound: AugmentedError<ApiType>;
+      /**
+       * Reschedule failed because it does not change scheduled time.
+       **/
+      RescheduleNoChange: AugmentedError<ApiType>;
+      /**
+       * Given target block number is in the past.
+       **/
+      TargetBlockNumberInPast: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -717,6 +1122,74 @@ declare module '@polkadot/api-base/types/errors' {
        * and the new runtime.
        **/
       SpecVersionNeedsToIncrease: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    technicalCommittee: {
+      /**
+       * Members are already initialized!
+       **/
+      AlreadyInitialized: AugmentedError<ApiType>;
+      /**
+       * Duplicate proposals not allowed
+       **/
+      DuplicateProposal: AugmentedError<ApiType>;
+      /**
+       * Duplicate vote ignored
+       **/
+      DuplicateVote: AugmentedError<ApiType>;
+      /**
+       * Account is not a member
+       **/
+      NotMember: AugmentedError<ApiType>;
+      /**
+       * Prime account is not a member
+       **/
+      PrimeAccountNotMember: AugmentedError<ApiType>;
+      /**
+       * Proposal must exist
+       **/
+      ProposalMissing: AugmentedError<ApiType>;
+      /**
+       * The close call was made too early, before the end of the voting.
+       **/
+      TooEarly: AugmentedError<ApiType>;
+      /**
+       * There can only be a maximum of `MaxProposals` active proposals.
+       **/
+      TooManyProposals: AugmentedError<ApiType>;
+      /**
+       * Mismatched index
+       **/
+      WrongIndex: AugmentedError<ApiType>;
+      /**
+       * The given length bound for the proposal was too low.
+       **/
+      WrongProposalLength: AugmentedError<ApiType>;
+      /**
+       * The given weight bound for the proposal was too low.
+       **/
+      WrongProposalWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    technicalCommitteeMembership: {
+      /**
+       * Already a member.
+       **/
+      AlreadyMember: AugmentedError<ApiType>;
+      /**
+       * Not a member.
+       **/
+      NotMember: AugmentedError<ApiType>;
+      /**
+       * Too many members.
+       **/
+      TooManyMembers: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
