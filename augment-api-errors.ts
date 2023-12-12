@@ -252,6 +252,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       NoSpaceForProperty: AugmentedError<ApiType>;
       /**
+       * Not Fungible item data used to mint in Fungible collection.
+       **/
+      NotFungibleDataUsedToMintFungibleCollectionToken: AugmentedError<ApiType>;
+      /**
        * Insufficient funds to perform an action
        **/
       NotSufficientFounds: AugmentedError<ApiType>;
@@ -716,22 +720,13 @@ declare module '@polkadot/api-base/types/errors' {
     };
     foreignAssets: {
       /**
-       * AssetId exists
+       * The given asset ID could not be converted into the current XCM version.
        **/
-      AssetIdExisted: AugmentedError<ApiType>;
+      BadForeignAssetId: AugmentedError<ApiType>;
       /**
-       * AssetId not exists
+       * The foreign asset is already registered.
        **/
-      AssetIdNotExists: AugmentedError<ApiType>;
-      /**
-       * The given location could not be used (e.g. because it cannot be expressed in the
-       * desired version of XCM).
-       **/
-      BadLocation: AugmentedError<ApiType>;
-      /**
-       * MultiLocation existed
-       **/
-      MultiLocationExisted: AugmentedError<ApiType>;
+      ForeignAssetAlreadyRegistered: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -750,10 +745,6 @@ declare module '@polkadot/api-base/types/errors' {
        * Only a fungible collection could be possibly broken; any fungible token is valid.
        **/
       FungibleTokensAreAlwaysValid: AugmentedError<ApiType>;
-      /**
-       * Not Fungible item data used to mint in Fungible collection.
-       **/
-      NotFungibleDataUsedToMintFungibleCollectionToken: AugmentedError<ApiType>;
       /**
        * Setting allowance for all is not allowed.
        **/
@@ -1023,6 +1014,14 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooBig: AugmentedError<ApiType>;
       /**
+       * Too few hashes were requested to be upgraded (i.e. zero).
+       **/
+      TooFew: AugmentedError<ApiType>;
+      /**
+       * More than `MAX_HASH_UPGRADE_BULK_COUNT` hashes were requested to be upgraded at once.
+       **/
+      TooMany: AugmentedError<ApiType>;
+      /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
@@ -1287,42 +1286,23 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    tokens: {
-      /**
-       * Cannot convert Amount into Balance type
-       **/
-      AmountIntoBalanceFailed: AugmentedError<ApiType>;
-      /**
-       * The balance is too low
-       **/
-      BalanceTooLow: AugmentedError<ApiType>;
-      /**
-       * Beneficiary account must pre-exist
-       **/
-      DeadAccount: AugmentedError<ApiType>;
-      /**
-       * Value too low to create account due to existential deposit
-       **/
-      ExistentialDeposit: AugmentedError<ApiType>;
-      /**
-       * Transfer/payment would kill account
-       **/
-      KeepAlive: AugmentedError<ApiType>;
-      /**
-       * Failed because liquidity restrictions due to locking
-       **/
-      LiquidityRestrictions: AugmentedError<ApiType>;
-      /**
-       * Failed because the maximum locks was exceeded
-       **/
-      MaxLocksExceeded: AugmentedError<ApiType>;
-      TooManyReserves: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
     treasury: {
+      /**
+       * The payment has already been attempted.
+       **/
+      AlreadyAttempted: AugmentedError<ApiType>;
+      /**
+       * The spend is not yet eligible for payout.
+       **/
+      EarlyPayout: AugmentedError<ApiType>;
+      /**
+       * The balance of the asset kind is not convertible to the balance of the native asset.
+       **/
+      FailedToConvertBalance: AugmentedError<ApiType>;
+      /**
+       * The payment has neither failed nor succeeded yet.
+       **/
+      Inconclusive: AugmentedError<ApiType>;
       /**
        * The spend origin is valid but the amount it is allowed to spend is lower than the
        * amount to be spent.
@@ -1333,13 +1313,25 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       InsufficientProposersBalance: AugmentedError<ApiType>;
       /**
-       * No proposal or bounty at that index.
+       * No proposal, bounty or spend at that index.
        **/
       InvalidIndex: AugmentedError<ApiType>;
+      /**
+       * The payout was not yet attempted/claimed.
+       **/
+      NotAttempted: AugmentedError<ApiType>;
+      /**
+       * There was some issue with the mechanism of payment.
+       **/
+      PayoutError: AugmentedError<ApiType>;
       /**
        * Proposal has not been approved.
        **/
       ProposalNotApproved: AugmentedError<ApiType>;
+      /**
+       * The spend has expired and cannot be claimed.
+       **/
+      SpendExpired: AugmentedError<ApiType>;
       /**
        * Too many approvals in the queue.
        **/

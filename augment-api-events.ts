@@ -10,7 +10,7 @@ import type { ApiTypes, AugmentedEvent } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U8aFixed, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256 } from '@polkadot/types/interfaces/runtime';
-import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportDispatchDispatchInfo, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, OrmlVestingVestingSchedule, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsAssetId, PalletForeignAssetsModuleAssetMetadata, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpRuntimeDispatchError, SpWeightsWeightV2Weight, StagingXcmV3MultiAsset, StagingXcmV3MultiLocation, StagingXcmV3MultiassetMultiAssets, StagingXcmV3Response, StagingXcmV3TraitsError, StagingXcmV3TraitsOutcome, StagingXcmV3Xcm, StagingXcmVersionedMultiAssets, StagingXcmVersionedMultiLocation } from '@polkadot/types/lookup';
+import type { EthereumLog, EvmCoreErrorExitReason, FrameSupportDispatchDispatchInfo, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, OrmlVestingVestingSchedule, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletEvmAccountBasicCrossAccountIdRepr, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpRuntimeDispatchError, SpWeightsWeightV2Weight, StagingXcmV3MultiLocation, XcmV3MultiAsset, XcmV3MultiassetMultiAssets, XcmV3Response, XcmV3TraitsError, XcmV3TraitsOutcome, XcmV3Xcm, XcmVersionedAssetId, XcmVersionedMultiAssets, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -332,7 +332,7 @@ declare module '@polkadot/api-base/types/events' {
        * Downward message executed with the given outcome.
        * \[ id, outcome \]
        **/
-      ExecutedDownward: AugmentedEvent<ApiType, [U8aFixed, StagingXcmV3TraitsOutcome]>;
+      ExecutedDownward: AugmentedEvent<ApiType, [U8aFixed, XcmV3TraitsOutcome]>;
       /**
        * Downward message is invalid XCM.
        * \[ id \]
@@ -426,7 +426,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Downward message executed with the given outcome.
        **/
-      ExecutedDownward: AugmentedEvent<ApiType, [messageHash: U8aFixed, messageId: U8aFixed, outcome: StagingXcmV3TraitsOutcome], { messageHash: U8aFixed, messageId: U8aFixed, outcome: StagingXcmV3TraitsOutcome }>;
+      ExecutedDownward: AugmentedEvent<ApiType, [messageHash: U8aFixed, messageId: U8aFixed, outcome: XcmV3TraitsOutcome], { messageHash: U8aFixed, messageId: U8aFixed, outcome: XcmV3TraitsOutcome }>;
       /**
        * Downward message is invalid XCM.
        **/
@@ -609,21 +609,9 @@ declare module '@polkadot/api-base/types/events' {
     };
     foreignAssets: {
       /**
-       * The asset registered.
-       **/
-      AssetRegistered: AugmentedEvent<ApiType, [assetId: PalletForeignAssetsAssetId, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: PalletForeignAssetsAssetId, metadata: PalletForeignAssetsModuleAssetMetadata }>;
-      /**
-       * The asset updated.
-       **/
-      AssetUpdated: AugmentedEvent<ApiType, [assetId: PalletForeignAssetsAssetId, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: PalletForeignAssetsAssetId, metadata: PalletForeignAssetsModuleAssetMetadata }>;
-      /**
        * The foreign asset registered.
        **/
-      ForeignAssetRegistered: AugmentedEvent<ApiType, [assetId: u32, assetAddress: StagingXcmV3MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: u32, assetAddress: StagingXcmV3MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata }>;
-      /**
-       * The foreign asset updated.
-       **/
-      ForeignAssetUpdated: AugmentedEvent<ApiType, [assetId: u32, assetAddress: StagingXcmV3MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata], { assetId: u32, assetAddress: StagingXcmV3MultiLocation, metadata: PalletForeignAssetsModuleAssetMetadata }>;
+      ForeignAssetRegistered: AugmentedEvent<ApiType, [collectionId: u32, assetId: XcmVersionedAssetId], { collectionId: u32, assetId: XcmVersionedAssetId }>;
       /**
        * Generic event
        **/
@@ -734,19 +722,19 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Some assets have been claimed from an asset trap
        **/
-      AssetsClaimed: AugmentedEvent<ApiType, [hash_: H256, origin: StagingXcmV3MultiLocation, assets: StagingXcmVersionedMultiAssets], { hash_: H256, origin: StagingXcmV3MultiLocation, assets: StagingXcmVersionedMultiAssets }>;
+      AssetsClaimed: AugmentedEvent<ApiType, [hash_: H256, origin: StagingXcmV3MultiLocation, assets: XcmVersionedMultiAssets], { hash_: H256, origin: StagingXcmV3MultiLocation, assets: XcmVersionedMultiAssets }>;
       /**
        * Some assets have been placed in an asset trap.
        **/
-      AssetsTrapped: AugmentedEvent<ApiType, [hash_: H256, origin: StagingXcmV3MultiLocation, assets: StagingXcmVersionedMultiAssets], { hash_: H256, origin: StagingXcmV3MultiLocation, assets: StagingXcmVersionedMultiAssets }>;
+      AssetsTrapped: AugmentedEvent<ApiType, [hash_: H256, origin: StagingXcmV3MultiLocation, assets: XcmVersionedMultiAssets], { hash_: H256, origin: StagingXcmV3MultiLocation, assets: XcmVersionedMultiAssets }>;
       /**
        * Execution of an XCM message was attempted.
        **/
-      Attempted: AugmentedEvent<ApiType, [outcome: StagingXcmV3TraitsOutcome], { outcome: StagingXcmV3TraitsOutcome }>;
+      Attempted: AugmentedEvent<ApiType, [outcome: XcmV3TraitsOutcome], { outcome: XcmV3TraitsOutcome }>;
       /**
        * Fees were paid from a location for an operation (often for using `SendXcm`).
        **/
-      FeesPaid: AugmentedEvent<ApiType, [paying: StagingXcmV3MultiLocation, fees: StagingXcmV3MultiassetMultiAssets], { paying: StagingXcmV3MultiLocation, fees: StagingXcmV3MultiassetMultiAssets }>;
+      FeesPaid: AugmentedEvent<ApiType, [paying: StagingXcmV3MultiLocation, fees: XcmV3MultiassetMultiAssets], { paying: StagingXcmV3MultiLocation, fees: XcmV3MultiassetMultiAssets }>;
       /**
        * Expected query response has been received but the querier location of the response does
        * not match the expected. The query remains registered for a later, valid, response to
@@ -805,17 +793,17 @@ declare module '@polkadot/api-base/types/events' {
        * A given location which had a version change subscription was dropped owing to an error
        * migrating the location to our new XCM format.
        **/
-      NotifyTargetMigrationFail: AugmentedEvent<ApiType, [location: StagingXcmVersionedMultiLocation, queryId: u64], { location: StagingXcmVersionedMultiLocation, queryId: u64 }>;
+      NotifyTargetMigrationFail: AugmentedEvent<ApiType, [location: XcmVersionedMultiLocation, queryId: u64], { location: XcmVersionedMultiLocation, queryId: u64 }>;
       /**
        * A given location which had a version change subscription was dropped owing to an error
        * sending the notification to it.
        **/
-      NotifyTargetSendFail: AugmentedEvent<ApiType, [location: StagingXcmV3MultiLocation, queryId: u64, error: StagingXcmV3TraitsError], { location: StagingXcmV3MultiLocation, queryId: u64, error: StagingXcmV3TraitsError }>;
+      NotifyTargetSendFail: AugmentedEvent<ApiType, [location: StagingXcmV3MultiLocation, queryId: u64, error: XcmV3TraitsError], { location: StagingXcmV3MultiLocation, queryId: u64, error: XcmV3TraitsError }>;
       /**
        * Query response has been received and is ready for taking with `take_response`. There is
        * no registered notification call.
        **/
-      ResponseReady: AugmentedEvent<ApiType, [queryId: u64, response: StagingXcmV3Response], { queryId: u64, response: StagingXcmV3Response }>;
+      ResponseReady: AugmentedEvent<ApiType, [queryId: u64, response: XcmV3Response], { queryId: u64, response: XcmV3Response }>;
       /**
        * Received query response has been read and removed.
        **/
@@ -823,7 +811,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * A XCM message was sent.
        **/
-      Sent: AugmentedEvent<ApiType, [origin: StagingXcmV3MultiLocation, destination: StagingXcmV3MultiLocation, message: StagingXcmV3Xcm, messageId: U8aFixed], { origin: StagingXcmV3MultiLocation, destination: StagingXcmV3MultiLocation, message: StagingXcmV3Xcm, messageId: U8aFixed }>;
+      Sent: AugmentedEvent<ApiType, [origin: StagingXcmV3MultiLocation, destination: StagingXcmV3MultiLocation, message: XcmV3Xcm, messageId: U8aFixed], { origin: StagingXcmV3MultiLocation, destination: StagingXcmV3MultiLocation, message: XcmV3Xcm, messageId: U8aFixed }>;
       /**
        * The supported version of a location has been changed. This might be through an
        * automatic notification or a manual intervention.
@@ -840,21 +828,21 @@ declare module '@polkadot/api-base/types/events' {
        * 
        * The cost of sending it (borne by the chain) is included.
        **/
-      VersionChangeNotified: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, result: u32, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, result: u32, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionChangeNotified: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, result: u32, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, result: u32, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
       /**
        * We have requested that a remote chain send us XCM version change notifications.
        **/
-      VersionNotifyRequested: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionNotifyRequested: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
       /**
        * A remote has requested XCM version change notification from us and we have honored it.
        * A version information message is sent to them and its cost is included.
        **/
-      VersionNotifyStarted: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionNotifyStarted: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
       /**
        * We have requested that a remote chain stops sending us XCM version change
        * notifications.
        **/
-      VersionNotifyUnrequested: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, cost: StagingXcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
+      VersionNotifyUnrequested: AugmentedEvent<ApiType, [destination: StagingXcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed], { destination: StagingXcmV3MultiLocation, cost: XcmV3MultiassetMultiAssets, messageId: U8aFixed }>;
       /**
        * Generic event
        **/
@@ -954,15 +942,15 @@ declare module '@polkadot/api-base/types/events' {
     };
     sudo: {
       /**
-       * The \[sudoer\] just switched identity; the old key is supplied if one existed.
+       * The sudo key has been updated.
        **/
       KeyChanged: AugmentedEvent<ApiType, [oldSudoer: Option<AccountId32>], { oldSudoer: Option<AccountId32> }>;
       /**
-       * A sudo just took place. \[result\]
+       * A sudo call just took place.
        **/
       Sudid: AugmentedEvent<ApiType, [sudoResult: Result<Null, SpRuntimeDispatchError>], { sudoResult: Result<Null, SpRuntimeDispatchError> }>;
       /**
-       * A sudo just took place. \[result\]
+       * A [sudo_as](Pallet::sudo_as) call just took place.
        **/
       SudoAsDone: AugmentedEvent<ApiType, [sudoResult: Result<Null, SpRuntimeDispatchError>], { sudoResult: Result<Null, SpRuntimeDispatchError> }>;
       /**
@@ -1075,76 +1063,6 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    tokens: {
-      /**
-       * A balance was set by root.
-       **/
-      BalanceSet: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, free: u128, reserved: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, free: u128, reserved: u128 }>;
-      /**
-       * Deposited some balance into an account
-       **/
-      Deposited: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * An account was removed whose balance was non-zero but below
-       * ExistentialDeposit, resulting in an outright loss.
-       **/
-      DustLost: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * An account was created with some free balance.
-       **/
-      Endowed: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      Issued: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, amount: u128], { currencyId: PalletForeignAssetsAssetId, amount: u128 }>;
-      /**
-       * Some free balance was locked.
-       **/
-      Locked: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * Some locked funds were unlocked
-       **/
-      LockRemoved: AugmentedEvent<ApiType, [lockId: U8aFixed, currencyId: PalletForeignAssetsAssetId, who: AccountId32], { lockId: U8aFixed, currencyId: PalletForeignAssetsAssetId, who: AccountId32 }>;
-      /**
-       * Some funds are locked
-       **/
-      LockSet: AugmentedEvent<ApiType, [lockId: U8aFixed, currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { lockId: U8aFixed, currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      Rescinded: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, amount: u128], { currencyId: PalletForeignAssetsAssetId, amount: u128 }>;
-      /**
-       * Some balance was reserved (moved from free to reserved).
-       **/
-      Reserved: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * Some reserved balance was repatriated (moved from reserved to
-       * another account).
-       **/
-      ReserveRepatriated: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, from: AccountId32, to: AccountId32, amount: u128, status: FrameSupportTokensMiscBalanceStatus], { currencyId: PalletForeignAssetsAssetId, from: AccountId32, to: AccountId32, amount: u128, status: FrameSupportTokensMiscBalanceStatus }>;
-      /**
-       * Some balances were slashed (e.g. due to mis-behavior)
-       **/
-      Slashed: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, freeAmount: u128, reservedAmount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, freeAmount: u128, reservedAmount: u128 }>;
-      /**
-       * The total issuance of an currency has been set
-       **/
-      TotalIssuanceSet: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, amount: u128], { currencyId: PalletForeignAssetsAssetId, amount: u128 }>;
-      /**
-       * Transfer succeeded.
-       **/
-      Transfer: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, from: AccountId32, to: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, from: AccountId32, to: AccountId32, amount: u128 }>;
-      /**
-       * Some locked balance was freed.
-       **/
-      Unlocked: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * Some balance was unreserved (moved from reserved to free).
-       **/
-      Unreserved: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * Some balances were withdrawn (e.g. pay for transaction fee)
-       **/
-      Withdrawn: AugmentedEvent<ApiType, [currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128], { currencyId: PalletForeignAssetsAssetId, who: AccountId32, amount: u128 }>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
     transactionPayment: {
       /**
        * A transaction fee `actual_fee`, of which `tip` was added to the minimum inclusion fee,
@@ -1158,6 +1076,14 @@ declare module '@polkadot/api-base/types/events' {
     };
     treasury: {
       /**
+       * A new asset spend proposal has been approved.
+       **/
+      AssetSpendApproved: AugmentedEvent<ApiType, [index: u32, assetKind: Null, amount: u128, beneficiary: AccountId32, validFrom: u32, expireAt: u32], { index: u32, assetKind: Null, amount: u128, beneficiary: AccountId32, validFrom: u32, expireAt: u32 }>;
+      /**
+       * An approved spend was voided.
+       **/
+      AssetSpendVoided: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
+      /**
        * Some funds have been allocated.
        **/
       Awarded: AugmentedEvent<ApiType, [proposalIndex: u32, award: u128, account: AccountId32], { proposalIndex: u32, award: u128, account: AccountId32 }>;
@@ -1169,6 +1095,14 @@ declare module '@polkadot/api-base/types/events' {
        * Some funds have been deposited.
        **/
       Deposit: AugmentedEvent<ApiType, [value: u128], { value: u128 }>;
+      /**
+       * A payment happened.
+       **/
+      Paid: AugmentedEvent<ApiType, [index: u32, paymentId: Null], { index: u32, paymentId: Null }>;
+      /**
+       * A payment failed and can be retried.
+       **/
+      PaymentFailed: AugmentedEvent<ApiType, [index: u32, paymentId: Null], { index: u32, paymentId: Null }>;
       /**
        * New proposal.
        **/
@@ -1189,6 +1123,11 @@ declare module '@polkadot/api-base/types/events' {
        * We have ended a spend period and will now allocate funds.
        **/
       Spending: AugmentedEvent<ApiType, [budgetRemaining: u128], { budgetRemaining: u128 }>;
+      /**
+       * A spend was processed and removed from the storage. It might have been successfully
+       * paid or it may have expired.
+       **/
+      SpendProcessed: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
        * The inactive funds of the pallet have been updated.
        **/
@@ -1259,7 +1198,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Some XCM failed.
        **/
-      Fail: AugmentedEvent<ApiType, [messageHash: U8aFixed, messageId: U8aFixed, error: StagingXcmV3TraitsError, weight: SpWeightsWeightV2Weight], { messageHash: U8aFixed, messageId: U8aFixed, error: StagingXcmV3TraitsError, weight: SpWeightsWeightV2Weight }>;
+      Fail: AugmentedEvent<ApiType, [messageHash: U8aFixed, messageId: U8aFixed, error: XcmV3TraitsError, weight: SpWeightsWeightV2Weight], { messageHash: U8aFixed, messageId: U8aFixed, error: XcmV3TraitsError, weight: SpWeightsWeightV2Weight }>;
       /**
        * An XCM exceeded the individual message weight budget.
        **/
@@ -1285,7 +1224,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Transferred `MultiAsset` with fee.
        **/
-      TransferredMultiAssets: AugmentedEvent<ApiType, [sender: AccountId32, assets: StagingXcmV3MultiassetMultiAssets, fee: StagingXcmV3MultiAsset, dest: StagingXcmV3MultiLocation], { sender: AccountId32, assets: StagingXcmV3MultiassetMultiAssets, fee: StagingXcmV3MultiAsset, dest: StagingXcmV3MultiLocation }>;
+      TransferredMultiAssets: AugmentedEvent<ApiType, [sender: AccountId32, assets: XcmV3MultiassetMultiAssets, fee: XcmV3MultiAsset, dest: StagingXcmV3MultiLocation], { sender: AccountId32, assets: XcmV3MultiassetMultiAssets, fee: XcmV3MultiAsset, dest: StagingXcmV3MultiLocation }>;
       /**
        * Generic event
        **/
