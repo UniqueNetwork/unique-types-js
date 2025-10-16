@@ -9,8 +9,8 @@ import '@polkadot/api-base/types/consts';
 import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
 import type { Null, Option, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { Codec, ITuple } from '@polkadot/types-codec/types';
-import type { H160, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackInfo, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight, StagingXcmV4Location, UpDataStructsCollectionLimits } from '@polkadot/types/lookup';
+import type { AccountId32, H160, Perbill, Permill } from '@polkadot/types/interfaces/runtime';
+import type { FrameSupportPalletId, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, PalletReferendaTrackDetails, SpVersionRuntimeVersion, SpWeightsRuntimeDbWeight, SpWeightsWeightV2Weight, StagingXcmV5Junctions, StagingXcmV5Location, UpDataStructsCollectionLimits } from '@polkadot/types/lookup';
 
 export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
@@ -106,6 +106,18 @@ declare module '@polkadot/api-base/types/consts' {
        * Address under which the CollectionHelper contract would be available.
        **/
       contractAddress: H160 & AugmentedConst<ApiType>;
+      /**
+       * Default price to upgrade property size limit.
+       **/
+      propertySizeLimitUpgradePriceDefault: u128 & AugmentedConst<ApiType>;
+      /**
+       * Price to upgrade property size limit to extended.
+       **/
+      propertySizeLimitUpgradePriceExtended: u128 & AugmentedConst<ApiType>;
+      /**
+       * Price to upgrade property size limit to maximum.
+       **/
+      propertySizeLimitUpgradePriceMax: u128 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -227,9 +239,11 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       submissionDeposit: u128 & AugmentedConst<ApiType>;
       /**
-       * Information concerning the different referendum tracks.
+       * A list of tracks.
+       * 
+       * Note: if the tracks are dynamic, the value in the static metadata might be inaccurate.
        **/
-      tracks: Vec<ITuple<[u16, PalletReferendaTrackInfo]>> & AugmentedConst<ApiType>;
+      tracks: Vec<ITuple<[u16, PalletReferendaTrackDetails]>> & AugmentedConst<ApiType>;
       /**
        * The number of blocks after submission that a referendum must begin being decided by.
        * Once this passes, then anyone may cancel the referendum.
@@ -245,6 +259,20 @@ declare module '@polkadot/api-base/types/consts' {
        * The maximum weight of a dispatch call that can be proposed and executed.
        **/
       maxProposalWeight: SpWeightsWeightV2Weight & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    foreignAssets: {
+      /**
+       * 1 DOT in u128
+       **/
+      dotAccuracy: u128 & AugmentedConst<ApiType>;
+      /**
+       * The conversion coefficient for foreign assets.
+       **/
+      foreignAssetConversionCoefficientDefault: u128 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -331,11 +359,52 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
+    oracle: {
+      /**
+       * Maximum size the vector used for feed values
+       **/
+      maxFeedValues: u32 & AugmentedConst<ApiType>;
+      /**
+       * Maximum size of HasDispatched
+       **/
+      maxHasDispatchedSize: u32 & AugmentedConst<ApiType>;
+      /**
+       * The root operator account id, record all sudo feeds on this account.
+       **/
+      rootOperatorAccountId: AccountId32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     parachainSystem: {
       /**
        * Returns the parachain ID we are running with.
        **/
       selfParaId: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    polkadotXcm: {
+      /**
+       * The latest supported version that we advertise. Generally just set it to
+       * `pallet_xcm::CurrentXcmVersion`.
+       **/
+      advertisedXcmVersion: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of local XCM locks that a single account may have.
+       **/
+      maxLockers: u32 & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of consumers a single remote lock may have.
+       **/
+      maxRemoteLockConsumers: u32 & AugmentedConst<ApiType>;
+      /**
+       * This chain's Universal Location.
+       **/
+      universalLocation: StagingXcmV5Junctions & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -484,6 +553,9 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       burn: Permill & AugmentedConst<ApiType>;
       /**
+       * DEPRECATED: associated with `spend_local` call and will be removed in May 2025.
+       * Refer to <https://github.com/paritytech/polkadot-sdk/pull/5961> for migration to `spend`.
+       * 
        * The maximum number of approvals that can wait in the spending queue.
        * 
        * NOTE: This parameter is also used within the Bounties Pallet extension if enabled.
@@ -497,6 +569,10 @@ declare module '@polkadot/api-base/types/consts' {
        * The period during which an approved treasury spend has to be claimed.
        **/
       payoutPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * Gets this pallet's derived pot account.
+       **/
+      potAccount: AccountId32 & AugmentedConst<ApiType>;
       /**
        * Period between successive spends.
        **/
@@ -632,7 +708,7 @@ declare module '@polkadot/api-base/types/consts' {
       /**
        * Self chain location.
        **/
-      selfLocation: StagingXcmV4Location & AugmentedConst<ApiType>;
+      selfLocation: StagingXcmV5Location & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

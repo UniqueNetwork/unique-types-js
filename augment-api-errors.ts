@@ -170,6 +170,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       CollectionTokenPrefixLimitExceeded: AugmentedError<ApiType>;
       /**
+       * A downgrade of the token property size limit is attempted.
+       **/
+      CollectionTokensPropertiesLimitDowngrade: AugmentedError<ApiType>;
+      /**
        * This address is not set as sponsor, use setCollectionSponsor first.
        **/
       ConfirmSponsorshipFail: AugmentedError<ApiType>;
@@ -208,7 +212,7 @@ declare module '@polkadot/api-base/types/errors' {
       /**
        * Insufficient funds to perform an action
        **/
-      NotSufficientFounds: AugmentedError<ApiType>;
+      NotSufficientFunds: AugmentedError<ApiType>;
       /**
        * Tried to enable permissions which are only permitted to be disabled
        **/
@@ -290,6 +294,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Prime account is not a member
        **/
       PrimeAccountNotMember: AugmentedError<ApiType>;
+      /**
+       * Proposal is still active.
+       **/
+      ProposalActive: AugmentedError<ApiType>;
       /**
        * Proposal must exist
        **/
@@ -459,6 +467,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Not enough balance to perform action
        **/
       BalanceLow: AugmentedError<ApiType>;
+      /**
+       * Address not allowed to deploy contracts either via CREATE or CALL(CREATE).
+       **/
+      CreateOriginNotAllowed: AugmentedError<ApiType>;
       /**
        * Calculating total fee overflowed
        **/
@@ -690,6 +702,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       PrimeAccountNotMember: AugmentedError<ApiType>;
       /**
+       * Proposal is still active.
+       **/
+      ProposalActive: AugmentedError<ApiType>;
+      /**
        * Proposal must exist
        **/
       ProposalMissing: AugmentedError<ApiType>;
@@ -742,9 +758,37 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       BadForeignAssetId: AugmentedError<ApiType>;
       /**
+       * The given location could not be converted into the current XCM version.
+       **/
+      BadLocation: AugmentedError<ApiType>;
+      /**
+       * Failed to parse the balance received from currency exchange.
+       **/
+      CantParseBalance: AugmentedError<ApiType>;
+      /**
+       * Failed to parse the response from the exchange.
+       **/
+      CantParseResponse: AugmentedError<ApiType>;
+      /**
+       * Failed to fetch the exchange rate.
+       **/
+      FailedToFetchRate: AugmentedError<ApiType>;
+      /**
        * The foreign asset is already registered.
        **/
       ForeignAssetAlreadyRegistered: AugmentedError<ApiType>;
+      /**
+       * Only fungible assets could be converted to fee.
+       **/
+      ForeignAssetIsNotFungible: AugmentedError<ApiType>;
+      /**
+       * The specified foreign asset is not found.
+       **/
+      ForeignAssetNotFound: AugmentedError<ApiType>;
+      /**
+       * Can't add more oracle members.
+       **/
+      OracleMembersCapacityExceeded: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -926,15 +970,25 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    oracle: {
+      /**
+       * Feeder has already fed at this block
+       **/
+      AlreadyFeeded: AugmentedError<ApiType>;
+      /**
+       * Sender does not have permission
+       **/
+      NoPermission: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     parachainSystem: {
       /**
        * The inherent which supplies the host configuration did not run this block.
        **/
       HostConfigurationNotAvailable: AugmentedError<ApiType>;
-      /**
-       * No code upgrade has been authorized.
-       **/
-      NothingAuthorized: AugmentedError<ApiType>;
       /**
        * No validation function upgrade is currently scheduled.
        **/
@@ -953,10 +1007,6 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooBig: AugmentedError<ApiType>;
       /**
-       * The given code upgrade has not been authorized.
-       **/
-      Unauthorized: AugmentedError<ApiType>;
-      /**
        * The inherent which supplies the validation data did not run this block.
        **/
       ValidationDataNotAvailable: AugmentedError<ApiType>;
@@ -970,6 +1020,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The given account is not an identifiable sovereign account for any location.
        **/
       AccountNotSovereign: AugmentedError<ApiType>;
+      /**
+       * The alias to remove authorization for was not found.
+       **/
+      AliasNotFound: AugmentedError<ApiType>;
       /**
        * The location is invalid since it already has a subscription from us.
        **/
@@ -1000,6 +1054,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       Empty: AugmentedError<ApiType>;
       /**
+       * Expiry block number is in the past.
+       **/
+      ExpiresInPast: AugmentedError<ApiType>;
+      /**
        * The operation required fees to be paid which the initiator could not meet.
        **/
       FeesNotMet: AugmentedError<ApiType>;
@@ -1028,6 +1086,11 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       LocalExecutionIncomplete: AugmentedError<ApiType>;
       /**
+       * Local XCM execution incomplete with the actual XCM error and the index of the
+       * instruction that caused the error.
+       **/
+      LocalExecutionIncompleteWithError: AugmentedError<ApiType>;
+      /**
        * A remote lock with the corresponding data could not be found.
        **/
       LockNotFound: AugmentedError<ApiType>;
@@ -1048,6 +1111,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Too many assets have been attempted for transfer.
        **/
       TooManyAssets: AugmentedError<ApiType>;
+      /**
+       * Too many locations authorized to alias origin.
+       **/
+      TooManyAuthorizedAliases: AugmentedError<ApiType>;
       /**
        * The asset owner has too many locks on the asset.
        **/
@@ -1075,10 +1142,6 @@ declare module '@polkadot/api-base/types/errors' {
        * Preimage has already been noted on-chain.
        **/
       AlreadyNoted: AugmentedError<ApiType>;
-      /**
-       * No ticket with a cost was returned by [`Config::Consideration`] to store the preimage.
-       **/
-      NoCost: AugmentedError<ApiType>;
       /**
        * The user is not authorized to perform this action.
        **/
@@ -1303,6 +1366,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Prime account is not a member
        **/
       PrimeAccountNotMember: AugmentedError<ApiType>;
+      /**
+       * Proposal is still active.
+       **/
+      ProposalActive: AugmentedError<ApiType>;
       /**
        * Proposal must exist
        **/
@@ -1562,7 +1629,7 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       XcmExecutionFailed: AugmentedError<ApiType>;
       /**
-       * The transfering asset amount is zero.
+       * The transferring asset amount is zero.
        **/
       ZeroAmount: AugmentedError<ApiType>;
       /**
