@@ -1190,9 +1190,17 @@ export interface PalletBalancesEvent extends Enum {
     readonly who: AccountId32;
     readonly amount: u128;
   } & Struct;
+  readonly isMintedCredit: boolean;
+  readonly asMintedCredit: {
+    readonly amount: u128;
+  } & Struct;
   readonly isBurned: boolean;
   readonly asBurned: {
     readonly who: AccountId32;
+    readonly amount: u128;
+  } & Struct;
+  readonly isBurnedDebt: boolean;
+  readonly asBurnedDebt: {
     readonly amount: u128;
   } & Struct;
   readonly isSuspended: boolean;
@@ -1242,9 +1250,41 @@ export interface PalletBalancesEvent extends Enum {
     readonly old: u128;
     readonly new_: u128;
   } & Struct;
+  readonly isHeld: boolean;
+  readonly asHeld: {
+    readonly reason: QuartzRuntimeRuntimeHoldReason;
+    readonly who: AccountId32;
+    readonly amount: u128;
+  } & Struct;
+  readonly isBurnedHeld: boolean;
+  readonly asBurnedHeld: {
+    readonly reason: QuartzRuntimeRuntimeHoldReason;
+    readonly who: AccountId32;
+    readonly amount: u128;
+  } & Struct;
+  readonly isTransferOnHold: boolean;
+  readonly asTransferOnHold: {
+    readonly reason: QuartzRuntimeRuntimeHoldReason;
+    readonly source: AccountId32;
+    readonly dest: AccountId32;
+    readonly amount: u128;
+  } & Struct;
+  readonly isTransferAndHold: boolean;
+  readonly asTransferAndHold: {
+    readonly reason: QuartzRuntimeRuntimeHoldReason;
+    readonly source: AccountId32;
+    readonly dest: AccountId32;
+    readonly transferred: u128;
+  } & Struct;
+  readonly isReleased: boolean;
+  readonly asReleased: {
+    readonly reason: QuartzRuntimeRuntimeHoldReason;
+    readonly who: AccountId32;
+    readonly amount: u128;
+  } & Struct;
   readonly isUnexpected: boolean;
   readonly asUnexpected: PalletBalancesUnexpectedKind;
-  readonly type: 'Endowed' | 'DustLost' | 'Transfer' | 'BalanceSet' | 'Reserved' | 'Unreserved' | 'ReserveRepatriated' | 'Deposit' | 'Withdraw' | 'Slashed' | 'Minted' | 'Burned' | 'Suspended' | 'Restored' | 'Upgraded' | 'Issued' | 'Rescinded' | 'Locked' | 'Unlocked' | 'Frozen' | 'Thawed' | 'TotalIssuanceForced' | 'Unexpected';
+  readonly type: 'Endowed' | 'DustLost' | 'Transfer' | 'BalanceSet' | 'Reserved' | 'Unreserved' | 'ReserveRepatriated' | 'Deposit' | 'Withdraw' | 'Slashed' | 'Minted' | 'MintedCredit' | 'Burned' | 'BurnedDebt' | 'Suspended' | 'Restored' | 'Upgraded' | 'Issued' | 'Rescinded' | 'Locked' | 'Unlocked' | 'Frozen' | 'Thawed' | 'TotalIssuanceForced' | 'Held' | 'BurnedHeld' | 'TransferOnHold' | 'TransferAndHold' | 'Released' | 'Unexpected';
 }
 
 /** @name PalletBalancesReasons */
@@ -5065,21 +5105,21 @@ export interface StagingXcmV4JunctionNetworkId extends Enum {
 export interface StagingXcmV4Junctions extends Enum {
   readonly isHere: boolean;
   readonly isX1: boolean;
-  readonly asX1: Vec<Lookup155>;
+  readonly asX1: Vec<Lookup164>;
   readonly isX2: boolean;
-  readonly asX2: Vec<Lookup155>;
+  readonly asX2: Vec<Lookup164>;
   readonly isX3: boolean;
-  readonly asX3: Vec<Lookup155>;
+  readonly asX3: Vec<Lookup164>;
   readonly isX4: boolean;
-  readonly asX4: Vec<Lookup155>;
+  readonly asX4: Vec<Lookup164>;
   readonly isX5: boolean;
-  readonly asX5: Vec<Lookup155>;
+  readonly asX5: Vec<Lookup164>;
   readonly isX6: boolean;
-  readonly asX6: Vec<Lookup155>;
+  readonly asX6: Vec<Lookup164>;
   readonly isX7: boolean;
-  readonly asX7: Vec<Lookup155>;
+  readonly asX7: Vec<Lookup164>;
   readonly isX8: boolean;
-  readonly asX8: Vec<Lookup155>;
+  readonly asX8: Vec<Lookup164>;
   readonly type: 'Here' | 'X1' | 'X2' | 'X3' | 'X4' | 'X5' | 'X6' | 'X7' | 'X8';
 }
 
@@ -5484,21 +5524,21 @@ export interface StagingXcmV5JunctionNetworkId extends Enum {
 export interface StagingXcmV5Junctions extends Enum {
   readonly isHere: boolean;
   readonly isX1: boolean;
-  readonly asX1: Vec<Lookup59>;
+  readonly asX1: Vec<Lookup68>;
   readonly isX2: boolean;
-  readonly asX2: Vec<Lookup59>;
+  readonly asX2: Vec<Lookup68>;
   readonly isX3: boolean;
-  readonly asX3: Vec<Lookup59>;
+  readonly asX3: Vec<Lookup68>;
   readonly isX4: boolean;
-  readonly asX4: Vec<Lookup59>;
+  readonly asX4: Vec<Lookup68>;
   readonly isX5: boolean;
-  readonly asX5: Vec<Lookup59>;
+  readonly asX5: Vec<Lookup68>;
   readonly isX6: boolean;
-  readonly asX6: Vec<Lookup59>;
+  readonly asX6: Vec<Lookup68>;
   readonly isX7: boolean;
-  readonly asX7: Vec<Lookup59>;
+  readonly asX7: Vec<Lookup68>;
   readonly isX8: boolean;
-  readonly asX8: Vec<Lookup59>;
+  readonly asX8: Vec<Lookup68>;
   readonly type: 'Here' | 'X1' | 'X2' | 'X3' | 'X4' | 'X5' | 'X6' | 'X7' | 'X8';
 }
 
