@@ -10,7 +10,7 @@ import type { ApiTypes, AugmentedEvent } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256 } from '@polkadot/types/interfaces/runtime';
-import type { CumulusPrimitivesCoreAggregateMessageOrigin, EthereumLog, EvmCoreErrorExitReason, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, OrmlVestingVestingSchedule, PalletBalancesUnexpectedKind, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsMigrationStatus, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpRuntimeDispatchError, SpWeightsWeightV2Weight, StagingXcmV5Asset, StagingXcmV5AssetAssets, StagingXcmV5Location, StagingXcmV5Response, StagingXcmV5TraitsOutcome, StagingXcmV5Xcm, XcmV3TraitsSendError, XcmV5TraitsError, XcmVersionedAssetId, XcmVersionedAssets, XcmVersionedLocation } from '@polkadot/types/lookup';
+import type { CumulusPrimitivesCoreAggregateMessageOrigin, EthereumLog, EvmCoreErrorExitReason, FrameSupportMessagesProcessMessageError, FrameSupportPreimagesBounded, FrameSupportTokensMiscBalanceStatus, FrameSystemDispatchEventInfo, OpalRuntimeRuntimeHoldReason, OrmlVestingVestingSchedule, PalletBalancesUnexpectedKind, PalletDemocracyMetadataOwner, PalletDemocracyVoteAccountVote, PalletDemocracyVoteThreshold, PalletEvmAccountBasicCrossAccountIdRepr, PalletForeignAssetsMigrationStatus, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord, PalletStateTrieMigrationError, PalletStateTrieMigrationMigrationCompute, SpRuntimeDispatchError, SpWeightsWeightV2Weight, StagingXcmV5Asset, StagingXcmV5AssetAssets, StagingXcmV5Location, StagingXcmV5Response, StagingXcmV5TraitsOutcome, StagingXcmV5Xcm, XcmV3TraitsSendError, XcmV5TraitsError, XcmVersionedAssetId, XcmVersionedAssets, XcmVersionedLocation } from '@polkadot/types/lookup';
 
 export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
@@ -75,6 +75,14 @@ declare module '@polkadot/api-base/types/events' {
        **/
       Burned: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
+       * Some debt has been dropped from the Total Issuance.
+       **/
+      BurnedDebt: AugmentedEvent<ApiType, [amount: u128], { amount: u128 }>;
+      /**
+       * Held balance was burned from an account.
+       **/
+      BurnedHeld: AugmentedEvent<ApiType, [reason: OpalRuntimeRuntimeHoldReason, who: AccountId32, amount: u128], { reason: OpalRuntimeRuntimeHoldReason, who: AccountId32, amount: u128 }>;
+      /**
        * Some amount was deposited (e.g. for transaction fees).
        **/
       Deposit: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
@@ -92,6 +100,10 @@ declare module '@polkadot/api-base/types/events' {
        **/
       Frozen: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
+       * Some balance was placed on hold.
+       **/
+      Held: AugmentedEvent<ApiType, [reason: OpalRuntimeRuntimeHoldReason, who: AccountId32, amount: u128], { reason: OpalRuntimeRuntimeHoldReason, who: AccountId32, amount: u128 }>;
+      /**
        * Total issuance was increased by `amount`, creating a credit to be balanced.
        **/
       Issued: AugmentedEvent<ApiType, [amount: u128], { amount: u128 }>;
@@ -103,6 +115,14 @@ declare module '@polkadot/api-base/types/events' {
        * Some amount was minted into an account.
        **/
       Minted: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
+      /**
+       * Some credit was balanced and added to the TotalIssuance.
+       **/
+      MintedCredit: AugmentedEvent<ApiType, [amount: u128], { amount: u128 }>;
+      /**
+       * Some balance was released from hold.
+       **/
+      Released: AugmentedEvent<ApiType, [reason: OpalRuntimeRuntimeHoldReason, who: AccountId32, amount: u128], { reason: OpalRuntimeRuntimeHoldReason, who: AccountId32, amount: u128 }>;
       /**
        * Total issuance was decreased by `amount`, creating a debt to be balanced.
        **/
@@ -140,6 +160,14 @@ declare module '@polkadot/api-base/types/events' {
        * Transfer succeeded.
        **/
       Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
+      /**
+       * The `transferred` balance is placed on hold at the `dest` account.
+       **/
+      TransferAndHold: AugmentedEvent<ApiType, [reason: OpalRuntimeRuntimeHoldReason, source: AccountId32, dest: AccountId32, transferred: u128], { reason: OpalRuntimeRuntimeHoldReason, source: AccountId32, dest: AccountId32, transferred: u128 }>;
+      /**
+       * A transfer of `amount` on hold from `source` to `dest` was initiated.
+       **/
+      TransferOnHold: AugmentedEvent<ApiType, [reason: OpalRuntimeRuntimeHoldReason, source: AccountId32, dest: AccountId32, amount: u128], { reason: OpalRuntimeRuntimeHoldReason, source: AccountId32, dest: AccountId32, amount: u128 }>;
       /**
        * An unexpected/defensive event was triggered.
        **/
